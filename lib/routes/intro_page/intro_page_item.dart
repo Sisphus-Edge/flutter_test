@@ -11,7 +11,7 @@ class IntroPageItem extends StatelessWidget {
   late final IntroItem item;
   late final PageVisibility pageVisibility;
 
-
+/// 应用文本效果 接受的参数控制文本在页面上的水平移动量
   Widget _applyTextEffects({
     required double translationFactor,
     required Widget child,
@@ -31,6 +31,7 @@ class IntroPageItem extends StatelessWidget {
     );
 }
 
+/// 创建文本容器
   _buildTextContainer(BuildContext context){
     var textTheme = Theme.of(context).textTheme;
     var categoryText = _applyTextEffects(
@@ -74,6 +75,7 @@ class IntroPageItem extends StatelessWidget {
   }
 
 
+  /// 组件的构建，包含图片，以及imageOverlayGradient渐变效果器
   @override
   Widget build(BuildContext context) {
     // TODO: implement build
@@ -86,13 +88,16 @@ class IntroPageItem extends StatelessWidget {
       ),
     );
 
+    /// 设置渐变色
     var imageOverlayGradient = const DecoratedBox(
         decoration: BoxDecoration(
           gradient: LinearGradient(
               begin: FractionalOffset.bottomCenter,
               end: FractionalOffset.topCenter,
               colors: [
-                Color(0xFF000000),
+                // Color(0xFF000000),
+                Colors.black87,
+                // Color(0xFFB6ACC5),
                 Color(0x00000000),
               ]
           ),
@@ -105,16 +110,28 @@ class IntroPageItem extends StatelessWidget {
           vertical: 16.0,
           horizontal: 8.0,
         ),
-      child: Material(
-        elevation: 4.0,
-        borderRadius: BorderRadius.circular(8.0),
-        child: Stack(
-          fit: StackFit.expand,
-          children: [
-            image,
-            imageOverlayGradient,
-            _buildTextContainer(context),
+      child: Container(
+        decoration: BoxDecoration(
+          boxShadow: [
+            BoxShadow(
+              color: Colors.grey.withOpacity(0.9), // 设置阴影颜色和透明度
+              spreadRadius: 5,
+              blurRadius: 7,
+              offset: const Offset(2, 4), // 设置阴影偏移量
+            ),
           ],
+          borderRadius: BorderRadius.circular(30.0),
+        ),
+        child: ClipRRect(
+          borderRadius: BorderRadius.circular(30.0),
+          child: Stack(
+            fit: StackFit.expand,
+            children: [
+              image,
+              imageOverlayGradient,
+              _buildTextContainer(context),
+            ],
+          ),
         ),
       ),
     );
