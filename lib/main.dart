@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 import 'routes/homePage.dart';
+import 'widges/intro_page/intro_page_view.dart';
 import 'common/global.dart';
 import 'routes/loginRoute.dart';
 
@@ -39,7 +40,8 @@ class MyApp extends StatelessWidget {
               // primarySwatch: materialColor,
             ),
             // home: const MyHomePage(title: 'Flutter Demo Home Page22222'),
-            home: HomeRoute(),
+            // home: HomeRoute(),
+            home: IntroPageView(),
 
             // locale: localeModel.getLocale(),
             routes: <String, WidgetBuilder>{
