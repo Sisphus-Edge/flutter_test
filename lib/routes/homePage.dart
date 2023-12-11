@@ -1,3 +1,6 @@
+/// homepage 只有login按钮
+/// 已弃用
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';

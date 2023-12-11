@@ -85,7 +85,6 @@ class _PageTransformerState extends State<PageTransformer>{
    late PageVisibilityResolver _visibilityResolver;
 
    /// 在调用时，主文件page_transformer调用时初始化
-
   @override
   void initState() {
     super.initState();
@@ -103,6 +102,7 @@ class _PageTransformerState extends State<PageTransformer>{
       viewPortFraction: 0.8, // 设置视口分数，根据实际需要调整
     );
   }
+
   @override
   Widget build(BuildContext context) {
     final pageView = widget.pageViewBuilder(
@@ -123,9 +123,41 @@ class _PageTransformerState extends State<PageTransformer>{
         });
         return true;
       },
-      child: pageView,
+      // child: pageView,
+      child: Scaffold(
+        // body: pageView,
+        body: Column(
+          children: [
+            Expanded(child: pageView,),
+            Container(
+              padding: const EdgeInsets.only(top: 20.0),
+              width: MediaQuery.of(context).size.width * 0.7,
+              height: MediaQuery.of(context).size.height * 0.09,
+              child: ElevatedButton(
+
+                style: ElevatedButton.styleFrom(
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(10.0),
+                  ),
+                  primary: const Color(0xFF827397),
+                  elevation: 5, // 设置按钮阴影的值
+                  shadowColor: Colors.grey, // 设置阴影的颜色
+                ),// style
+                onPressed: () => Navigator.of(context).pushNamed("login"),
+                child: const Text(
+                  'Get Started',
+                  style: TextStyle(
+                    color: Colors.white,
+                    fontSize: 19,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+              ),
+            )
+          ],
+        ),
+      ),
     );
   }
-
       // return ;
 }

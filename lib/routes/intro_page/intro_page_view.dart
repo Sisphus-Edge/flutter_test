@@ -2,16 +2,20 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 import 'package:untitled/states/page_transformer_login_data.dart';
-import 'package:untitled/widges/intro_page/page_transformer.dart';
+import 'package:untitled/routes/intro_page/page_transformer.dart';
 import 'intro_page_item.dart';
 
 class IntroPageView extends StatelessWidget{
   @override
   Widget build(BuildContext context){
+    double mediaHeight = MediaQuery.of(context).size.height * 0.75;
+    mediaHeight ??= 500;
     return Scaffold(
       body: Center(
         child: SizedBox.fromSize(
-          size: const Size.fromHeight(500.0),
+          size: Size.fromHeight(mediaHeight),
+          // 取消size 前缀 const（常量表达式，编译时计算）
+          // MediaQuery在运行时计算
           child: PageTransformer(
             pageViewBuilder: (context, visibilityResolver){
               if (visibilityResolver == null) {
@@ -30,7 +34,7 @@ class IntroPageView extends StatelessWidget{
                 );
               }
               return PageView.builder(
-                controller: PageController(viewportFraction: 0.85),
+                controller: PageController(viewportFraction: 0.9),
                 itemCount: sampleItems.length,
                 itemBuilder: (context,index){
                   final item = sampleItems[index];
@@ -46,4 +50,6 @@ class IntroPageView extends StatelessWidget{
       ),
     );
   }
+
+
 }
