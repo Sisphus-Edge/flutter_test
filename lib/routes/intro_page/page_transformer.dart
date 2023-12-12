@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_page_view_indicator/flutter_page_view_indicator.dart';
 
 /// A function that builds a [PageView] lazily.
 typedef PageView PageViewBuilder(
@@ -52,6 +53,7 @@ class PageVisibilityResolver {
 
     return safePagePosition;
   }
+
 
   // PageVisibilityResolver();
 }
@@ -129,12 +131,19 @@ class _PageTransformerState extends State<PageTransformer>{
         body: Column(
           children: [
             Expanded(child: pageView,),
-            Container(
+            PageViewIndicator(
+              length: 3,
+              currentIndex: _getCurrentPageIndex(),
+              // alignment: Axis.horizontal,
+              // reverse:true,
+              // otherItemWidth: 20,
+              // otherItemHeight: 8,
+            ),
+            Container( // 包含login按钮
               padding: const EdgeInsets.only(top: 20.0),
               width: MediaQuery.of(context).size.width * 0.7,
               height: MediaQuery.of(context).size.height * 0.09,
               child: ElevatedButton(
-
                 style: ElevatedButton.styleFrom(
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(10.0),
@@ -158,6 +167,20 @@ class _PageTransformerState extends State<PageTransformer>{
         ),
       ),
     );
-  }
-      // return ;
+  }// return ;
+
+   int _getCurrentPageIndex() {
+     // 获取页面的位置信息
+     final currentPagePosition = _visibilityResolver.resolvePageVisibility(1).pagePosition;
+     // 计算当前页面的索引
+     // 假设你有3个页面，分别位于 -1.0、0.0 和 1.0 位置
+     if (currentPagePosition >= 0.5) {
+       return 0; // 第一个页面的索引为 0
+     } else if (currentPagePosition > -0.5 && currentPagePosition < 0.5) {
+       return 1; // 第二个页面的索引为 1
+     } else {
+       return 2; // 第三个页面的索引为 2
+     }
+   }
+
 }

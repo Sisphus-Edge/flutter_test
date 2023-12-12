@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_page_view_indicator/flutter_page_view_indicator.dart';
 import 'page_transformer.dart';
 import 'package:untitled/states/page_transformer_login_data.dart';
 
@@ -79,6 +80,7 @@ class IntroPageItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     // TODO: implement build
+    // int image_count;
     var image = Image.asset(
       item.imageUrl,
       fit: BoxFit.cover,
@@ -130,6 +132,15 @@ class IntroPageItem extends StatelessWidget {
               image,
               imageOverlayGradient,
               _buildTextContainer(context),
+              // Positioned(
+              //   bottom: 16.0,
+              //   left: 0,
+              //   right: 0,
+              //   child: PageViewIndicator(
+              //       length: 3,
+              //       currentIndex: item,
+              //   ),
+              // ),
             ],
           ),
         ),

@@ -1,6 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-
+import 'homePage.dart';
 
 class LoginRoute extends StatefulWidget {
   @override
@@ -76,6 +76,7 @@ class _LoginRouteState extends State<LoginRoute> {
     );
   }
 
+  /// 第三方登录
   Widget buildOtherMethod(context) {
     return ButtonBar(
       alignment: MainAxisAlignment.center,
@@ -109,6 +110,7 @@ class _LoginRouteState extends State<LoginRoute> {
     );
   }
 
+  /// login登录按钮
   Widget buildLoginButton(BuildContext context) {
     return Align(
       child: SizedBox(
@@ -127,6 +129,12 @@ class _LoginRouteState extends State<LoginRoute> {
               (_formKey.currentState as FormState).save();
               //TODO 执行登录方法
               print('email: $_email, password: $_password');
+              if(_email == '111@qq.com' && _password == '111'){
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => HomeRoute()), // 替换为您的下一个屏幕
+                );
+              }
             }
           },
         ),
@@ -134,6 +142,7 @@ class _LoginRouteState extends State<LoginRoute> {
     );
   }
 
+/// 忘记密码
   Widget buildForgetPasswordText(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.only(top: 8),
@@ -151,6 +160,7 @@ class _LoginRouteState extends State<LoginRoute> {
     );
   }
 
+  /// 密码栏
   Widget buildPasswordTextField(BuildContext context) {
     return TextFormField(
         obscureText: _isObscure, // 是否显示文字
@@ -179,6 +189,7 @@ class _LoginRouteState extends State<LoginRoute> {
             )));
   }
 
+  /// 邮箱地址输入框
   Widget buildEmailTextField() {
     return TextFormField(
       decoration: const InputDecoration(labelText: 'Email Address'),
@@ -193,6 +204,7 @@ class _LoginRouteState extends State<LoginRoute> {
     );
   }
 
+  /// 标题下方的横线
   Widget buildTitleLine() {
     return Padding(
         padding: const EdgeInsets.only(left: 12.0, top: 4.0),
@@ -206,6 +218,7 @@ class _LoginRouteState extends State<LoginRoute> {
         ));
   }
 
+  /// 标题
   Widget buildTitle() {
     return const Padding(
         padding: EdgeInsets.all(8),
