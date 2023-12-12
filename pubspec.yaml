@@ -43,7 +43,7 @@ dependencies:
   dashboard: ^0.0.4
   font_awesome_flutter: ^10.6.0
   flutter_page_view_indicator: ^0.0.5
-
+  circular_bottom_navigation: ^2.3.0
 
 
   # The following adds the Cupertino Icons font to your application.

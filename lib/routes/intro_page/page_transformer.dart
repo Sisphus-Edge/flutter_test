@@ -146,7 +146,7 @@ class _PageTransformerState extends State<PageTransformer>{
               child: ElevatedButton(
                 style: ElevatedButton.styleFrom(
                   shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(10.0),
+                    borderRadius: BorderRadius.circular(16.0),
                   ),
                   primary: const Color(0xFF827397),
                   elevation: 5, // 设置按钮阴影的值
