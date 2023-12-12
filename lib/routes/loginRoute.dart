@@ -1,6 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'homePage.dart';
+import 'portal.dart';
 
 class LoginRoute extends StatefulWidget {
   @override
@@ -132,7 +132,8 @@ class _LoginRouteState extends State<LoginRoute> {
               if(_email == '111@qq.com' && _password == '111'){
                 Navigator.push(
                   context,
-                  MaterialPageRoute(builder: (context) => HomeRoute()), // 替换为您的下一个屏幕
+                  // MaterialPageRoute(builder: (context) => HomeRoute()), // 替换为您的下一个屏幕
+                  MaterialPageRoute(builder: (context) => PortalRoute()), // 替换为您的下一个屏幕
                 );
               }
             }
