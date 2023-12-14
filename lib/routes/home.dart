@@ -1,15 +1,15 @@
 import 'package:flutter/material.dart';
 
 
-class CommunityRoute extends StatefulWidget {
-  const CommunityRoute({super.key});
+class HomeRoute extends StatefulWidget {
+  const HomeRoute({super.key});
 
   @override
-  _CommunityRouteState createState() => _CommunityRouteState();
+  _HomeRouteState createState() => _HomeRouteState();
 
 }
 
-class _CommunityRouteState extends State<CommunityRoute> {
+class _HomeRouteState extends State<HomeRoute> {
   @override
   void initState() {
     super.initState();
@@ -22,7 +22,7 @@ class _CommunityRouteState extends State<CommunityRoute> {
 
   @override
   Widget build(BuildContext context) {
-    return Text("community");
+    return Text("Home");
   }
 }
 

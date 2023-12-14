@@ -16,33 +16,50 @@ class BottomTabBar extends StatelessWidget {
   });
 
   List<TabItem> tabItems = List.of([
+    /// 第一个 home
     TabItem(
       Icons.home,
       "Home",
-      Colors.blue,
+      // Color(0xFF827397),
+      // Color(0xFFDFBE96),
+      // Color(0xFFCCD8D0),
+      const Color(0xFFE6B653),
       labelStyle: const TextStyle(
-        fontWeight: FontWeight.normal,
+        fontWeight: FontWeight.w600,
+        color: Color(0xFF24271E),
       ),
     ),
+    /// 第二个 我的小狗
     TabItem(
-      Icons.search,
-      "Search",
-      Colors.orange,
+      Icons.pets,
+      "Pet Home",
+      const Color(0xFFE6B653),
       labelStyle: const TextStyle(
-        color: Colors.red,
-        fontWeight: FontWeight.bold,
+        color: Color(0xFF24271E),
+        fontWeight: FontWeight.w600,
       ),
     ),
+    /// 第三个 社区
     TabItem(
-      Icons.layers,
-      "Reports",
-      Colors.red,
-      circleStrokeColor: Colors.black,
+      // Icons.landscape,
+      Icons.public,
+      "Community",
+      const Color(0xFFE6B653),
+      // circleStrokeColor: Colors.black,
+      labelStyle: const TextStyle(
+        color: Color(0xFF24271E),
+        fontWeight: FontWeight.w600,
+      ),
     ),
+    /// 第四个 账户
     TabItem(
-      Icons.notifications,
-      "Notifications",
-      Colors.cyan,
+      Icons.person,
+      "Profile",
+      const Color(0xFFE6B653),
+      labelStyle: const TextStyle(
+        color: Color(0xFF24271E),
+        fontWeight: FontWeight.w600,
+      ),
     ),
   ]);
   @override
@@ -56,8 +73,5 @@ class BottomTabBar extends StatelessWidget {
       selectedCallback: selectedCallback,
     );
   }
-
-
-
 
 }
