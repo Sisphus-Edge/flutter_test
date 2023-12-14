@@ -1,6 +1,6 @@
+import 'package:circular_bottom_navigation/circular_bottom_navigation.dart';
 import 'package:flutter/material.dart';
 
-import 'profile.dart';
 import 'community.dart';
 
 import 'package:untitled/widges/bottom_tab_bar.dart';
@@ -16,7 +16,9 @@ class _PortalRouteState extends State<PortalRoute> {
   GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
 
   /// tabbar指向哪一个界面
-  int _currentIndex = 0;
+  int selectedPos = 0;
+  late double bottomNavBarHeight = 60;
+  late CircularBottomNavigationController _navigationController;
 
   /// tabbar能够指向的所有一级页面集合
   final List<Widget> _routes = [
@@ -24,9 +26,15 @@ class _PortalRouteState extends State<PortalRoute> {
     CommunityRoute(),
   ];
 
+  @override
+  void initState() {
+    super.initState();
+    _navigationController = CircularBottomNavigationController(selectedPos);
+  }
 
   @override
   Widget build(BuildContext context) {
+
     return Scaffold(
       key: _scaffoldKey,
       appBar: PortalAppBar(),
@@ -35,18 +43,27 @@ class _PortalRouteState extends State<PortalRoute> {
       //   index: _currentIndex,
       //   children: _routes,
       // ),
-      body: Center(
+      body: const Center(
         child: Text('Main Content Here'),
       ),
       bottomNavigationBar: BottomTabBar(
-        currentIndex: _currentIndex,
-        onTap: (index){
+        navigationController: _navigationController,
+        selectedPos: selectedPos,
+        bottomNavBarHeight: bottomNavBarHeight,
+        selectedCallback: (int? selectedPos) {
           setState(() {
-            _currentIndex = index;
+            this.selectedPos = selectedPos ?? 0;
           });
         },
-      )
+      ),
     );
+  }
+
+  /// 调用结束后释放资源
+  @override
+  void dispose() {
+    super.dispose();
+    _navigationController.dispose();
   }
 }
 

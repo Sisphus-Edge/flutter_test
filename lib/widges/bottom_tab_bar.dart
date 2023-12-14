@@ -1,37 +1,63 @@
+import 'package:circular_bottom_navigation/circular_bottom_navigation.dart';
 import 'package:flutter/material.dart';
+import 'package:circular_bottom_navigation/tab_item.dart';
 
 class BottomTabBar extends StatelessWidget {
-  final int currentIndex;
-  final Function(int) onTap;
+  late final CircularBottomNavigationController navigationController;
+  late final int selectedPos;
+  late final double bottomNavBarHeight;
+  late final Function(int?) selectedCallback;
 
-  BottomTabBar({
-    required this.currentIndex,
-    required this.onTap,
+  BottomTabBar({super.key,
+    required this.navigationController,
+    required this.selectedPos,
+    required this.bottomNavBarHeight,
+    required this.selectedCallback,
   });
 
+  List<TabItem> tabItems = List.of([
+    TabItem(
+      Icons.home,
+      "Home",
+      Colors.blue,
+      labelStyle: const TextStyle(
+        fontWeight: FontWeight.normal,
+      ),
+    ),
+    TabItem(
+      Icons.search,
+      "Search",
+      Colors.orange,
+      labelStyle: const TextStyle(
+        color: Colors.red,
+        fontWeight: FontWeight.bold,
+      ),
+    ),
+    TabItem(
+      Icons.layers,
+      "Reports",
+      Colors.red,
+      circleStrokeColor: Colors.black,
+    ),
+    TabItem(
+      Icons.notifications,
+      "Notifications",
+      Colors.cyan,
+    ),
+  ]);
   @override
   Widget build(BuildContext context) {
-    return BottomNavigationBar(
-      currentIndex: currentIndex,
-      onTap: onTap,
-      items: const [
-        BottomNavigationBarItem(
-          icon: Icon(Icons.home),
-          label: 'Home',
-        ),
-        BottomNavigationBarItem(
-          icon: Icon(Icons.person),
-          label: 'Profile',
-        ),
-        BottomNavigationBarItem(
-          icon: Icon(Icons.settings),
-          label: 'Settings',
-        ),
-        // BottomNavigationBarItem(
-        //   icon: Icon(Icons.settings),
-        //   label: 'Settings',
-        // ),
-      ],
+    return CircularBottomNavigation(
+      tabItems,
+      controller: navigationController,
+      selectedPos: selectedPos,
+      barHeight: bottomNavBarHeight,
+      // Other properties...
+      selectedCallback: selectedCallback,
     );
   }
+
+
+
+
 }

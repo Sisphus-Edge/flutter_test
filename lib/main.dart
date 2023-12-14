@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-import 'routes/homePage.dart';
+import 'routes/test.dart';
 import 'common/global.dart';
 import 'routes/loginRoute.dart';
 import 'routes/intro_page/intro_page_view.dart';
