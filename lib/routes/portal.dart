@@ -1,3 +1,4 @@
+
 import 'package:circular_bottom_navigation/circular_bottom_navigation.dart';
 import 'package:flutter/material.dart';
 import 'package:untitled/routes/home.dart';
@@ -15,45 +16,9 @@ import 'package:untitled/widges/appbars/pethome_appbar.dart';
 import 'package:untitled/widges/appbars/community_appbar.dart';
 import 'package:untitled/widges/appbars/profile_appbar.dart';
 
-class Profile {
-  late String firstName;
-  late String lastName;
-  late String location;
-  late int numberOfFollowers;
-  late int numberFollowing;
-  late int totalLikes;
-
-  String get fullName => "$firstName $lastName";
-
-  String get numberOfFollowersString => _abbreviatedCount(numberOfFollowers);
-
-  String get numberFollowingString => _abbreviatedCount(numberFollowing);
-
-  String get totalLikesString => _abbreviatedCount(totalLikes);
-
-  String _abbreviatedCount(int num) {
-    if (num < 1000) return "$num";
-    if (num >= 1000 && num < 1000000) {
-      String s = (num / 1000).toStringAsFixed(1);
-      if (s.endsWith(".0")) {
-        int idx = s.indexOf(".0");
-        s = s.substring(0, idx);
-      }
-      return "${s}K";
-    } else if (num >= 1000000 && num < 1000000000) {
-      String s = (num / 1000000).toStringAsFixed(1);
-      if (s.endsWith(".0")) {
-        int idx = s.indexOf(".0");
-        s = s.substring(0, idx);
-      }
-      return "${s}M";
-    }
-    return "";
-  }
-}
-
-
 class PortalRoute extends StatefulWidget {
+  const PortalRoute({super.key});
+
   @override
   _PortalRouteState createState() => _PortalRouteState();
 }
@@ -61,18 +26,13 @@ class PortalRoute extends StatefulWidget {
 class _PortalRouteState extends State<PortalRoute> {
   GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
 
+  /// 设备的长宽
+  late double MediaWidth;
+  late double MediaHeight;
+
   /// tabbar指向哪一个界面 && appbar随之而改变
   int selectedPos = 0;
-  late double bottomNavBarHeight = 60;
   late CircularBottomNavigationController _navigationController;
-
-  /// tabbar能够指向的所有一级页面集合
-  final List _routes= [
-    HomeRoute(),
-    PetHomeRoute(),
-    CommunityRoute(),
-    ProfileRoute(),
-  ];
 
 
   /// appbar集合
@@ -87,11 +47,24 @@ class _PortalRouteState extends State<PortalRoute> {
   void initState() {
     super.initState();
     _navigationController = CircularBottomNavigationController(selectedPos);
+
   }
 
   @override
   Widget build(BuildContext context) {
-    double bottomNavBarHeight = MediaQuery.of(context).size.width * 0.15;
+    MediaWidth = MediaQuery.of(context).size.width ?? 393;
+    MediaHeight = MediaQuery.of(context).size.height ?? 808;
+    double bottomNavBarHeight = MediaHeight * 0.08;
+    // bottomNavBarHeight = MediaHeight * 0.2 ;
+
+    /// tabbar能够指向的所有一级页面集合
+    final List _routes= [
+      HomeRoute(MediaWidth: MediaWidth, MediaHeight: MediaHeight,),
+      PetHomeRoute(),
+      CommunityRoute(),
+      ProfileRoute(),
+    ];
+
     if(selectedPos != 3){
       return Scaffold(
         key: _scaffoldKey,
@@ -113,14 +86,10 @@ class _PortalRouteState extends State<PortalRoute> {
         ),
       );
     }
+    /// 如果是profile页面，则没有appbar
     else{
       return Scaffold(
         key: _scaffoldKey,
-        // appBar:_appbar[selectedPos],
-        // drawer: PortalDrawer(),
-        // body: const Center(
-        //   child: Text('Main Content Here'),
-        // ),
         body: _routes[selectedPos],
         bottomNavigationBar: BottomTabBar(
           navigationController: _navigationController,

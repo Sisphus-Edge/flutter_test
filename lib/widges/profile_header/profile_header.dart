@@ -19,29 +19,35 @@ class ProfileHeader extends StatelessWidget {
         .padding
         .top;
 
-    const headerGradient = RadialGradient(
+   /* const headerGradient = RadialGradient(
       center: Alignment.topLeft,
       radius: 0.4,
       colors: <Color>[
-        Color(0xFF8860EB),
-        Color(0xFF8881EB),
+        // Color(0xFF8860EB),
+        Color(0xFFDFBE96),
+        // Color(0xFF8881EB),
+        Color(0xFFDFBE96),
+
       ],
       stops: <double>[
         0.4, 1.0,
       ],
       tileMode: TileMode.repeated,
-    );
+    );*/
 
-    const headerHeight = 290.0;
+
+    const headerHeight = 280.0;
 
     return Container(
       height: headerHeight,
       decoration: BoxDecoration(
         color: ProfileColors.primaryColor,
-        boxShadow: <BoxShadow>[
-          BoxShadow(spreadRadius: 2.0,
-              blurRadius: 4.0,
-              offset: new Offset(0.0, 1.0),
+        /// header的阴影
+        boxShadow: const <BoxShadow>[
+          BoxShadow(
+              spreadRadius: 4.0,
+              blurRadius: 6.0, /// 渲染范围
+              offset: Offset(0.0, 1.0), /// 偏移
               color: Colors.black38),
         ],
       ),
@@ -53,16 +59,22 @@ class ProfileHeader extends StatelessWidget {
             height: headerHeight,
             decoration: const BoxDecoration(
               gradient: LinearGradient(
+                /// 线性渐变
                   colors: <Color>[ //7928D1
-                    Color(0xFF7928D1), Color(0xFF9A4DFF)],
-                  stops: <double>[0.3, 0.5],
+                    // Color(0xFF7928D1),
+                    // Color(0xFF9A4DFF)
+                    // Colors.amber,
+                    Color(0xFF8250DF), // 右上
+                    Color(0xFF6639BA), // 左下
+                  ],
+                  stops: <double>[0.2, 0.6],
                   begin: Alignment.topRight, end: Alignment.bottomLeft
               ),
             ),
           ),
           // radial gradient
           CustomPaint(
-            painter: new HeaderGradientPainter(),
+            painter: HeaderGradientPainter(),
           ),
           Padding(
             padding: EdgeInsets.only(
@@ -72,14 +84,17 @@ class ProfileHeader extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[
                 _buildBellIcon(),
+                /// title profile
                 Padding(
                   padding: const EdgeInsets.only(bottom: 15.0),
                   child: _buildTitle(),
                 ),
+                /// 头像 & 信息
                 Padding(
                   padding: const EdgeInsets.only(bottom: 20.0),
                   child: _buildAvatar(),
                 ),
+                /// followers
                 _buildFollowerStats()
               ],
             ),
@@ -96,29 +111,33 @@ class ProfileHeader extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: <Widget>[
         IconButton(
-            icon: Icon(
+            icon: const Icon(
               LineAwesomeIcons.bell, color: Colors.white, size: 30.0,),
             onPressed: () {}),
       ],
     );
   }
 
+  /// 账户标题
   Widget _buildTitle() {
     return Text("Profile",
         style: TextStyle(
             fontFamily: ProfileFontNames.TimeBurner,
-            fontWeight: FontWeight.w700,
+            fontWeight: FontWeight.w600,
             color: Colors.white,
-            fontSize: 40.0,
+            fontSize: 34.0,
             letterSpacing: 1.0));
   }
 
   /// The avatar consists of the profile image, the users name and location
+  /// 头像 用户名 地址
   Widget _buildAvatar() {
+    /// 用户名style
     final mainTextStyle = TextStyle(fontFamily: ProfileFontNames.TimeBurner,
         color: Colors.white,
         fontWeight: FontWeight.w700,
         fontSize: 20.0);
+    /// 地址style
     final subTextStyle = TextStyle(
         fontFamily: ProfileFontNames.TimeBurner,
         fontSize: 16.0,
@@ -152,6 +171,7 @@ class ProfileHeader extends StatelessWidget {
     );
   }
 
+  /// 关注的排列
   Widget _buildFollowerStats() {
     return Row(
       mainAxisAlignment: MainAxisAlignment.center,
@@ -166,11 +186,14 @@ class ProfileHeader extends StatelessWidget {
     );
   }
 
+  /// 单个关注
   Widget _buildFollowerStat(String title, String value) {
+    /// 第一行
     final titleStyle = TextStyle(
         fontSize: 16.0,
         fontFamily: ProfileFontNames.TimeBurner,
         color: Colors.white);
+    /// 第二行
     final valueStyle = TextStyle(
         fontFamily: ProfileFontNames.TimeBurner,
         fontSize: 18.0,
@@ -186,10 +209,11 @@ class ProfileHeader extends StatelessWidget {
     );
   }
 
+  /// 关注栏的分隔符
   Widget _buildVerticalDivider() {
     return Container(
       height: 30.0,
-      width: 1.0,
+      width: 2.0,
       color: Colors.white30,
       margin: const EdgeInsets.only(left: 10.0, right: 10.0),
     );

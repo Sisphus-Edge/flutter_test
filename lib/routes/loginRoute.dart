@@ -128,13 +128,8 @@ class _LoginRouteState extends State<LoginRoute> {
           child: Text('Login',
               style: Theme.of(context).primaryTextTheme.headline5),
           onPressed: () {
-            Navigator.push(
-              context,
-              // MaterialPageRoute(builder: (context) => HomeRoute()), // 替换为您的下一个屏幕
-              MaterialPageRoute(builder: (context) => PortalRoute()), // 替换为您的下一个屏幕
-            );
             // 表单校验通过才会继续执行
-            /*if ((_formKey.currentState as FormState).validate()) {
+            if ((_formKey.currentState as FormState).validate()) {
               (_formKey.currentState as FormState).save();
               //TODO 执行登录方法
               print('email: $_email, password: $_password');
@@ -145,7 +140,14 @@ class _LoginRouteState extends State<LoginRoute> {
                   MaterialPageRoute(builder: (context) => PortalRoute()), // 替换为您的下一个屏幕
                 );
               }
-            }*/
+            }
+            else{
+              Navigator.push(
+                context,
+                // MaterialPageRoute(builder: (context) => HomeRoute()), // 替换为您的下一个屏幕
+                MaterialPageRoute(builder: (context) => PortalRoute()), // 替换为您的下一个屏幕
+              );
+            }
           },
         ),
       ),
