@@ -97,6 +97,7 @@ class TopSection extends StatelessWidget{
 
     // TODO: implement build
     return Container(
+      color: Colors.greenAccent,
       /// 宽度 0.03 || 0.47 || 0.02 || 0.47 ||0.0 == 1.0
       /// 高度  0.05 || 0.9 ||0.05  右边 ： 0.05 ||0.43 | 0.04 |0.43 ||0.05
       padding:  EdgeInsets.symmetric(vertical: section_height*0.05, horizontal: section_width*0.02),// (垂直，水平)

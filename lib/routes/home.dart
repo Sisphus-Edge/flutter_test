@@ -60,16 +60,29 @@ class _HomeRouteState extends State<HomeRoute> {
         child: Column(
           /// 0.02
           /// part 1: 0.2
-          /// part 2： 0.15
+          /// driver: 0.01
+          /// part 2： 0.11
+          /// part 3:
           /// 0.2
-          /// section的内边距： 0.3（section_为比例）
+          /// section的内边距  在此处定义 0.3（section_为比例）
+          ///
           children: [
             FittedBox(
               fit: BoxFit.contain, // 限制子部件的大小，确保其不会超出容器的边界
               child: TopSection(section_width: sharedMediaWidth * 0.97, section_height: sharedMediaHeight*0.2), // 添加您想要显示的内容
             ),
             // sizeOf(hie),
-            // ScrollableButtons(section_width: sharedMediaWidth * 0.97, section_height: sharedMediaHeight*0.1),
+            Divider(
+              color: Colors.transparent,
+              height: sharedMediaHeight * 0.01,
+            ),
+            ScrollableButtons(section_width: sharedMediaWidth * 0.97, section_height: sharedMediaHeight*0.11),
+            Divider(
+              color: Colors.transparent,
+              height: sharedMediaHeight * 0.01,
+            ),
+            AppointmentsSection(section_width: sharedMediaWidth * 0.97, section_height: sharedMediaHeight*0.16),
+
           ],
         )
       ),

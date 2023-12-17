@@ -1,38 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:ionicons/ionicons.dart';
 
 class ScrollableButtons extends StatelessWidget {
   const ScrollableButtons({super.key, required this.section_width, required this.section_height});
   final double section_width;
   final double section_height;
 
-  /// 可滑动button的模板
-  Widget _buildScrolloableButton(String text, Color color, IconData iconData, VoidCallback onPressed,double buttonWidth,double buttonHeight)
-  {
-    return ElevatedButton(
-      onPressed: onPressed,
-      style: ElevatedButton.styleFrom(
-        backgroundColor: color,
-        minimumSize: Size(buttonWidth, buttonHeight), // 设置按钮的最小尺寸
-      ),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          Icon(iconData), // 显示图标
-          const SizedBox(width: 8), // 间距
-          Text(
-            text, // 显示文本
-            style: const TextStyle(fontSize: 10), // 文本样式
-          ),
-        ],
-      ),
-    );
-  }
-
-
   Container title(double textWidth,double textHeight){
     return Container(
-      color: Colors.purple,
+      // color: Colors.purple,/// 调试
       width: textWidth,
       height: textHeight,
       child: Row(
@@ -68,21 +43,94 @@ class ScrollableButtons extends StatelessWidget {
     );
   }
 
+  /// 可滑动button的模板
+  Container _buildScrolloableButton(String text, Color color, IconData iconData, VoidCallback onPressed,double buttonWidth,double buttonHeight)
+  {
+    return Container(
+      padding: const EdgeInsets.only(bottom: 2.0),
+      width: buttonWidth,
+      // height: buttonHeight * 0.2,
+      decoration: BoxDecoration(
+        boxShadow: [
+          BoxShadow(
+            color: Colors.grey.withOpacity(0.3), // 阴影颜色及透明度
+            offset: const Offset(2, 1), // 阴影偏移量(X轴，Y轴)
+            blurRadius: 2, // 阴影模糊半径
+            // spreadRadius: 0, // 阴影扩散半径
+          ),
+        ],
+        borderRadius: BorderRadius.circular(15),
+      ),
+      child: ElevatedButton(
+        onPressed: (){},
+        style: ElevatedButton.styleFrom(
+            shape:
+            RoundedRectangleBorder(borderRadius: BorderRadius.circular(15))
+        ),
+        child: Row(
+        // mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          Icon(iconData), // 显示图标
+          const SizedBox(width: 8), // 间距
+          Text(
+            text, // 显示文本
+            style: const TextStyle(fontSize: 10), // 文本样式
+          ),
+        ],
+      ),
+      ),
+    );
+    
+  }
+
+
+  Container buttons(double buttonWidth,double buttonHeight){
+    return Container(
+      width: buttonWidth,
+      height: buttonHeight,
+      // color: Colors.blue,
+      child: ListView(
+        scrollDirection: Axis.horizontal,
+      children: <Widget>[
+        _buildScrolloableButton('text',
+            Colors.orange, Icons.abc, () { },
+            buttonWidth*0.26,buttonHeight),
+        const SizedBox(width: 10.0,),
+        _buildScrolloableButton('text',
+            Colors.orange, Icons.abc, () { },
+            buttonWidth*0.26,buttonHeight),
+        const SizedBox(width: 10.0,),
+        _buildScrolloableButton('text',
+            Colors.orange, Icons.abc, () { },
+            buttonWidth*0.26,buttonHeight),
+        const SizedBox(width: 10.0,),
+        _buildScrolloableButton('text',
+            Colors.orange, Icons.abc, () { },
+            buttonWidth*0.26,buttonHeight),
+      ],
+      ),
+    );
+  }
+
+
   @override
   Widget build(BuildContext context) {
+
     return Container(
-      color: Colors.amber,
+      color: Colors.blue,
       width:  section_width,
       height: section_height,
-      padding:  EdgeInsets.symmetric(vertical: section_height*0.05, horizontal: section_width*0.02),// (垂直，水平)
+      padding:  EdgeInsets.symmetric(vertical: section_height*0.075, horizontal: section_width*0.02),// (垂直，水平)
       child: Column(
         children: [
           title(section_width,section_height*0.3),
-          ListView(
-            children: <Widget>[
-              _buildScrolloableButton('text', Colors.black54, Icons.abc, () { },section_width,section_height*0.7),
-            ],
-          ),
+          // ListView(
+          //   children: <Widget>[
+          //     _buildScrolloableButton('text', Colors.black54, Icons.abc, () { },section_width,section_height*0.7),
+          //   ],
+          // ),
+          SizedBox(height: section_height*0.05,),
+          buttons(section_width,section_height*0.5)
         ],
       ),
     );
