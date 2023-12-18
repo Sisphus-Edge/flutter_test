@@ -55,34 +55,54 @@ class _HomeRouteState extends State<HomeRoute> {
     // );
 
     return Container(
+      color: Colors.grey,
       child: Container(
-        padding: EdgeInsets.symmetric(horizontal: sharedMediaWidth *0.03,vertical: sharedMediaHeight*0.02),
+        padding: EdgeInsets.symmetric(horizontal: sharedMediaWidth *0.03,vertical: sharedMediaHeight*0.015),
         child: Column(
           /// 0.02
-          /// part 1: 0.2
-          /// driver: 0.01
-          /// part 2： 0.11
-          /// part 3:
-          /// 0.2
+          /// part 1: 0.25
+          /// driver: 0.015
+          /// part 2： 0.13
+          /// driver: 0.015
+          /// part 3: 0.185
+          /// driver: 0.015
+          /// part 4: 0.38
+          /// 余下 ： 0.02
+          /// 0.02
           /// section的内边距  在此处定义 0.3（section_为比例）
           ///
           children: [
             FittedBox(
               fit: BoxFit.contain, // 限制子部件的大小，确保其不会超出容器的边界
-              child: TopSection(section_width: sharedMediaWidth * 0.97, section_height: sharedMediaHeight*0.2), // 添加您想要显示的内容
+              child: TopSection(section_width: sharedMediaWidth * 0.97, section_height: sharedMediaHeight*0.24), // 添加您想要显示的内容
             ),
             // sizeOf(hie),
             Divider(
               color: Colors.transparent,
               height: sharedMediaHeight * 0.01,
             ),
-            ScrollableButtons(section_width: sharedMediaWidth * 0.97, section_height: sharedMediaHeight*0.11),
+            FittedBox(
+              fit: BoxFit.contain, // 限制子部件的大小，确保其不会超出容器的边界
+              child: ScrollableButtons(section_width: sharedMediaWidth * 0.97, section_height: sharedMediaHeight*0.12),
+            ),
             Divider(
               color: Colors.transparent,
               height: sharedMediaHeight * 0.01,
             ),
-            AppointmentsSection(section_width: sharedMediaWidth * 0.97, section_height: sharedMediaHeight*0.16),
-
+            FittedBox(
+              fit: BoxFit.contain,
+              child: AppointmentsSection(section_width: sharedMediaWidth * 0.97, section_height: sharedMediaHeight*0.16),
+            ),
+            Divider(
+              color: Colors.transparent,
+              height: sharedMediaHeight * 0.01,
+            ),
+            FittedBox(
+              fit: BoxFit.contain,
+              // child: TinderCard(section_width: sharedMediaWidth * 0.97, section_height: sharedMediaHeight*0.29),
+              // child: TCardPage(section_width: sharedMediaWidth * 0.97, section_height: sharedMediaHeight*0.29),
+              child: TCardSecton(section_width: sharedMediaWidth * 0.97, section_height: sharedMediaHeight*0.29),
+            ),
           ],
         )
       ),

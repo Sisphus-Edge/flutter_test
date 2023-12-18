@@ -5,7 +5,7 @@ import 'routes/test.dart';
 import 'common/global.dart';
 import 'routes/loginRoute.dart';
 import 'routes/intro_page/intro_page_view.dart';
-import 'routes/community.dart';
+import 'routes/first_level_page/community.dart';
 
 void main() {
   runApp(const MyApp());

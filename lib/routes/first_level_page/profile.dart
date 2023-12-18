@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../widges/profile_header/profile_header.dart';
+import '../../widges/profile_header/profile_header.dart';
 
 
 class ProfileRoute extends StatefulWidget {

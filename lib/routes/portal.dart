@@ -1,11 +1,11 @@
 
 import 'package:circular_bottom_navigation/circular_bottom_navigation.dart';
 import 'package:flutter/material.dart';
-import 'package:untitled/routes/home.dart';
+import 'package:untitled/routes/first_level_page/home.dart';
 
-import 'community.dart';
-import 'pet_home.dart';
-import 'profile.dart';
+import 'first_level_page/community.dart';
+import 'first_level_page/pet_home.dart';
+import 'first_level_page/profile.dart';
 
 import 'package:untitled/widges/portal_drawer.dart';
 import 'package:untitled/widges/bottom_tab_bar.dart';
@@ -53,7 +53,10 @@ class _PortalRouteState extends State<PortalRoute> {
   @override
   Widget build(BuildContext context) {
     MediaWidth = MediaQuery.of(context).size.width ?? 393;
-    MediaHeight = MediaQuery.of(context).size.height ?? 808;
+    MediaHeight = MediaQuery.of(context).size.height*0.92 ?? 808;
+    /// body & buttonbar采取stack布置，需要严格控制整体界面的大小’
+    /// MediaWidth &MediaHeight 的适用范围体现在：
+    /// 调用一级界面时传参
     double bottomNavBarHeight = MediaHeight * 0.08;
     // bottomNavBarHeight = MediaHeight * 0.2 ;
 
@@ -70,9 +73,7 @@ class _PortalRouteState extends State<PortalRoute> {
         key: _scaffoldKey,
         appBar:_appbar[selectedPos],
         drawer: PortalDrawer(),
-        // body: const Center(
-        //   child: Text('Main Content Here'),
-        // ),
+        /// stack添加之前的代码，由于是cicularbutton，很大一部分用不了
         body: _routes[selectedPos],
         bottomNavigationBar: BottomTabBar(
           navigationController: _navigationController,
@@ -84,6 +85,27 @@ class _PortalRouteState extends State<PortalRoute> {
             });
           },
         ),
+        /// 添加stack错误
+        // body: Stack(
+        //   children: [
+        //     _routes[selectedPos],
+        //     Positioned(
+        //       bottom: 0,
+        //       left: 0,
+        //       right: 0,
+        //       child: BottomTabBar(
+        //         navigationController: _navigationController,
+        //         selectedPos: selectedPos,
+        //         bottomNavBarHeight: bottomNavBarHeight,
+        //         selectedCallback: (int? selectedPos) {
+        //           setState(() {
+        //             this.selectedPos = selectedPos ?? 0;
+        //           });
+        //         },
+        //       ),
+        //     ),
+        //   ],
+        // ),
       );
     }
     /// 如果是profile页面，则没有appbar
