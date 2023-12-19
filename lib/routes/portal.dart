@@ -58,13 +58,15 @@ class _PortalRouteState extends State<PortalRoute> {
     /// MediaWidth &MediaHeight 的适用范围体现在：
     /// 调用一级界面时传参
     double bottomNavBarHeight = MediaHeight * 0.08;
+    /// 顶部的距离
+    final topPadding = MediaQuery.of(context).padding.top;
     // bottomNavBarHeight = MediaHeight * 0.2 ;
 
     /// tabbar能够指向的所有一级页面集合
     final List _routes= [
       HomeRoute(MediaWidth: MediaWidth, MediaHeight: MediaHeight,),
-      PetHomeRoute(),
-      CommunityRoute(),
+      PetHomeRoute(MediaWidth: MediaWidth, MediaHeight: MediaHeight,),
+      CommunityRoute(topPadding:topPadding, MediaWidth: MediaWidth, MediaHeight: MediaHeight,),
       ProfileRoute(),
     ];
 
@@ -108,6 +110,7 @@ class _PortalRouteState extends State<PortalRoute> {
         // ),
       );
     }
+
     /// 如果是profile页面，则没有appbar
     else{
       return Scaffold(

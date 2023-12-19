@@ -7,15 +7,9 @@ class CommunityAppBar extends StatelessWidget implements PreferredSizeWidget {
   @override
   Widget build(BuildContext context) {
     return AppBar(
-      title: Text('Hello, Community!'),
-      // actions: [
-      // IconButton(
-      //   icon: Icon(Icons.menu),
-      //   onPressed: () {
-      //     Scaffold.of(context).openDrawer();
-      //   },
-      // ),
-      // ],
+      title: Text('Community!'),
+
     );
   }
+
 }

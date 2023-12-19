@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 
 class PetHomeRoute extends StatefulWidget {
-  const PetHomeRoute({super.key});
+  const PetHomeRoute({super.key, required double MediaWidth, required double MediaHeight});
 
   @override
   _PetHomeRouteState createState() => _PetHomeRouteState();

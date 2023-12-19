@@ -1,61 +1,72 @@
-/// homepage 只有login按钮
-/// 已弃用
-
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
 
-import 'package:untitled/common/global.dart';
-import 'package:untitled/models/index.dart';
+/// Flutter code sample for [SearchBar].
 
-class HomeRoute extends StatefulWidget{
-  // const HomeRoute({super.key});
-  const HomeRoute({super.key});
+void main() => runApp(const SearchBarApp());
 
-  // final String title;
+class SearchBarApp extends StatefulWidget {
+  const SearchBarApp({super.key});
 
   @override
-  State<HomeRoute> createState() => _HomeRouteState();
+  State<SearchBarApp> createState() => _SearchBarAppState();
 }
-class _HomeRouteState extends State<HomeRoute> {
-  static const loadingTag = "##loading##"; //表尾标记
-  var _items = <Repo>[Repo()..name = loadingTag];
-  bool hasMore = true;
-  int page = 1;
+
+class _SearchBarAppState extends State<SearchBarApp> {
+  bool isDark = false;
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Colors.blue,
-        // title: Text("Widget.title"),
-      ),
-        body:_buildBody(),
+    // final ThemeData themeData = ThemeData(
+    //     useMaterial3: true,
+    //     brightness: isDark ? Brightness.dark : Brightness.light);
 
-      // drawer: MyDrawer(),
+    return Container(
+      child: Padding(
+        padding: const EdgeInsets.all(8.0),
+        child: SearchAnchor(
+            builder: (BuildContext context, SearchController controller) {
+              return SearchBar(
+                controller: controller,
+                padding: const MaterialStatePropertyAll<EdgeInsets>(
+                    EdgeInsets.symmetric(horizontal: 16.0)),
+                onTap: () {
+                  controller.openView();
+                },
+                onChanged: (_) {
+                  controller.openView();
+                },
+                leading: const Icon(Icons.search),
+                trailing: <Widget>[
+                  Tooltip(
+                    message: 'Change brightness mode',
+                    child: IconButton(
+                      isSelected: isDark,
+                      onPressed: () {
+                        setState(() {
+                          isDark = !isDark;
+                        });
+                      },
+                      icon: const Icon(Icons.wb_sunny_outlined),
+                      selectedIcon: const Icon(Icons.brightness_2_outlined),
+                    ),
+                  )
+                ],
+              );
+            }, suggestionsBuilder:
+            (BuildContext context, SearchController controller) {
+          return List<ListTile>.generate(5, (int index) {
+            final String item = 'item $index';
+            return ListTile(
+              title: Text(item),
+              onTap: () {
+                setState(() {
+                  controller.closeView(item);
+                });
+              },
+            );
+          });
+        }),
+      ),
     );
   }
-
-  Widget _buildBody(){
-    UserModel userModel = Provider.of<UserModel>(context);
-    if(!userModel.isLogin){
-      return Center(
-        child: ElevatedButton(
-          child: const Text("Login"),
-          onPressed: () => Navigator.of(context).pushNamed("login"),
-        ),
-      );
-    }else{
-      return Container(
-          alignment:Alignment.center,
-          padding: const EdgeInsets.all(16.0),
-          child:const Text(
-            "test 2023/12/4",
-            style: TextStyle(color: Colors.black54),
-          )
-      );
-    }
-  }
-
-
 }
