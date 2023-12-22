@@ -7,7 +7,17 @@ class PetHomeAppBar extends StatelessWidget implements PreferredSizeWidget {
   @override
   Widget build(BuildContext context) {
     return AppBar(
-      title: Text('Hello, PetHome!'),
+      title: const Text(
+        '我的小狗',
+        textAlign: TextAlign.left,
+        style: TextStyle(
+          fontFamily: 'ZHUOKAI',
+          fontSize: 24,
+          fontWeight: FontWeight.w400,
+          color: Colors.black87,
+          letterSpacing: 5.0,
+        ),
+      ),
       // actions: [
       // IconButton(
       //   icon: Icon(Icons.menu),

@@ -30,9 +30,13 @@ class TopSection extends StatelessWidget{
           shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
 
         ),
-        child: Text(
+        child: const Text(
           '每日记录',
-          style: GoogleFonts.zcoolXiaoWei(fontSize: 22),
+          // style: GoogleFonts.zcoolXiaoWei(fontSize: 22),
+          style: TextStyle(
+            fontFamily: 'ZCOOL',
+            fontSize: 22,
+          ),
         ),
       ),
     );
@@ -61,7 +65,8 @@ class TopSection extends StatelessWidget{
         ),
         child: Text(
           '卡通形象',
-          style: GoogleFonts.zcoolXiaoWei(
+          style: TextStyle(
+            fontFamily: 'ZCOOL',
             fontSize: 22,
           ),
         ),

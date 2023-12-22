@@ -19,7 +19,7 @@ class BottomTabBar extends StatelessWidget {
     /// 第一个 home
     TabItem(
       Icons.home,
-      "Home",
+      "首页",
       // Color(0xFF827397),
       // Color(0xFFDFBE96),
       // Color(0xFFCCD8D0),
@@ -27,38 +27,47 @@ class BottomTabBar extends StatelessWidget {
       labelStyle: const TextStyle(
         fontWeight: FontWeight.w600,
         color: Color(0xFF24271E),
+        fontFamily: 'ZCOOL',
+        fontSize: 16
       ),
+
     ),
     /// 第二个 我的小狗
     TabItem(
       Icons.pets,
-      "Pet Home",
+      "我的小狗",
       const Color(0xFFE6B653),
       labelStyle: const TextStyle(
-        color: Color(0xFF24271E),
-        fontWeight: FontWeight.w600,
+          fontWeight: FontWeight.w600,
+          color: Color(0xFF24271E),
+          fontFamily: 'ZCOOL',
+          fontSize: 16
       ),
     ),
     /// 第三个 社区
     TabItem(
       // Icons.landscape,
       Icons.public,
-      "Community",
+      "社区",
       const Color(0xFFE6B653),
       // circleStrokeColor: Colors.black,
       labelStyle: const TextStyle(
-        color: Color(0xFF24271E),
-        fontWeight: FontWeight.w600,
+          fontWeight: FontWeight.w600,
+          color: Color(0xFF24271E),
+          fontFamily: 'ZCOOL',
+          fontSize: 16
       ),
     ),
     /// 第四个 账户
     TabItem(
       Icons.person,
-      "Profile",
+      "账户",
       const Color(0xFFE6B653),
       labelStyle: const TextStyle(
-        color: Color(0xFF24271E),
-        fontWeight: FontWeight.w600,
+          fontWeight: FontWeight.w600,
+          color: Color(0xFF24271E),
+          fontFamily: 'ZCOOL',
+          fontSize: 16
       ),
     ),
   ]);

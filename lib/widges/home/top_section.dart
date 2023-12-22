@@ -24,13 +24,19 @@ class TopSection extends StatelessWidget{
       ),
       child: ElevatedButton(
         onPressed: (){},
-        child: Text("1"),
         style: ElevatedButton.styleFrom(
           // size（width，height）
           minimumSize: Size(section_width*0.47, section_height*0.9),
           shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
 
         ),
+        child: const Text("快速问诊",
+          style: TextStyle(
+            fontFamily: "ZHUOKAI",
+            fontWeight: FontWeight.w400,
+            fontSize: 26,
+            letterSpacing: 4.0
+        ),),
       ),
     );
   }
@@ -50,13 +56,21 @@ class TopSection extends StatelessWidget{
       ),
       child: ElevatedButton(
         onPressed: (){},
-        child: const Text('Right Button 2'),
         style: ElevatedButton.styleFrom(
           // size（width，height）
             minimumSize: Size(section_width*0.47, section_height*0.43),
             shape:
-            RoundedRectangleBorder(borderRadius: BorderRadius.circular(15))
+            RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
         ),
+        child: const Text(
+          "AI辅助自查",
+          style: TextStyle(
+              fontFamily: "ZHUOKAI",
+              fontWeight: FontWeight.w400,
+              fontSize: 18,
+              letterSpacing: 4.0,
+            color: Colors.black87
+          ),),
       ),
     );
   }
@@ -76,13 +90,20 @@ class TopSection extends StatelessWidget{
       ),
       child: ElevatedButton(
         onPressed: (){},
-        child: const Text('Right Button 2'),
         style: ElevatedButton.styleFrom(
           // size（width，height）
             minimumSize: Size(section_width*0.47, section_height*0.43),
             shape:
             RoundedRectangleBorder(borderRadius: BorderRadius.circular(15))
         ),
+        child: const Text("找医院",
+          style: TextStyle(
+              fontFamily: "ZHUOKAI",
+              fontWeight: FontWeight.w400,
+              fontSize: 18,
+              letterSpacing: 4.0,
+              color: Colors.black87
+          ),),
       ),
     );
   }

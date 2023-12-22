@@ -14,21 +14,15 @@ class HorizontalFollowList extends StatelessWidget {
     avatarFiles.length > 5 ? avatarFiles.sublist(0, 5) : avatarFiles;
 
     return Container(
-      // height: section_height,
-      // width: section_width,
-      // color: Colors.grey,
       child: Column(
         children: [
-          buildTitle('their dogs'),
+          buildTitle('别人的小狗'),
           // Divider(
           //   color: Colors.transparent,
           //   // height: section_height *,
           // ),
           Container(
-            height: section_height*0.6,
-            // height: section_height,
             width: section_width *0.9,
-            // color: Colors.grey,
             child: ListView.builder(
               scrollDirection: Axis.horizontal,
               itemCount: displayedAvatars.length + 1, // 头像数量+1(用于“更多”按钮)
@@ -55,9 +49,9 @@ class HorizontalFollowList extends StatelessWidget {
         textAlign: TextAlign.left,
         style: const TextStyle(
           fontSize: 20, // 标题字体大小
-          fontWeight: FontWeight.w400, // 标题字体粗细
-          color: Colors.black, // 标题颜色
-
+          fontWeight: FontWeight.w300, // 标题字体粗细
+          color: Colors.black54, // 标题颜色
+          fontFamily: "ZHUOKAI",
         ),
       ),
     );
@@ -68,8 +62,6 @@ class HorizontalFollowList extends StatelessWidget {
 
   Widget _buildAvatar(String avatarPath) {
     return Container(
-      // width: 100.0,
-      // height: 100.0,
       width: section_height*0.6,
       height: section_height*0.6,
       margin: EdgeInsets.symmetric(horizontal: 8.0),
@@ -79,9 +71,9 @@ class HorizontalFollowList extends StatelessWidget {
         boxShadow: [
           BoxShadow(
             color: Colors.grey.withOpacity(0.5), // 阴影颜色和不透明度
-            spreadRadius: 2, // 阴影扩散程度
+            // spreadRadius: 1, // 阴影扩散程度
             blurRadius: 5, // 阴影大小
-            offset: Offset(0, 3), // 阴影偏移
+            offset: Offset(2, 3), // 阴影偏移
           ),
         ],
         image: DecorationImage(
@@ -104,14 +96,17 @@ class HorizontalFollowList extends StatelessWidget {
         margin: EdgeInsets.symmetric(horizontal: 8.0),
         decoration: const BoxDecoration(
           shape: BoxShape.circle,
-          color: Colors.grey, // 更多按钮的颜色
+          color: Colors.black38, // 更多按钮的颜色
         ),
         child: const Center(
           child: Text(
             '更多',
             style: TextStyle(
               color: Colors.white,
-              fontWeight: FontWeight.bold,
+              fontFamily: "ZHUOKAI",
+              fontSize: 18.0,
+              letterSpacing: 2.0,
+              fontWeight: FontWeight.w500,
             ),
           ),
         ),

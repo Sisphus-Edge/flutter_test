@@ -7,7 +7,17 @@ class CommunityAppBar extends StatelessWidget implements PreferredSizeWidget {
   @override
   Widget build(BuildContext context) {
     return AppBar(
-      title: Text('Community!'),
+      title: const Text(
+      '逛逛社区',
+      textAlign: TextAlign.left,
+      style: TextStyle(
+        fontFamily: 'ZHUOKAI',
+        fontSize: 24,
+        fontWeight: FontWeight.w400,
+        color: Colors.black87,
+        letterSpacing: 5.0,
+      ),
+    ),
 
     );
   }

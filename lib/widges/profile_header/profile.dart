@@ -38,10 +38,10 @@ class Profile {
 
 Profile getProfile() {
   return Profile()
-    ..firstName = "Emma"
-    ..lastName = "Watson"
-    ..location = "New York"
-    ..numberOfFollowers = 5700000
-    ..numberFollowing = 924
-    ..totalLikes = 1700;
+    ..firstName = "火锅"
+    ..lastName = "配油碟"
+    ..location = "Chongqing"
+    ..numberOfFollowers = 5700
+    ..numberFollowing = 11
+    ..totalLikes = 100;
 }

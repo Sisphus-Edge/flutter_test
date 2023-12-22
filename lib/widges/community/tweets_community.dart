@@ -22,7 +22,7 @@ class Tweets extends StatelessWidget {
       color: Colors.transparent,
       child: Column(
         children: [
-          _buildTitle('Tweets'),
+          _buildTitle('文章'),
           // Divider(
           //   color: Colors.transparent,
           //   // height: section_height *,
@@ -58,9 +58,10 @@ class Tweets extends StatelessWidget {
         textAlign: TextAlign.left,
         style: const TextStyle(
           fontSize: 25, // 标题字体大小
-          fontWeight: FontWeight.w600, // 标题字体粗细
+          fontWeight: FontWeight.w400, // 标题字体粗细
           color: Colors.black, // 标题颜色
-
+          fontFamily: "ZHUOKAI",
+          letterSpacing: 4.0
         ),
       ),
     );

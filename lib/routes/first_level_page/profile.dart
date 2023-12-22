@@ -19,12 +19,12 @@ class _ProfileRouteState extends State<ProfileRoute> {
         // padding: const EdgeInsets.only(left: 5.0),
         children: <Widget>[
           ProfileHeader(),
-          _buildListItem("Personal Information", Icons.person_outlined, () {}),
-          _buildListItem("Appointment Memories", Icons.camera, () {}),
-          _buildListItem("Self Inspection Records", Icons.search_rounded, () {}),
-          _buildListItem("Favourites", Icons.favorite_border_outlined, () {}),
-          _buildListItem("Presents", Icons.card_giftcard, () {}),
-          _buildListItem("Recommend Us", Icons.workspace_premium, () {}),
+          _buildListItem("我的资料", Icons.person_outlined, () {}),
+          _buildListItem("询医记录", Icons.camera, () {}),
+          _buildListItem("自查记录", Icons.search_rounded, () {}),
+          _buildListItem("我的收藏", Icons.favorite_border_outlined, () {}),
+          _buildListItem("购物", Icons.card_giftcard, () {}),
+          _buildListItem("推荐给朋友", Icons.workspace_premium, () {}),
         ],
       ),
     );
@@ -32,7 +32,12 @@ class _ProfileRouteState extends State<ProfileRoute> {
 
   Widget _buildListItem(String title, IconData iconData, VoidCallback action) {
     const textStyle = TextStyle(
-        color: Colors.black54, fontSize: 18.0, fontWeight: FontWeight.w400);
+        color: Colors.black54,
+        fontSize: 18.0,
+        fontWeight: FontWeight.w400,
+      fontFamily: 'ZHUOKAI',
+      letterSpacing: 4.0,
+    );
 
     return InkWell(
       onTap: action,
