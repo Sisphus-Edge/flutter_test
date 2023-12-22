@@ -14,9 +14,9 @@ class HorizontalFollowList extends StatelessWidget {
     avatarFiles.length > 5 ? avatarFiles.sublist(0, 5) : avatarFiles;
 
     return Container(
-      height: section_height,
-      width: section_width,
-      color: Colors.grey,
+      // height: section_height,
+      // width: section_width,
+      // color: Colors.grey,
       child: Column(
         children: [
           buildTitle('their dogs'),
@@ -28,7 +28,7 @@ class HorizontalFollowList extends StatelessWidget {
             height: section_height*0.6,
             // height: section_height,
             width: section_width *0.9,
-            color: Colors.grey,
+            // color: Colors.grey,
             child: ListView.builder(
               scrollDirection: Axis.horizontal,
               itemCount: displayedAvatars.length + 1, // 头像数量+1(用于“更多”按钮)

@@ -16,9 +16,10 @@ class Tweets extends StatelessWidget {
     sectionTitles.length > 5 ? sectionTitles.sublist(0, 5) : sectionTitles;
 
     return Container(
-      height: section_height,
-      width: section_width,
-      color: Colors.black54,
+      // height: section_height,
+      // width: section_width*0.97,
+      // color: Colors.black54,
+      color: Colors.transparent,
       child: Column(
         children: [
           _buildTitle('Tweets'),

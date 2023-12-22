@@ -50,6 +50,7 @@ class _CommunityRouteState extends State<CommunityRoute> {
                     return Container(
                         child: Column(
                             children: [
+                              /// searchbar
                               Container(
                                 width: sharedMediaWidth*0.99,
                                 height: sharedMediaHeight*0.07,
@@ -125,10 +126,10 @@ class _CommunityRouteState extends State<CommunityRoute> {
             floating: true,
             delegate: FixedHeaderDelegate(
               child: Container(
-                height: 200,
+                height: sharedMediaHeight*0.17,
                 child: Tweets(
                   section_width: sharedMediaWidth*0.97,
-                  section_height: sharedMediaHeight * 0.17,
+                  section_height: sharedMediaHeight * 0.165,
                   sectionTitles: generateSectionFiles(),
                   onTapHandlers: buildOnTapHandlers(),
                 ),
@@ -142,7 +143,7 @@ class _CommunityRouteState extends State<CommunityRoute> {
                   title: Text('Second List Item $index'),
                 );
               },
-              childCount: 50, // 第二个列表的项数
+              childCount: 10, // 第二个列表的项数
             ),
           ),
         ],

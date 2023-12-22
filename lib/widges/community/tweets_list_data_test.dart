@@ -1,12 +1,6 @@
 List<String> generateSectionFiles() {
   return [
-    // 'Section 1',
-    // 'Section 2',
-    // 'Section 3',
-    // 'Section 4',
-    // 'Section 5',
-    // 'Section 6',
-    // 'Section 7',
+
     'assets/image/login/1.png',
     'assets/image/login/3.png',
     'assets/image/login/1.png',

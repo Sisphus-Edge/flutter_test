@@ -138,7 +138,7 @@ class AppointmentsSection extends StatelessWidget {
   Widget build(BuildContext context) {
 
     return Container(
-      color: Colors.amber,
+      // color: Colors.amber,
       width:  section_width,
       height: section_height,
       padding:  EdgeInsets.symmetric(vertical: section_height*0.075, horizontal: section_width*0.02),// (垂直，水平)

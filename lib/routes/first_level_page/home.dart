@@ -43,19 +43,10 @@ class _HomeRouteState extends State<HomeRoute> {
     sharedMediaHeight = widget.MediaHeight;
 
 
-    // return Text("Home");
-    // return Column(
-    //   crossAxisAlignment: CrossAxisAlignment.stretch,
-    //   children: [
-    //     TopSection(section_width: sharedMediaWidth * 0.9, section_height: sharedMediaHeight*0.3),
-    //     ScrollableButtons(),
-    //     AppointmentsSection(),
-    //     TweetsSection(),
-    //   ],
-    // );
+
 
     return Container(
-      color: Colors.grey,
+      // color: Colors.grey,
       child: Container(
         padding: EdgeInsets.symmetric(horizontal: sharedMediaWidth *0.03,vertical: sharedMediaHeight*0.015),
         child: Column(
@@ -99,8 +90,7 @@ class _HomeRouteState extends State<HomeRoute> {
             ),
             FittedBox(
               fit: BoxFit.contain,
-              // child: TinderCard(section_width: sharedMediaWidth * 0.97, section_height: sharedMediaHeight*0.29),
-              // child: TCardPage(section_width: sharedMediaWidth * 0.97, section_height: sharedMediaHeight*0.29),
+
               child: TCardSecton(section_width: sharedMediaWidth * 0.97, section_height: sharedMediaHeight*0.29),
             ),
           ],
