@@ -15,12 +15,14 @@ class AppointmentsSection extends StatelessWidget {
         children: [
           GestureDetector(
             child: const Text(
-              'AppointmentsSection', // 左对齐的单词
+              '我的预约', // 左对齐的单词
               textAlign: TextAlign.left, // 设置为左对齐
               style: TextStyle(
                 fontSize: 14,
-                fontWeight: FontWeight.w600,
+                fontWeight: FontWeight.w400,
                 color: Colors.black54,
+                fontFamily: "ZHUOKAI",
+                letterSpacing: 2.0,
               ),
             ),
           ),
@@ -29,12 +31,14 @@ class AppointmentsSection extends StatelessWidget {
               // 右对齐文本的点击处理逻辑，跳转等
             },
             child: const Text(
-              'more', // 右对齐的单词
+              '更多', // 右对齐的单词
               textAlign: TextAlign.right, // 设置为右对齐
               style: TextStyle(
                 fontSize: 12,
-                fontWeight: FontWeight.w600,
+                fontWeight: FontWeight.w400,
                 color: Colors.black54,
+                fontFamily: "ZHUOKAI",
+                letterSpacing: 2.0,
               ),
             ),
           ),
@@ -65,7 +69,8 @@ class AppointmentsSection extends StatelessWidget {
         onPressed: (){},
         style: ElevatedButton.styleFrom(
             shape:
-            RoundedRectangleBorder(borderRadius: BorderRadius.circular(15))
+            RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
+          // primary: Color(0XFF827397)
         ),
         child:Column(
           /// 0.45
@@ -74,32 +79,41 @@ class AppointmentsSection extends StatelessWidget {
           children: [
             Container(
               height: buttonHeight*0.45,
-              color: Colors.blueGrey,
+              // color: Colors.blueGrey,
               child: Row(
                 // mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   const SizedBox(width: 8), // 间距
                   Text(
                     text, // 显示文本
-                    style: const TextStyle(fontSize: 10), // 文本样式
+                    style: const TextStyle(fontSize: 12,fontFamily: "ZHUOKAI",
+                        letterSpacing: 2.0,
+                       color: Colors.black54,
+                    ), // 文本样式
                   ),
                 ],
               ),
             ),
             Divider(
-              color: Colors.transparent,
+              color: Colors.black45,
               height: buttonHeight * 0.05,
+
             ),
             Container(
               height: buttonHeight*0.45,
-              color: Colors.black26,
-              child:  Row(
+              // color: Colors.black26,
+              child:  const Row(
                 // mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  const SizedBox(width: 8), // 间距
+                  Icon(Icons.timelapse,
+                    // color: Colors.white,
+                  ),
+                  SizedBox(width: 8), // 间距
                   Text(
-                    text, // 显示文本
-                    style: const TextStyle(fontSize: 10), // 文本样式
+                    '2023/12/23  14.00-15.00  1h', // 显示文本
+                    style: TextStyle(fontSize: 10,
+                        color: Colors.black54,
+                    ), // 文本样式
                   ),
                 ],
               ),
@@ -114,7 +128,7 @@ class AppointmentsSection extends StatelessWidget {
 
   }
 
-
+  /// 调用预约
   Container buttons(double buttonWidth,double buttonHeight){
     return Container(
       width: buttonWidth,
@@ -123,10 +137,10 @@ class AppointmentsSection extends StatelessWidget {
       child: ListView(
         scrollDirection: Axis.horizontal,
         children: <Widget>[
-          _buildScrolloableButton('text',
+          _buildScrolloableButton('白医生',
               buttonWidth*0.85,buttonHeight),
           const SizedBox(width: 10.0,),
-          _buildScrolloableButton('text',
+          _buildScrolloableButton('黑医生',
               buttonWidth*0.85,buttonHeight),
         ],
       ),
@@ -145,11 +159,7 @@ class AppointmentsSection extends StatelessWidget {
       child: Column(
         children: [
           title(section_width,section_height*0.3),
-          // ListView(
-          //   children: <Widget>[
-          //     _buildScrolloableButton('text', Colors.black54, Icons.abc, () { },section_width,section_height*0.7),
-          //   ],
-          // ),
+
           SizedBox(height: section_height*0.05,),
           buttons(section_width,section_height*0.5)
         ],

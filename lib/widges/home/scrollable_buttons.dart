@@ -16,12 +16,14 @@ class ScrollableButtons extends StatelessWidget {
         children: [
           GestureDetector(
             child: const Text(
-              'Other Function', // 左对齐的单词
+              '其他功能', // 左对齐的单词
               textAlign: TextAlign.left, // 设置为左对齐
               style: TextStyle(
                 fontSize: 14,
-                fontWeight: FontWeight.w600,
+                fontWeight: FontWeight.w500,
                 color: Colors.black54,
+                fontFamily: "ZHUOKAI",
+                letterSpacing: 2.0,
               ),
             ),
           ),
@@ -30,12 +32,14 @@ class ScrollableButtons extends StatelessWidget {
               // 右对齐文本的点击处理逻辑，跳转等
             },
             child: const Text(
-              'more', // 右对齐的单词
+              '更多', // 右对齐的单词
               textAlign: TextAlign.right, // 设置为右对齐
               style: TextStyle(
                 fontSize: 12,
-                fontWeight: FontWeight.w600,
+                fontWeight: FontWeight.w500,
                 color: Colors.black54,
+                letterSpacing: 2.0,
+                fontFamily: "ZHUOKAI",
               ),
             ),
           ),
@@ -71,11 +75,18 @@ class ScrollableButtons extends StatelessWidget {
         child: Row(
         // mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          Icon(iconData), // 显示图标
+          Icon(iconData,color: Color(0XFF827397),), // 显示图标
           const SizedBox(width: 8), // 间距
           Text(
             text, // 显示文本
-            style: const TextStyle(fontSize: 10), // 文本样式
+            style: const TextStyle(
+              fontSize: 13,
+              fontFamily: "ZHUOKAI",
+              letterSpacing: 1.0,
+              fontWeight: FontWeight.w400,
+              color: Colors.black87,
+            ), // 文本样式
+
           ),
         ],
       ),
@@ -93,21 +104,21 @@ class ScrollableButtons extends StatelessWidget {
       child: ListView(
         scrollDirection: Axis.horizontal,
       children: <Widget>[
-        _buildScrolloableButton('text',
-            Colors.orange, Icons.abc, () { },
-            buttonWidth*0.26,buttonHeight),
+        _buildScrolloableButton('药品库',
+            Colors.orange, Icons.medication, () { },
+            buttonWidth*0.38,buttonHeight),
         const SizedBox(width: 10.0,),
-        _buildScrolloableButton('text',
-            Colors.orange, Icons.abc, () { },
-            buttonWidth*0.26,buttonHeight),
+        _buildScrolloableButton('疾病库',
+            Colors.orange, Icons.medical_information, () { },
+            buttonWidth*0.38,buttonHeight),
         const SizedBox(width: 10.0,),
-        _buildScrolloableButton('text',
-            Colors.orange, Icons.abc, () { },
-            buttonWidth*0.26,buttonHeight),
-        const SizedBox(width: 10.0,),
-        _buildScrolloableButton('text',
-            Colors.orange, Icons.abc, () { },
-            buttonWidth*0.26,buttonHeight),
+        _buildScrolloableButton('疫苗预约',
+            Colors.orange, Icons.pin_invoke, () { },
+            buttonWidth*0.38,buttonHeight),
+        // const SizedBox(width: 10.0,),
+        // _buildScrolloableButton('text',
+        //     Colors.orange, Icons.abc, () { },
+        //     buttonWidth*0.33,buttonHeight),
       ],
       ),
     );

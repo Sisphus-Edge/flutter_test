@@ -22,21 +22,30 @@ class TopSection extends StatelessWidget{
         ],
         borderRadius: BorderRadius.circular(15),
       ),
+
       child: ElevatedButton(
         onPressed: (){},
         style: ElevatedButton.styleFrom(
           // size（width，height）
           minimumSize: Size(section_width*0.47, section_height*0.9),
           shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
-
+          primary: Color(0XFF827397),
         ),
-        child: const Text("快速问诊",
-          style: TextStyle(
-            fontFamily: "ZHUOKAI",
-            fontWeight: FontWeight.w400,
-            fontSize: 26,
-            letterSpacing: 4.0
-        ),),
+
+        child:const Padding(
+          padding: EdgeInsets.only(top: 0, left: 0),
+          child: Text(
+            "快速问诊",
+            style: TextStyle(
+                fontFamily: "ZHUOKAI",
+                fontWeight: FontWeight.w400,
+                fontSize: 26,
+                letterSpacing: 4.0,
+                color: Colors.white
+            ),
+          ),
+        ),
+
       ),
     );
   }
@@ -61,6 +70,8 @@ class TopSection extends StatelessWidget{
             minimumSize: Size(section_width*0.47, section_height*0.43),
             shape:
             RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
+          primary: Color(0XFFC5BBD1),
+
         ),
         child: const Text(
           "AI辅助自查",
@@ -69,7 +80,7 @@ class TopSection extends StatelessWidget{
               fontWeight: FontWeight.w400,
               fontSize: 18,
               letterSpacing: 4.0,
-            color: Colors.black87
+            color: Colors.white
           ),),
       ),
     );
@@ -94,15 +105,17 @@ class TopSection extends StatelessWidget{
           // size（width，height）
             minimumSize: Size(section_width*0.47, section_height*0.43),
             shape:
-            RoundedRectangleBorder(borderRadius: BorderRadius.circular(15))
+            RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
+          primary: Color(0XFFC5BBD1),
         ),
+
         child: const Text("找医院",
           style: TextStyle(
               fontFamily: "ZHUOKAI",
               fontWeight: FontWeight.w400,
               fontSize: 18,
               letterSpacing: 4.0,
-              color: Colors.black87
+              color: Colors.white
           ),),
       ),
     );

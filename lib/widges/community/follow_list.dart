@@ -23,6 +23,7 @@ class HorizontalFollowList extends StatelessWidget {
           // ),
           Container(
             width: section_width *0.9,
+            height: section_height*0.65,
             child: ListView.builder(
               scrollDirection: Axis.horizontal,
               itemCount: displayedAvatars.length + 1, // 头像数量+1(用于“更多”按钮)

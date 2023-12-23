@@ -42,12 +42,14 @@ class _CommunityRouteState extends State<CommunityRoute> {
     final double sharedMediaHeight = widget.MediaHeight;
 
     return Container(
+      // color: Colors.black,
       child: CustomScrollView(
         slivers: <Widget>[
           SliverList(
             delegate: SliverChildBuilderDelegate(
                   (BuildContext context, int index) {
                     return Container(
+                      // color: Colors.black,
                         child: Column(
                             children: [
                               /// searchbar
@@ -126,6 +128,7 @@ class _CommunityRouteState extends State<CommunityRoute> {
             floating: true,
             delegate: FixedHeaderDelegate(
               child: Container(
+                // color: Colors.grey,
                 height: sharedMediaHeight*0.17,
                 child: Tweets(
                   section_width: sharedMediaWidth*0.97,
