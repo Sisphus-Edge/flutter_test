@@ -81,7 +81,13 @@ class _TCardSectonState extends State<TCardSecton>  with TickerProviderStateMixi
       child: SizedBox.fromSize(
         size: CardSizes.front(constraints),
         child: Container(
-          color: Colors.blue,
+          // color: Colors.grey,
+          decoration: const BoxDecoration(
+            image: DecorationImage(
+              image: AssetImage('assets/test/1.png'),
+              fit: BoxFit.cover, // 图片填充方式
+            ),
+          ),
         ),
       ),
     );
@@ -108,7 +114,13 @@ class _TCardSectonState extends State<TCardSecton>  with TickerProviderStateMixi
   Widget _middleCard(BoxConstraints constraints) {
     // 判断动画是否在运行
     bool forward = _cardChangeController.status == AnimationStatus.forward;
-    Widget child = Container(color: Colors.red);
+    Widget child = Container(
+        decoration: const BoxDecoration(
+          image: DecorationImage(
+            image: AssetImage('assets/test/2.png'),
+            fit: BoxFit.cover, // 图片填充方式
+          ))
+    );
 
     // 在动画运行时使用动画值
     if (forward) {
@@ -140,7 +152,9 @@ class _TCardSectonState extends State<TCardSecton>  with TickerProviderStateMixi
   Widget _backCard(BoxConstraints constraints) {
     // 判断动画是否在运行
     bool forward = _cardChangeController.status == AnimationStatus.forward;
-    Widget child = Container(color: Colors.green);
+    Widget child = Container(
+      color: Colors.grey,
+       );
 
     // 在动画运行时使用动画值
     if (forward) {

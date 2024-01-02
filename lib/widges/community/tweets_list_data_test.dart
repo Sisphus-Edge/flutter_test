@@ -1,12 +1,12 @@
 List<String> generateSectionFiles() {
   return [
 
-    'assets/image/login/1.png',
-    'assets/image/login/3.png',
-    'assets/image/login/1.png',
-    'assets/image/login/2.png',
-    'assets/image/login/3.png',
-    'assets/image/login/2.png',
+    'assets/test/11.png',
+    'assets/test/12.png',
+    'assets/test/13.png',
+    'assets/test/14.png',
+    'assets/test/15.png',
+    'assets/test/11.png',
     // 可以添加更多头像文件路径...
   ];
 }

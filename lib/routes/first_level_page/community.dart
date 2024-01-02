@@ -143,7 +143,7 @@ class _CommunityRouteState extends State<CommunityRoute> {
             delegate: SliverChildBuilderDelegate(
                   (BuildContext context, int index) {
                 return ListTile(
-                  title: Text('Second List Item $index'),
+                  title: Text('养宠小知识 $index',style: TextStyle(fontFamily: "ZHUOKAI"),),
                 );
               },
               childCount: 10, // 第二个列表的项数

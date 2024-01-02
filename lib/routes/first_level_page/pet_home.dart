@@ -52,6 +52,35 @@ class _PetHomeRouteState extends State<PetHomeRoute> {
                 height: sharedMediaHeight * 0.01,
               ),
               Canlendar_petHome(section_width: sharedMediaWidth * 0.97, section_height: sharedMediaHeight*0.16),
+              Divider(
+                color: Colors.transparent,
+                height: sharedMediaHeight * 0.02,
+              ),
+
+              // 仅供测试
+              Container(
+                width: sharedMediaWidth*0.85,
+                height: sharedMediaHeight*0.44,
+                decoration: BoxDecoration(
+                  boxShadow: [
+                    BoxShadow(
+                      color: Colors.grey.withOpacity(0.5), // 阴影颜色
+                      spreadRadius: 5, // 阴影扩散程度
+                      blurRadius: 7, // 阴影模糊程度
+                      offset: Offset(0, 3), // 阴影偏移量
+                    ),
+                  ],
+                ),
+                child: ClipRRect(
+                  borderRadius: BorderRadius.circular(15), // 圆角半径
+                  child: Image.asset(
+                    'assets/test/20.png',
+                    // 图片高度
+                    fit: BoxFit.cover, // 图片填充方式
+                  ),
+                ),
+              )
+
             ]
         ),
       ),
