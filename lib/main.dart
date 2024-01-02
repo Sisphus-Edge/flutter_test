@@ -33,7 +33,7 @@ class MyApp extends StatelessWidget {
           // 下面这一句是设置主题的 但是加上有问题
           // MaterialColor materialColor = convertToMaterialColor(themeModel.theme);
           return MaterialApp(
-            title: 'Demo',
+            title: '宠爱',
             theme: ThemeData(
               colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
               useMaterial3: true,
