@@ -198,7 +198,8 @@ class _LoginRouteState extends State<LoginRoute> {
                       : Theme.of(context).iconTheme.color)!;
                 });
               },
-            )));
+            ))
+    );
   }
 
   /// 邮箱地址输入框
