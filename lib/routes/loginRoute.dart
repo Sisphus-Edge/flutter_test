@@ -196,8 +196,7 @@ class _LoginRouteState extends State<LoginRoute> {
                   _eyeColor = (_isObscure
                       ? Colors.grey
                       : Theme.of(context).iconTheme.color)!;
-                }
-                );
+                });
               },
             )
         )
