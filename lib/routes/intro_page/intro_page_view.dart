@@ -45,7 +45,6 @@ class IntroPageView extends StatelessWidget{
                 },
               );
             },
-
           ),
         ),
       ),
