@@ -10,7 +10,6 @@ void main() {
   runApp(const MyApp());
 }
 
-
 // void main() => Global.init().then((e) => runApp(MyApp()));
 // MyAPP是应用的入口Widgt
 
