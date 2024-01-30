@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import 'package:untitled/widges/pet_home/top_section_pethome.dart';
 import 'package:untitled/widges/pet_home/canlendar_pet_home.dart';
+import 'package:untitled/widges/pet_home/numeric/numeric_activity.dart';
 import 'package:untitled/routes/test.dart';
 
 class PetHomeRoute extends StatefulWidget {
@@ -56,9 +57,10 @@ class _PetHomeRouteState extends State<PetHomeRoute> {
                 color: Colors.transparent,
                 height: sharedMediaHeight * 0.02,
               ),
-
+              MyHomePage(width: sharedMediaWidth * 0.97, height: sharedMediaHeight*0.4)
+              // MyHomePage(),
               // 仅供测试
-              Container(
+              /*Container(
                 width: sharedMediaWidth*0.85,
                 height: sharedMediaHeight*0.44,
                 decoration: BoxDecoration(
@@ -79,7 +81,7 @@ class _PetHomeRouteState extends State<PetHomeRoute> {
                     fit: BoxFit.cover, // 图片填充方式
                   ),
                 ),
-              )
+              )*/
 
             ]
         ),
