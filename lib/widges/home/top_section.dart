@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
-
+import 'package:untitled/widges/home/quick_consultation/quick_consultation_screen.dart';
+import 'package:untitled/widges/home/self_check/ai_self_check_screen.dart';
 class TopSection extends StatelessWidget{
   final double section_width;
   final double section_height;
@@ -9,7 +10,7 @@ class TopSection extends StatelessWidget{
 
 
 
-  Container _LeftButton() {
+  Container _LeftButton(BuildContext context) {
     return Container(
       decoration: BoxDecoration(
         boxShadow: [
@@ -24,7 +25,11 @@ class TopSection extends StatelessWidget{
       ),
 
       child: ElevatedButton(
-        onPressed: (){},
+        onPressed: () {
+          Navigator.of(context as BuildContext).push(
+            MaterialPageRoute(builder: (context) => QuickConsultationScreen()),
+          );
+        },
         style: ElevatedButton.styleFrom(
           // size（width，height）
           minimumSize: Size(section_width*0.47, section_height*0.9),
@@ -50,7 +55,7 @@ class TopSection extends StatelessWidget{
     );
   }
 
-  Container _Right_Up_Button() {
+  Container _Right_Up_Button(BuildContext context) {
     return Container(
       decoration: BoxDecoration(
         boxShadow: [
@@ -64,7 +69,12 @@ class TopSection extends StatelessWidget{
         borderRadius: BorderRadius.circular(15),
       ),
       child: ElevatedButton(
-        onPressed: (){},
+        onPressed: () {
+          Navigator.push(
+            context,
+            MaterialPageRoute(builder: (context) => AISelfCheckScreen()),
+          );
+        },
         style: ElevatedButton.styleFrom(
           // size（width，height）
             minimumSize: Size(section_width*0.47, section_height*0.43),
@@ -141,12 +151,12 @@ class TopSection extends StatelessWidget{
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          _LeftButton(),
+          _LeftButton(context),
           sizedBox_left(),
           Column(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              _Right_Up_Button(),
+              _Right_Up_Button(context),
               _Right_Down_Button(),
             ],
           ),
