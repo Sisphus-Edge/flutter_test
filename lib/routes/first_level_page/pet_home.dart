@@ -73,6 +73,7 @@ class _PetHomeRouteState extends State<PetHomeRoute> {
                     ),
                   ],
                 ),
+
                 child: ClipRRect(
                   borderRadius: BorderRadius.circular(15), // 圆角半径
                   child: Image.asset(
