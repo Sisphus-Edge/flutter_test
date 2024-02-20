@@ -6,6 +6,7 @@ class MedicineCategoryScreen extends StatelessWidget {
 
   MedicineCategoryScreen({Key? key, required this.categoryId, required this.categoryName}) : super(key: key);
 
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
