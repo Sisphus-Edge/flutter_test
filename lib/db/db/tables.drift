@@ -1,0 +1,20 @@
+CREATE TABLE Departments (
+  DepartmentID INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
+  DepartmentName TEXT NOT NULL
+);
+
+CREATE TABLE Diseases (
+  DiseaseID INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
+  DiseaseName TEXT NOT NULL,
+  DepartmentID INTEGER,
+  Description TEXT,
+  Symptoms TEXT,
+  Cause TEXT,
+  Treatment TEXT,
+  Prevention TEXT,
+  Diagnosis TEXT,
+  Care TEXT,
+  ImageUrl TEXT,
+  FOREIGN KEY (DepartmentID) REFERENCES Departments(DepartmentID)
+);
+
