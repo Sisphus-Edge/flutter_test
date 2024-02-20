@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-
-
+import 'disease_library/disease_library_screen.dart';
+import 'medicine_library/medicine_library_screen.dart';
 class ScrollableButtons extends StatelessWidget {
   const ScrollableButtons({super.key, required this.section_width, required this.section_height});
   final double section_width;
@@ -49,7 +49,8 @@ class ScrollableButtons extends StatelessWidget {
   }
 
   /// 可滑动button的模板
-  Container _buildScrolloableButton(String text, Color color, IconData iconData, VoidCallback onPressed,double buttonWidth,double buttonHeight)
+
+  Container _buildScrolloableButton(String text, Color color, IconData iconData, VoidCallback onPressed, double buttonWidth, double buttonHeight, BuildContext context)
   {
     return Container(
       padding: const EdgeInsets.only(bottom: 2.0),
@@ -67,7 +68,7 @@ class ScrollableButtons extends StatelessWidget {
         borderRadius: BorderRadius.circular(15),
       ),
       child: ElevatedButton(
-        onPressed: (){},
+        onPressed: onPressed,
         style: ElevatedButton.styleFrom(
             shape:
             RoundedRectangleBorder(borderRadius: BorderRadius.circular(15))
@@ -96,7 +97,7 @@ class ScrollableButtons extends StatelessWidget {
   }
 
 
-  Container buttons(double buttonWidth,double buttonHeight){
+  Container buttons(double buttonWidth,double buttonHeight, BuildContext context){
     return Container(
       width: buttonWidth,
       height: buttonHeight,
@@ -104,17 +105,41 @@ class ScrollableButtons extends StatelessWidget {
       child: ListView(
         scrollDirection: Axis.horizontal,
       children: <Widget>[
-        _buildScrolloableButton('药品库',
-            Colors.orange, Icons.medication, () { },
-            buttonWidth*0.38,buttonHeight),
+        _buildScrolloableButton(
+            '药品库',
+            Colors.orange,
+            Icons.medication,
+                () {
+              Navigator.of(context).push(MaterialPageRoute(
+                builder: (context) => MedicineLibraryScreen(),
+              ));
+            },
+            buttonWidth * 0.38,
+            buttonHeight,
+            context
+        ),
+
         const SizedBox(width: 10.0,),
-        _buildScrolloableButton('疾病库',
-            Colors.orange, Icons.medical_information, () { },
-            buttonWidth*0.38,buttonHeight),
+        _buildScrolloableButton(
+            '疾病库',
+            Colors.orange,
+            Icons.medical_information,
+                () {
+              Navigator.of(context).push(MaterialPageRoute(
+                builder: (context) => DiseaseLibraryScreen(),
+              ));
+            },
+            buttonWidth * 0.38,
+            buttonHeight,
+            context
+        ),
         const SizedBox(width: 10.0,),
         _buildScrolloableButton('疫苗预约',
             Colors.orange, Icons.pin_invoke, () { },
-            buttonWidth*0.38,buttonHeight),
+            buttonWidth*0.38,
+            buttonHeight,
+            context
+        ),
         // const SizedBox(width: 10.0,),
         // _buildScrolloableButton('text',
         //     Colors.orange, Icons.abc, () { },
@@ -142,7 +167,7 @@ class ScrollableButtons extends StatelessWidget {
           //   ],
           // ),
           SizedBox(height: section_height*0.05,),
-          buttons(section_width,section_height*0.5)
+          buttons(section_width,section_height*0.5,context)
         ],
       ),
     );

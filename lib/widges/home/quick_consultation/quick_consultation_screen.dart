@@ -61,7 +61,6 @@ class _QuickConsultationScreenState extends State<QuickConsultationScreen> {
     );
   }
 
-  // 服务保障部分
   Widget _buildServiceGuaranteeSection() {
     return Padding(
       padding: const EdgeInsets.all(8.0),

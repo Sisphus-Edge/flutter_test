@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'chat_message.dart'; // 确保导入 ChatMessage 类
 import 'match_doctor_page.dart';
 import 'doctor.dart';
-// 开始咨询的滑动聊天框
 class ChatPage extends StatefulWidget {
   final List<ChatMessage> messages;
   final TextEditingController textEditingController;

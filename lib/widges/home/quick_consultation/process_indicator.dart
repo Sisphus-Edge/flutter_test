@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 
 /**
  * 组件功能为显示“快速问诊所在流程而搭建的框架
- * 组件展示快速问诊界面头部信息栏
  */
 class ProcessIndicator extends StatelessWidget {
   final int currentStep;
