@@ -1,12 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-
+import 'db/init_db.dart';
+import 'db/init_medicine_db.dart';
 import 'routes/test.dart';
 import 'common/global.dart';
 import 'routes/loginRoute.dart';
 import 'routes/intro_page/intro_page_view.dart';
 
-void main() {
+void main() async{
+  // WidgetsFlutterBinding.ensureInitialized();
+  // await initializeDatabase();
+  // await initializeMedicineDatabase();
   runApp(const MyApp());
 }
 

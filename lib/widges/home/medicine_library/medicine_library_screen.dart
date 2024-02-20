@@ -56,6 +56,7 @@ class _MedicineLibraryScreenState extends State<MedicineLibraryScreen> {
                   width: 1, // 边框宽度
                 ),
               ),
+              // 以下为搜索框
               child: Row(
                 children: [
                   IconButton(
@@ -65,7 +66,7 @@ class _MedicineLibraryScreenState extends State<MedicineLibraryScreen> {
                   Expanded(
                     child: TextField(
                       controller: _searchController,
-                      decoration: InputDecoration(
+                      decoration: const InputDecoration(
                         hintText: "请输入要搜索的药品",
                         border: InputBorder.none, // 去除底部边框
                       ),
@@ -93,8 +94,8 @@ class _MedicineLibraryScreenState extends State<MedicineLibraryScreen> {
           ),
           Expanded(
             child: GridView.builder(
-              padding: EdgeInsets.all(10),
-              gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+              padding: const EdgeInsets.all(10),
+              gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                 crossAxisCount: 4, // 保持每行四个类别
                 crossAxisSpacing: 10,
                 mainAxisSpacing: 10,
