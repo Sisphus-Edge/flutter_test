@@ -57,7 +57,8 @@ class _PetHomeRouteState extends State<PetHomeRoute> {
                 color: Colors.transparent,
                 height: sharedMediaHeight * 0.02,
               ),
-              MyHomePage(width: sharedMediaWidth * 0.97, height: sharedMediaHeight*0.4)
+              // MyHomePage(width: sharedMediaWidth * 0.97, height: sharedMediaHeight*0.4)
+              MyGridView(width: sharedMediaWidth * 0.97, height: sharedMediaHeight*0.25),
               // MyHomePage(),
               // 仅供测试
               /*Container(
