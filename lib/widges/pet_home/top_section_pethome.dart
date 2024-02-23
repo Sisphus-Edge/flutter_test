@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'daily.dart';
 
 class TopSection extends StatelessWidget{
   final double section_width;
@@ -9,7 +10,7 @@ class TopSection extends StatelessWidget{
 
 
 
-  Container _LeftButton() {
+  Container _LeftButton(BuildContext context) {
     return Container(
       decoration: BoxDecoration(
         boxShadow: [
@@ -23,7 +24,12 @@ class TopSection extends StatelessWidget{
         borderRadius: BorderRadius.circular(15),
       ),
       child: ElevatedButton(
-        onPressed: (){},
+        onPressed: (){
+          Navigator.push(
+            context,
+            MaterialPageRoute(builder: (context) => DailyPage(date: DateTime.now(),)), // 导航到 DailyPage 页面
+          );
+        },
         style: ElevatedButton.styleFrom(
           // size（width，height）
           minimumSize: Size(section_width*0.56, section_height*0.9),
@@ -41,7 +47,7 @@ class TopSection extends StatelessWidget{
       ),
     );
   }
-
+  /// 卡通形象button
   Container _Right_Up_Button() {
     return Container(
       decoration: BoxDecoration(
@@ -96,7 +102,7 @@ class TopSection extends StatelessWidget{
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          _LeftButton(),
+          _LeftButton(context),
           sizedBox_left(),
           Column(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
