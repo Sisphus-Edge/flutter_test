@@ -2,7 +2,8 @@ import 'package:flutter/material.dart';
 
 import 'package:untitled/widges/pet_home/top_section_pethome.dart';
 import 'package:untitled/widges/pet_home/canlendar_pet_home.dart';
-import 'package:untitled/widges/pet_home/numeric/numeric_activity.dart';
+import 'package:untitled/widges/pet_home/numeric/numeric_container.dart';
+import 'package:untitled/widges/pet_home/habit/habit.dart';
 import 'package:untitled/routes/test.dart';
 
 class PetHomeRoute extends StatefulWidget {
@@ -57,8 +58,14 @@ class _PetHomeRouteState extends State<PetHomeRoute> {
                 color: Colors.transparent,
                 height: sharedMediaHeight * 0.02,
               ),
-              // MyHomePage(width: sharedMediaWidth * 0.97, height: sharedMediaHeight*0.4)
-              MyGridView(width: sharedMediaWidth * 0.97, height: sharedMediaHeight*0.25),
+              // MyGridView(width: sharedMediaWidth * 0.97, height: sharedMediaHeight*0.25),
+              // 到此 width剩下0.0445
+              MyGridViewContainer(width: sharedMediaWidth * 0.97, height: sharedMediaHeight*0.3),
+              Divider(
+                color: Colors.transparent,
+                height: sharedMediaHeight * 0.02,
+              ),
+              ContainerWithWeekGridView(width: sharedMediaWidth*0.97, height: sharedMediaHeight*0.14)
               // MyHomePage(),
               // 仅供测试
               /*Container(

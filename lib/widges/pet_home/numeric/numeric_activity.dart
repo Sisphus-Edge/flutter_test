@@ -270,7 +270,7 @@ class DoubleLayerExpanded extends StatelessWidget {
                 child: Container(
                   height: globalItemHeight *0.4,
                   // color: Colors.white,
-                  padding: EdgeInsets.symmetric(vertical: 8), // 调整垂直方向上的内边距
+                  padding: const EdgeInsets.symmetric(vertical: 6), // 调整垂直方向上的内边距
                   child: Text(
                     '$identifier',
                     style: const TextStyle(
@@ -287,7 +287,7 @@ class DoubleLayerExpanded extends StatelessWidget {
                 child: Container(
                   height: globalItemHeight *0.6,
                   // color: Colors.pink,
-                  padding: const EdgeInsets.symmetric(vertical: 8), // 调整垂直方向上的内边距
+                  padding: const EdgeInsets.symmetric(vertical: 6), // 调整垂直方向上的内边距
                   child: Text(
                     '$data $lowerText',
                     style: const TextStyle(fontSize: 18,fontFamily: 'ZCOOL',
