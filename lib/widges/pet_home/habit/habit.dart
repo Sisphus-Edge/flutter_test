@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+late double mediaWidth;
+
 class ContainerWithWeekGridView extends StatelessWidget {
   final double width;
   final double height;
@@ -276,61 +278,147 @@ class MultiRowBlock extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    mediaWidth = section_width;
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         _buildHeader(),
-        ..._buildContentRows(),
-      ],
+        _buildContentContainer(),
+        Center(
+          child: Container(
+          width:section_width*0.8,
+            child:ElevatedButton(onPressed: (){},
+                style: ElevatedButton.styleFrom(
+                  // 设置按钮的外观样式
+                  primary: Colors.orange, // 设置按钮的背景颜色
+                  shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)), // 设置按钮的形状为圆角矩形
+                ),
+                child:const Text('添加新习惯',
+                  style: TextStyle(
+                  color: Colors.white, // 设置文本颜色为白色
+                  fontSize: 18,
+                  letterSpacing: 3,
+                  fontFamily: 'ZHUOKAI',
+                ),),
+            )
+          ),
+        ),
+
+      ]
     );
   }
-
+/// 习惯打卡板块的header
   Widget _buildHeader() {
     return Row(
       children: [
         Container(
-          margin: EdgeInsets.symmetric(horizontal: section_width*0.1), // 设置左边距为10
+          // color: Colors.white,
+          margin: EdgeInsets.symmetric(horizontal: section_width*0.05), // 设置左边距为10
           child: const Text(
-            'Title',
-            style: TextStyle(fontSize: 18,
+            '习惯打卡',
+            style: TextStyle(fontSize: 20,
                 fontWeight: FontWeight.bold,
               fontFamily: 'ZHUOKAI',
             ),
           ),
         ),
+        SizedBox(width: section_width*0.1,),
         Image.asset('assets/image/habit.png',
-          width: section_width*0.5, // 设置宽度
-          height: section_width*0.5,
+          width: section_width*0.45, // 设置宽度
+          height: section_width*0.45,
         ), // 替换为实际图片路径
       ],
     );
   }
 
-  List<Widget> _buildContentRows() {
+  Widget _buildContentContainer() {
     List<Widget> rows = [];
     for (int i = 0; i < quantity; i++) {
-      rows.add(
-        Row(
-          children: [
-            Text('Subtitle ${i + 1}'),
-            SizedBox(width: 8),
-            SquareBlock(
-              width: 100, // 宽度
-              height: 100, // 高度
-              identifier: i == 0 ? 1 : 0, // 根据索引设置标识符
-              squareSize: 50, // 正方形大小
-            ),
-            SizedBox(width: 8),
-            ElevatedButton(
-              onPressed: () {
-                // 按钮点击事件
-              },
-              child: Text('Button ${i + 1}'),
-            ),
-          ],
-        ),
-      );
+      if(i%2==0){
+        rows.add(
+          ContentRow(
+            subtitle: '散步',
+            identifier: i + 1,
+          ),
+        );
+      }else {
+        rows.add(
+          ContentRow(
+            subtitle: '吃鱼油',
+            identifier: i + 1,
+          ),
+        );
+      }
+      rows.add(const SizedBox(height: 10,));
     }
-    return rows;
+
+    return Container(
+      margin: EdgeInsets.symmetric(horizontal: section_width * 0.05), // 设置左边距为10
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: rows,
+      ),
+    );
   }
 }
+
+/// 每一行习惯
+class ContentRow extends StatelessWidget {
+  final String subtitle;
+  final int identifier;
+
+  const ContentRow({
+    Key? key,
+    required this.subtitle,
+    required this.identifier,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Row(
+      children: [
+        Container(
+          width: mediaWidth*0.2,
+          child: Text(subtitle,
+            style: TextStyle(
+              fontSize: 18,
+              fontFamily: 'ZHUOKAI',
+            ),
+          ),
+        ),
+        // Text(subtitle),
+        SizedBox(width: mediaWidth*0.02),
+
+        SquareBlock(
+          width: mediaWidth*0.15, // 宽度
+          height: mediaWidth*0.15, // 高度
+          identifier: identifier == 0 ? 1 : 0, // 根据索引设置标识符
+          squareSize: mediaWidth*0.14, // 正方形大小
+        ),
+        SizedBox(width: mediaWidth*0.1),
+        Container(
+          width: mediaWidth*0.4,
+          child: ElevatedButton(
+            onPressed: () {
+              // 按钮点击事件
+            },
+            style: ElevatedButton.styleFrom(
+              // 设置按钮的外观样式
+              // padding: EdgeInsets.symmetric(horizontal: 16, vertical: 8), // 设置按钮内边距
+              primary: Colors.orange, // 设置按钮的背景颜色
+              shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)), // 设置按钮的形状为圆角矩形
+            ),
+            child: const Text('今日已完成',
+              style: TextStyle(
+                color: Colors.white, // 设置文本颜色为白色
+                fontSize: 18,
+                fontFamily: 'ZHUOKAI',
+              ),
+            ), // 按钮文本
+          ),
+        ),
+      ],
+    );
+  }
+}
+

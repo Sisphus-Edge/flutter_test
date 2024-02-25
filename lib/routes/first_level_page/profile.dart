@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
 
 import '../../widges/profile_header/profile_header.dart';
-
+//引入UserInfo进行数据传递
+import 'package:untitled/db/UserDB/UserInfo.dart';
 
 class ProfileRoute extends StatefulWidget {
-  const ProfileRoute({Key? key}) : super(key: key);
+  final UserInfo userInfo;
+  const ProfileRoute({Key? key, required this.userInfo}) : super(key: key);
 
   @override
   _ProfileRouteState createState() => _ProfileRouteState();
@@ -18,7 +20,7 @@ class _ProfileRouteState extends State<ProfileRoute> {
       child: ListView(
         // padding: const EdgeInsets.only(left: 5.0),
         children: <Widget>[
-          ProfileHeader(),
+          ProfileHeader(initialUserInfo: widget.userInfo),//顶部栏
           _buildListItem("我的资料", Icons.person_outlined, () {}),
           _buildListItem("询医记录", Icons.camera, () {}),
           _buildListItem("自查记录", Icons.search_rounded, () {}),

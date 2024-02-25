@@ -3,8 +3,6 @@ import 'dart:ffi';
 import 'package:flutter/material.dart';
 import 'numeric/numeric_container.dart';
 import 'habit/habit.dart';
-
-
 class DailyPage extends StatelessWidget {
   final DateTime date;
 
@@ -13,39 +11,51 @@ class DailyPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     double screenWidth = MediaQuery.of(context).size.width;
+    double screenHeight = MediaQuery.of(context).size.height;
 
     return Scaffold(
-      backgroundColor: Colors.grey[100],
+      backgroundColor: Colors.white,
       appBar: AppBar(
-        title: Text('New Page'),
+        title: const Text(
+          '每日记录',
+          style: TextStyle(
+            fontFamily: "ZHUOKAI",
+          ),
+        ),
       ),
-      body: Center(
+      body: SingleChildScrollView(
         child: Column(
           children: [
-            FittedBox(
-              fit: BoxFit.contain, // 限制子部件的大小，确保其不会超出容器的边界
-              child:_buildTopDateArea(date),
+            /// 顶部时间
+            Container(
+              color: Colors.white,
+              padding: EdgeInsets.symmetric(vertical: 8, horizontal: 10),
+              alignment: Alignment.centerLeft,
+              child: Text(
+                '${date.year}-${date.month}-${date.day}',
+                style: const TextStyle(
+                  fontSize: 20,
+                  fontFamily: 'ZHUOKAI',
+                ),
+                textAlign: TextAlign.left,
+              ),
             ),
-            SizedBox(height: 20),
-            MultiRowBlock(quantity: 1, section_width: screenWidth,),
+
+            Container(
+              color: Colors.grey[100], // 你可以将这里的颜色改为你想要的颜色
+              child: const SizedBox(height: 20),
+            ),            /// 调用今日活力值板块
+            NumericContainer(width: screenWidth * 0.95, height: screenHeight * 0.5),
+
+            Container(
+              color: Colors.grey[100], // 你可以将这里的颜色改为你想要的颜色
+              child: const SizedBox(height: 20),
+            ),
+            /// 此板块调用习惯打卡板块
+            MultiRowBlock(quantity: 2, section_width: screenWidth,),
           ],
         ),
       ),
     );
-  }
-
-  /// 顶部时间
-  Widget _buildTopDateArea(DateTime date) {
-    return Container(
-      color: Colors.orange,
-      height: 50,
-      width: 200,
-      margin: EdgeInsets.only(right: 2),
-      // 设置右边距离为2
-      child: Text(
-      'Date: ${date.year}-${date.month}-${date.day}',
-      style: TextStyle(fontSize: 20,),
-          textAlign: TextAlign.left,
-    ),);
   }
 }

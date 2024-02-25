@@ -8,15 +8,14 @@ int _gobalItemIndex = 0;
 class MyGridView extends StatefulWidget {
   final double width;
   final double height;
-
-  const MyGridView({Key? key, required this.width, required this.height})
+  final bool state;
+  /// state为true表示一级界面  state为false表示为每日记录
+  const MyGridView({Key? key, required this.width, required this.height,required this.state})
       : super(key: key);
 
   @override
   _MyGridViewState createState() => _MyGridViewState();
 }
-
-
 
 class _MyGridViewState extends State<MyGridView> {
   // 用于控制第二排元素的状态列表
@@ -95,7 +94,6 @@ class _MyGridViewState extends State<MyGridView> {
                   onTap: () {
                     setState(() {
                       _selectedItemIndex = 1;
-                      _gobalItemIndex = 1;
                       _secondRowItemsStatus = [false, true, false];
                     });
                   },
@@ -186,6 +184,7 @@ class _MyGridViewState extends State<MyGridView> {
     );
   }
 }
+
 class CustomRow extends StatelessWidget {
   final int identifier;
 
@@ -301,4 +300,5 @@ class DoubleLayerExpanded extends StatelessWidget {
       ),
     );
   }
+
 }
