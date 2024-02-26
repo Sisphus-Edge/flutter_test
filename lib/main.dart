@@ -3,6 +3,12 @@ import 'package:provider/provider.dart';
 import 'db/DiseaseDB/init_db.dart';
 import 'db/MedicineDB/init_medicine_db.dart';
 import 'routes/test.dart';
+import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'db/DiseaseDB/init_db.dart';
+import 'db/MedicineDB/init_medicine_db.dart';
+import 'db/PostDB/init_post_db.dart';
+import 'routes/test.dart';
 import 'common/global.dart';
 import 'routes/loginRoute.dart';
 import 'routes/intro_page/intro_page_view.dart';
@@ -11,6 +17,7 @@ void main() async{
   // WidgetsFlutterBinding.ensureInitialized();
   // await initializeDatabase();
   // await initializeMedicineDatabase();
+  // await initializePostDatabase();
   runApp(const MyApp());
 }
 
