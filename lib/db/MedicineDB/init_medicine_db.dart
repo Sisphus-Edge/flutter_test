@@ -1,7 +1,7 @@
 // 文件路径: lib/db/init_medicine_db.dart
 import 'package:drift/drift.dart';
 import 'package:flutter/material.dart';
-import 'medicine_db_manager.dart';
+import 'package:untitled/db/MedicineDB/medicine_db_manager.dart';
 import 'package:drift/drift.dart' as drift;
 
 Future<void> initializeMedicineDatabase() async {

@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:untitled/db/db_manager.dart';
+// import 'package:untitled/db/db_manager.dart';
+import 'package:untitled/db/DiseaseDB/db_manager.dart';
+
 import 'disease_detail_screen.dart';
 class DiseaseLibraryScreen extends StatefulWidget {
   @override

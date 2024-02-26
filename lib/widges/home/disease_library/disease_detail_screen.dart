@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:untitled/db/db_manager.dart';
+import 'package:untitled/db/DiseaseDB/db_manager.dart';
 
 class DiseaseDetailScreen extends StatefulWidget {
   final Disease disease;

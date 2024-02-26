@@ -50,6 +50,7 @@ dependencies:
   ff_stars: ^3.0.0
   percent_indicator: ^4.2.3
 
+
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^1.0.2
@@ -59,6 +60,12 @@ dependencies:
   sqlite3_flutter_libs: ^0.5.0
   path_provider: ^2.0.0
   path: ^1.8.2
+
+  #添加滚动条（轮播图）
+  carousel_slider: ^4.0.0
+
+  #从本机中加载图片
+  image_picker: ^0.8.7+5 # 确保使用最新版本
 
 
 
@@ -116,7 +123,11 @@ flutter:
     - assets/diseaseDetail/Gastroenteritis.png
     - assets/medicineDetail/Albendazole.jpg
     - assets/medicineDetail/Convenia.png
-    - assets/image/habit.png
+    - assets/postDetail/post1.jpg
+    - assets/postDetail/post2.png
+    - assets/postDetail/post3.jpg
+    - assets/postDetail/post4.png
+    - assets/postDetail/post5.jpg
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware
@@ -130,12 +141,12 @@ flutter:
   # list giving the asset and other descriptors for the font. For
   # example:
   fonts:
-     - family: ZCOOL
-       fonts:
-         - asset: assets/fonts/ZCOOLXiaoWei-Regular.ttf
-     - family: ZHUOKAI
-       fonts:
-         - asset: assets/fonts/JiangxiZhuoKai2.0.ttf
+    - family: ZCOOL
+      fonts:
+        - asset: assets/fonts/ZCOOLXiaoWei-Regular.ttf
+    - family: ZHUOKAI
+      fonts:
+        - asset: assets/fonts/JiangxiZhuoKai2.0.ttf
   #       - asset: fonts/Schyler-Italic.ttf
   #         style: italic
   #   - family: Trajan Pro

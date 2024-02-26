@@ -1,0 +1,8 @@
+CREATE TABLE users (
+  id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
+  email TEXT NOT NULL UNIQUE,
+  password TEXT NOT NULL,
+  name TEXT,
+  avatar TEXT, -- 存储头像的文件路径或URL
+  address TEXT
+);

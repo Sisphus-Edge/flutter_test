@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'medicine_detail_screen.dart';
 import 'Medicine.dart';
-import 'package:untitled/db/medicine_db_manager.dart';
+import 'package:untitled/db/MedicineDB/medicine_db_manager.dart';
 class MedicineLibraryScreen extends StatefulWidget {
   @override
   _MedicineLibraryScreenState createState() => _MedicineLibraryScreenState();

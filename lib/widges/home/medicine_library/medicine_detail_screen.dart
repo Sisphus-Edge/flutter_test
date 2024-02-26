@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:untitled/db/medicine_db_manager.dart';
+// import 'package:untitled/db/medicine_db_manager.dart';
+import 'package:untitled/db/MedicineDB/medicine_db_manager.dart';
+
 class MedicineCategoryScreen extends StatelessWidget {
   final int categoryId;
   final String categoryName;

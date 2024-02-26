@@ -15,14 +15,17 @@ import 'package:untitled/widges/appbars/home_appbar.dart';
 import 'package:untitled/widges/appbars/pethome_appbar.dart';
 import 'package:untitled/widges/appbars/community_appbar.dart';
 import 'package:untitled/widges/appbars/profile_appbar.dart';
+//引入UserInfo进行数据传递
+import 'package:untitled/db/UserDB/UserInfo.dart';
 
 class PortalRoute extends StatefulWidget {
-  const PortalRoute({super.key});
+  final UserInfo userInfo; // 假设UserInfo是存储用户信息的类
+
+  const PortalRoute({Key? key, required this.userInfo}) : super(key: key);
 
   @override
   _PortalRouteState createState() => _PortalRouteState();
 }
-
 class _PortalRouteState extends State<PortalRoute> {
   GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
 
@@ -62,19 +65,20 @@ class _PortalRouteState extends State<PortalRoute> {
     final topPadding = MediaQuery.of(context).padding.top;
     // bottomNavBarHeight = MediaHeight * 0.2 ;
 
+    // 使用widget.userInfo访问传入的用户信息
+    final UserInfo = widget.userInfo;
     /// tabbar能够指向的所有一级页面集合
     final List _routes= [
       HomeRoute(MediaWidth: MediaWidth, MediaHeight: MediaHeight,),
       PetHomeRoute(MediaWidth: MediaWidth, MediaHeight: MediaHeight,),
       CommunityRoute(topPadding:topPadding, MediaWidth: MediaWidth, MediaHeight: MediaHeight,),
-      ProfileRoute(),
+      ProfileRoute(userInfo: UserInfo),
     ];
 
     if(selectedPos != 3){
       return Scaffold(
         key: _scaffoldKey,
         appBar:_appbar[selectedPos],
-        drawer: PortalDrawer(),
         /// stack添加之前的代码，由于是cicularbutton，很大一部分用不了
         body: _routes[selectedPos],
         bottomNavigationBar: BottomTabBar(
@@ -87,27 +91,6 @@ class _PortalRouteState extends State<PortalRoute> {
             });
           },
         ),
-        /// 添加stack错误
-        // body: Stack(
-        //   children: [
-        //     _routes[selectedPos],
-        //     Positioned(
-        //       bottom: 0,
-        //       left: 0,
-        //       right: 0,
-        //       child: BottomTabBar(
-        //         navigationController: _navigationController,
-        //         selectedPos: selectedPos,
-        //         bottomNavBarHeight: bottomNavBarHeight,
-        //         selectedCallback: (int? selectedPos) {
-        //           setState(() {
-        //             this.selectedPos = selectedPos ?? 0;
-        //           });
-        //         },
-        //       ),
-        //     ),
-        //   ],
-        // ),
       );
     }
 

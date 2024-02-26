@@ -1,246 +1,98 @@
 import 'package:flutter/material.dart';
-import 'profile_header_style.dart';
-import 'profile.dart';
+import 'package:untitled/db/UserDB/UserInfo.dart';
+import 'package:untitled/widges/profile_header/edit_profile_route.dart';
+class ProfileHeader extends StatefulWidget {
+  final UserInfo initialUserInfo;
 
-class ProfileHeader extends StatelessWidget {
-  ProfileHeader({super.key});
+  const ProfileHeader({Key? key, required this.initialUserInfo}) : super(key: key);
 
+  @override
+  _ProfileHeaderState createState() => _ProfileHeaderState();
+}
 
-  // final Profile profile;
-
-  // ProfileHeader(this.profile);
-  final profile = getProfile();
+class _ProfileHeaderState extends State<ProfileHeader> {
+  late UserInfo userInfo;
+  @override
+  void initState() {
+    super.initState();
+    // 初始化时，将widget传入的用户信息赋值给本地变量
+    userInfo = widget.initialUserInfo;
+  }
 
   @override
   Widget build(BuildContext context) {
-
-    final topPadding = MediaQuery
-        .of(context)
-        .padding
-        .top;
-
-   /* const headerGradient = RadialGradient(
-      center: Alignment.topLeft,
-      radius: 0.4,
-      colors: <Color>[
-        // Color(0xFF8860EB),
-        Color(0xFFDFBE96),
-        // Color(0xFF8881EB),
-        Color(0xFFDFBE96),
-
-      ],
-      stops: <double>[
-        0.4, 1.0,
-      ],
-      tileMode: TileMode.repeated,
-    );*/
-
-
-    const headerHeight = 280.0;
-
     return Container(
-      height: headerHeight,
-      decoration: BoxDecoration(
-        color: ProfileColors.primaryColor,
-        /// header的阴影
-        boxShadow: const <BoxShadow>[
-          BoxShadow(
-              spreadRadius: 4.0,
-              blurRadius: 6.0, /// 渲染范围
-              offset: Offset(0.0, 1.0), /// 偏移
-              color: Colors.black38),
-        ],
-      ),
-      child: Stack(
-        fit: StackFit.expand,
-        children: <Widget>[
-          // linear gradient
-          Container(
-            height: headerHeight,
-            decoration: const BoxDecoration(
-              gradient: LinearGradient(
-                /// 线性渐变
-                  colors: <Color>[ //7928D1
-                    // Color(0xFF7928D1),
-                    // Color(0xFF9A4DFF)
-                    // Colors.amber,
-                    Color(0xFF8250DF), // 右上
-                    Color(0xFF6639BA), // 左下
-                  ],
-                  stops: <double>[0.2, 0.6],
-                  begin: Alignment.topRight, end: Alignment.bottomLeft
+      color: Color(0xFF8250DF), // 紫色背景
+      padding: EdgeInsets.all(16), // 内边距
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Row(
+            children: [
+              // 头像
+              CircleAvatar(
+                backgroundImage: AssetImage(userInfo.avatar), // 使用AssetImage加载本地资源
+                radius: 40,
               ),
-            ),
-          ),
-          // radial gradient
-          CustomPaint(
-            painter: HeaderGradientPainter(),
-          ),
-          Padding(
-            padding: EdgeInsets.only(
-                top: topPadding, left: 15.0, right: 15.0, bottom: 20.0),
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.start,
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: <Widget>[
-                _buildBellIcon(),
-                /// title profile
-                Padding(
-                  padding: const EdgeInsets.only(bottom: 15.0),
-                  child: _buildTitle(),
-                ),
-                /// 头像 & 信息
-                Padding(
-                  padding: const EdgeInsets.only(bottom: 20.0),
-                  child: _buildAvatar(),
-                ),
-                /// followers
-                _buildFollowerStats()
-              ],
-            ),
-          ),
-        ],
-      ),
-    );
-  }
-
-  /// Build the bell icon at the top right corner of the header
-  Widget _buildBellIcon() {
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.end,
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: <Widget>[
-        IconButton(
-          icon: const Icon(Icons.notifications),
-          color: Colors.white70,
-          onPressed: () {
-            // 处理消息提醒按钮点击事件
-          },
-        ),
-      ],
-    );
-  }
-
-  /// 账户标题
-  Widget _buildTitle() {
-    return Text(
-        "账户",
-        style: TextStyle(
-            fontWeight: FontWeight.w600,
-            color: Colors.white,
-            fontSize: 34.0,
-          fontFamily: 'ZHUOKAI',
-          letterSpacing: 10.0,
-        ));
-  }
-
-  /// The avatar consists of the profile image, the users name and location
-  /// 头像 用户名 地址
-  Widget _buildAvatar() {
-    /// 用户名style
-    final mainTextStyle = TextStyle(
-        fontFamily: 'ZHUOKAI',
-        color: Colors.white,
-        fontWeight: FontWeight.w500,
-        fontSize: 20.0,
-      letterSpacing: 2.0,
-    );
-    /// 地址style
-    final subTextStyle = TextStyle(
-        fontFamily: 'ZHUOKAI',
-        fontSize: 16.0,
-        color: Colors.white70,
-        fontWeight: FontWeight.w600,
-      letterSpacing: 2.0,
-    );
-
-    return Row(
-      children: <Widget>[
-        Container(
-          width: 70.0, height: 60.0,
-          decoration: BoxDecoration(
-            image: const DecorationImage(
-                image: AssetImage("assets/avatar/avatar1.jpg"),
-                fit: BoxFit.cover),
-            borderRadius: BorderRadius.all(new Radius.circular(20.0)),
-            boxShadow: const <BoxShadow>[
-              BoxShadow(
-                  color: Colors.black26, blurRadius: 5.0, spreadRadius: 1.0),
+              SizedBox(width: 16), // 头像与文字之间的间隔
+              // 名字和地址
+              Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                      userInfo.name,
+                      style: TextStyle(
+                        color: Colors.white,
+                        fontSize: 20.0,
+                        fontWeight: FontWeight.w400,
+                        fontFamily: 'ZHUOKAI',
+                        letterSpacing: 4.0,
+                      )
+                  ),
+                  Text(
+                      userInfo.address,
+                      style: TextStyle(
+                        color: Colors.white,
+                        fontSize: 16.0,
+                        fontWeight: FontWeight.w400,
+                        fontFamily: 'ZHUOKAI',
+                        letterSpacing: 4.0,
+                      )
+                  ),
+                ],
+              ),
             ],
           ),
-        ),
-        Padding(padding: const EdgeInsets.only(right: 20.0)),
-        Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: <Widget>[
-            Text(profile.fullName, style: mainTextStyle),
-            Text(profile.location, style: subTextStyle),
-          ],
-        ),
-      ],
+          SizedBox(height: 16), // 名字地址与按钮之间的间隔
+          // 编辑资料按钮
+          ElevatedButton(
+            onPressed: () async {
+              final updatedUserInfo = await Navigator.push<UserInfo>(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => EditProfileRoute(userInfo: userInfo),
+                ),
+              );
+              if (updatedUserInfo != null) {
+                // 使用setState更新ProfileHeader的用户信息
+                setState(() {
+                  userInfo = updatedUserInfo;
+                });
+              }
+            },
+            child: Text('编辑资料',style: TextStyle(
+              color: Colors.white,
+              fontSize: 16.0,
+              fontWeight: FontWeight.w400,
+              fontFamily: 'ZHUOKAI',
+              letterSpacing: 4.0,
+            )),
+            style: ElevatedButton.styleFrom(
+              primary: Colors.deepPurple[300], // 按钮颜色
+            ),
+          ),
+        ],
+      ),
     );
   }
-
-  /// 关注的排列
-  Widget _buildFollowerStats() {
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.center,
-      crossAxisAlignment: CrossAxisAlignment.center,
-      children: <Widget>[
-        _buildFollowerStat("我的关注", profile.numberOfFollowersString),
-        _buildVerticalDivider(),
-        _buildFollowerStat("关注我的", profile.numberFollowingString),
-        _buildVerticalDivider(),
-        _buildFollowerStat("收到的赞", profile.totalLikesString),
-      ],
-    );
-  }
-
-  /// 单个关注
-  Widget _buildFollowerStat(String title, String value) {
-    /// 第一行
-    final titleStyle = const TextStyle(
-        fontSize: 16.0,
-        fontFamily: 'ZHUOKAI',
-        fontWeight: FontWeight.w400,
-        letterSpacing: 1.0,
-        color: Colors.white);
-    /// 第二行
-    final valueStyle = TextStyle(
-        fontFamily: ProfileFontNames.TimeBurner,
-        fontSize: 18.0,
-        fontWeight: FontWeight.w600,
-        letterSpacing: 1.0,
-
-        color: Colors.white);
-    return Column(
-      mainAxisAlignment: MainAxisAlignment.center,
-      crossAxisAlignment: CrossAxisAlignment.center,
-      children: <Widget>[
-        Text(title, style: titleStyle),
-        Text(value, style: valueStyle),
-      ],
-    );
-  }
-
-  /// 关注栏的分隔符
-  Widget _buildVerticalDivider() {
-    return Container(
-      height: 30.0,
-      width: 2.0,
-      color: Colors.white30,
-      margin: const EdgeInsets.only(left: 10.0, right: 10.0),
-    );
-  }
-}
-
-class HeaderGradientPainter extends CustomPainter {
-  @override
-  void paint(Canvas canvas, Size size) {
-    // TODO: paint background radial gradient
-  }
-
-  @override
-  bool shouldRepaint(CustomPainter oldDelegate) => false;
-
 }
