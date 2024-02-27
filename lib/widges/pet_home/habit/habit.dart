@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-
+import 'addhabit.dart';
 late double mediaWidth;
 
 class ContainerWithWeekGridView extends StatelessWidget {
@@ -26,11 +26,11 @@ class ContainerWithWeekGridView extends StatelessWidget {
           Container(
             height:25,
             // fontsize:18 对应的实际line-height是24 设置为25此处
-            child: Row(
+            child: const Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 // 左侧标题
-                const Text(
+                Text(
                   '一周习惯完成情况',
                   style: TextStyle(
                       fontSize: 18,
@@ -39,7 +39,7 @@ class ContainerWithWeekGridView extends StatelessWidget {
                       color: Colors.black87
                   ),
                 ),
-                // 右侧箭头
+               /* // 右侧箭头
                 GestureDetector(
                   onTap: () {
                     // 在这里添加跳转逻辑
@@ -60,7 +60,7 @@ class ContainerWithWeekGridView extends StatelessWidget {
                       ),
                     ],
                   ),
-                ),
+                ),*/
               ],
             ),
           ),
@@ -284,10 +284,16 @@ class MultiRowBlock extends StatelessWidget {
       children: [
         _buildHeader(),
         _buildContentContainer(),
+        /// 底部添加新习惯button
         Center(
           child: Container(
           width:section_width*0.8,
-            child:ElevatedButton(onPressed: (){},
+            child:ElevatedButton(onPressed: (){
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => AddHabit()), // 导航到 DailyPage 页面
+              );
+            },
                 style: ElevatedButton.styleFrom(
                   // 设置按钮的外观样式
                   primary: Colors.orange, // 设置按钮的背景颜色

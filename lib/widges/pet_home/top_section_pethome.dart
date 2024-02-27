@@ -69,7 +69,7 @@ class TopSection extends StatelessWidget{
             shape:
             RoundedRectangleBorder(borderRadius: BorderRadius.circular(15))
         ),
-        child: Text(
+        child: const Text(
           '卡通形象',
           style: TextStyle(
             fontFamily: 'ZCOOL',
