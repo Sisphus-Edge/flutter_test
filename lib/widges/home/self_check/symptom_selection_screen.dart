@@ -98,27 +98,31 @@ class _SymptomSelectionScreenState extends State<SymptomSelectionScreen> {
               padding: EdgeInsets.all(8),
               child: Text(entry.key, style: TextStyle(fontWeight: FontWeight.bold)),
             ),
-            Wrap(
-              spacing: 8,
-              children: entry.value.map((symptom) => ChoiceChip(
-                label: Text(symptom),
-                selected: selectedSymptoms.contains(symptom),
-                onSelected: (selected) {
-                  setState(() {
-                    if (selected) {
-                      selectedSymptoms.add(symptom);
-                    } else {
-                      selectedSymptoms.remove(symptom);
-                    }
-                  });
-                },
-              )).toList(),
+            Padding( // 在这里添加Padding
+              padding: EdgeInsets.only(left: 16), // 设置左边距
+              child: Wrap(
+                spacing: 8,
+                children: entry.value.map((symptom) => ChoiceChip(
+                  label: Text(symptom),
+                  selected: selectedSymptoms.contains(symptom),
+                  onSelected: (selected) {
+                    setState(() {
+                      if (selected) {
+                        selectedSymptoms.add(symptom);
+                      } else {
+                        selectedSymptoms.remove(symptom);
+                      }
+                    });
+                  },
+                )).toList(),
+              ),
             ),
           ],
         )).toList(),
       ),
     );
   }
+
 
   Widget _buildSelectedSymptomsSection() {
     return Container(
@@ -174,44 +178,54 @@ class _SymptomSelectionScreenState extends State<SymptomSelectionScreen> {
   }
 
   Future<void> _checkDiseases() async {
-    // 组织发送的数据
-    var data = {
-      'breed': widget.breed,
-      'gender': widget.gender,
-      'age': widget.age,
-      'vaccineStatus': widget.vaccineStatus,
-      'sterilizationStatus': widget.sterilizationStatus,
-      'symptoms': selectedSymptoms,
-    };
-    // 打印发送到后端的数据
-    print('Sending to server: $data');
-
+    final uri=Uri.parse('http://10.230.8.10:8084/api/python/ai/predict'); // 替换为您的后端URL
+    // 将症状列表转换为逗号分隔的字符串
+    final symptomsString = selectedSymptoms.join(',');
     // 发送请求到后端
-    var response = await http.post(
-      Uri.parse('YOUR_BACKEND_URL'), // 替换为您的后端URL
-      headers: {'Content-Type': 'application/json'},
-      body: json.encode(data),
+    final response = await http.post(
+      uri,
+      headers: {
+        'Content-Type': 'application/json', // 设置请求头
+      },
+      body: jsonEncode({
+        'symptoms': symptomsString,
+      }),
     );
 
     // 处理响应
     if (response.statusCode == 200) {
-      var result = json.decode(response.body);
+      // 尝试手动指定编码为UTF-8
+      var result = json.decode(utf8.decode(response.bodyBytes));
       // 打印从后端接收到的数据
       print('Received from server: $result');
       _showResultDialog(result);
     } else {
       print('Error: ${response.reasonPhrase}');
     }
+
   }
 
   void _showResultDialog(dynamic result) {
+    // 解析结果中的疾病和推荐药物
+    String disease = result['data']['disease'];
+    List<dynamic> recommendedMedicines = result['data']['recommended_medicines'];
+
     showDialog(
       context: context,
       builder: (BuildContext context) {
         return AlertDialog(
-          title: Text("疑似疾病分析结果"),
+          title: Text("疑似疾病分析结果及药物推荐"),
           content: SingleChildScrollView(
-            child: Text(result.toString()), // 显示分析结果
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: <Widget>[
+                Text("疑似疾病：$disease", style: TextStyle(fontWeight: FontWeight.bold)),
+                SizedBox(height: 10),
+                Text("推荐药物：", style: TextStyle(fontWeight: FontWeight.bold)),
+                // 构建一个小部件列表来展示所有推荐药物
+                for (var medicine in recommendedMedicines) Text("- $medicine"),
+              ],
+            ),
           ),
           actions: <Widget>[
             TextButton(
@@ -223,5 +237,6 @@ class _SymptomSelectionScreenState extends State<SymptomSelectionScreen> {
       },
     );
   }
+
 
 }

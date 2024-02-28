@@ -78,6 +78,13 @@ class DBManager extends _$DBManager {
     return query.getSingleOrNull();
   }
 
+  //搜索疾病
+  Future<List<Disease>> searchDiseasesByName(String query) async {
+    // 使用 Drift 的查询构建器来构建 LIKE 查询
+    final expression = diseases.diseaseName.like('%$query%');
+    final queryBuilder = select(diseases)..where((_) => expression);
+    return await queryBuilder.get();
+  }
 
   // 获取所有疾病
   Future<List<Disease>> getAllDiseases() async {

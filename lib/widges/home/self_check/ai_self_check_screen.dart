@@ -68,38 +68,59 @@ class _AISelfCheckScreenState extends State<AISelfCheckScreen> {
     );
   }
 
+
   List<Widget> _buildDialogActions(BuildContext context) {
     return [
-      _buildDialogButton('关闭', () => Navigator.of(context).pop()),
-      _buildDialogButton('症状选择', () {
-        if (_formKey.currentState!.validate()) {
-          Navigator.of(context).pop();
-          Navigator.of(context).push(MaterialPageRoute(
-            builder: (context) => SymptomSelectionScreen(
-              breed: _selectedBreed,
-              gender: _selectedGender,
-              age: _selectedAge,
-              vaccineStatus: _selectedVaccine,
-              sterilizationStatus: _selectedSterilization,
-            ),
-          ));
-        }
-      }),
+      Padding(
+        padding: const EdgeInsets.only(left: 20.0, right: 10.0, bottom: 10.0), // 控制按钮的边距
+        child: _buildIndividualButton(
+          context: context,
+          label: '关闭',
+          onPressed: () => Navigator.of(context).pop(),
+        ),
+      ),
+      Padding(
+        padding: const EdgeInsets.only(left: 10.0, right: 20.0, bottom: 10.0), // 控制按钮的边距
+        child: _buildIndividualButton(
+          context: context,
+          label: '症状选择',
+          onPressed: () {
+            if (_formKey.currentState!.validate()) {
+              Navigator.of(context).pop();
+              Navigator.of(context).push(MaterialPageRoute(
+                builder: (context) => SymptomSelectionScreen(
+                  breed: _selectedBreed,
+                  gender: _selectedGender,
+                  age: _selectedAge,
+                  vaccineStatus: _selectedVaccine,
+                  sterilizationStatus: _selectedSterilization,
+                ),
+              ));
+            }
+          },
+        ),
+      ),
     ];
   }
 
-
-  Widget _buildDialogButton(String text, VoidCallback onPressed) {
-    return Expanded(
+  Widget _buildIndividualButton({required BuildContext context, required String label, required VoidCallback onPressed}) {
+    return Material(
+      borderRadius: BorderRadius.circular(10.0), // 设置圆角
+      elevation: 5.0, // 设置阴影
       child: Container(
-        margin: EdgeInsets.symmetric(horizontal: 8),
         decoration: BoxDecoration(
-          color: Colors.blue[100],
-          borderRadius: BorderRadius.circular(5),
+          color: Colors.white, // 设置矩形框的颜色
+          borderRadius: BorderRadius.circular(10.0), // 设置圆角
         ),
         child: TextButton(
+          style: TextButton.styleFrom(
+            padding: const EdgeInsets.symmetric(vertical: 8.0, horizontal: 20.0), // 设置按钮内部边距
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(10.0), // 设置按钮圆角
+            ),
+          ),
           child: Text(
-            text,
+            label,
             style: TextStyle(
               fontFamily: "ZHUOKAI",
               fontWeight: FontWeight.w400,
@@ -113,6 +134,7 @@ class _AISelfCheckScreenState extends State<AISelfCheckScreen> {
       ),
     );
   }
+
 
 
   Widget _buildDropdownField(String label, List<String> items, String currentValue, ValueChanged<String?> onChanged) {

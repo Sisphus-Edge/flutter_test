@@ -49,7 +49,7 @@ class _HomeRouteState extends State<HomeRoute> {
       // color: Colors.grey,
       child: Container(
         padding: EdgeInsets.symmetric(horizontal: sharedMediaWidth *0.03,vertical: sharedMediaHeight*0.015),
-        child: Column(
+        child: ListView(
           /// 0.02
           /// part 1: 0.25
           /// driver: 0.015

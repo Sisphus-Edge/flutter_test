@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:carousel_slider/carousel_slider.dart';
-import 'package:untitled/widges/community/post_card.dart';
-import 'package:untitled/widges/community/carousel_with_indicator.dart'; // 引入新创建的文件
+import 'package:untitled/widges/community/post_card.dart';//卡片展示
+import 'package:untitled/widges/community/carousel_with_indicator.dart'; // 轮播图
+import 'package:untitled/widges/community/search_post_screen.dart'; // 假设这是展示搜索结果的页面
 import 'package:untitled/db/PostDB/post_db_manager.dart';
+
 class CommunityRoute extends StatefulWidget {
   const CommunityRoute({
     Key? key,
@@ -24,7 +26,7 @@ class _CommunityRouteState extends State<CommunityRoute> {
   List<Category> categories = [];
   late int selectedCategoryId; // 修改为int类型，用于存储选中的分类ID
   String selectedCategoryName = "狗狗饲养基础"; // 新增变量，用于UI显示选中的分类名称
-
+  TextEditingController _searchController = TextEditingController(); // 添加搜索框控制器
   int _current = 0; // 当前轮播图的索引
   List<Post> carouselPosts = []; // 存放用于展示在轮播图中的帖子
 
@@ -56,6 +58,21 @@ class _CommunityRouteState extends State<CommunityRoute> {
       carouselPosts = posts.take(4).toList();
     });
 
+  }
+
+  void _performSearch() {
+    // 定义搜索操作的函数
+    String searchText = _searchController.text;
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (context) => SearchPostScreen(searchText: searchText), // 假设这是搜索结果页面
+      ),
+    );
+  }
+
+  void _clearSearch() {
+    _searchController.clear();
   }
 
   @override
@@ -96,22 +113,42 @@ class _CommunityRouteState extends State<CommunityRoute> {
     );
   }
 
+  // 修改搜索框，添加清空按钮、分隔符和搜索按钮，并调整文本垂直居中
   Widget _buildSearchBar(double sharedMediaWidth, double sharedMediaHeight) {
     return Container(
       width: sharedMediaWidth * 0.99,
       height: sharedMediaHeight * 0.07,
       padding: EdgeInsets.symmetric(horizontal: sharedMediaWidth * 0.05),
       child: TextField(
+        controller: _searchController,
+        textAlignVertical: TextAlignVertical.center, // 新增：使文本在垂直方向上居中
         decoration: InputDecoration(
           hintText: "搜索社区内容",
           prefixIcon: Icon(Icons.search),
+          suffixIcon: Row(
+            mainAxisSize: MainAxisSize.min, // 限制Row的宽度仅包裹其子组件
+            children: [
+              if (_searchController.text.isNotEmpty)
+                IconButton(
+                  icon: Icon(Icons.clear),
+                  onPressed: _clearSearch, // 点击叉号时执行清空操作
+                ),
+              IconButton(
+                icon: Icon(Icons.send),
+                onPressed: _performSearch, // 点击搜索按钮时执行搜索操作
+              ),
+            ],
+          ),
           border: OutlineInputBorder(borderRadius: BorderRadius.circular(30), borderSide: BorderSide.none),
           filled: true,
           fillColor: Colors.grey[200],
+          contentPadding: EdgeInsets.fromLTRB(20, 0, 0, 0), // 调整文本框内边距，左边留出一定空间
         ),
       ),
     );
   }
+
+
 
   Widget _buildCategorySelector() {
     return Container(

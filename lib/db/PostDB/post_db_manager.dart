@@ -39,53 +39,62 @@ class PostDBManager extends _$PostDBManager {
   Future<Category?> getCategoryById(int id) async {
     return (select(categories)..where((tbl) => tbl.id.equals(id))).getSingleOrNull();
   }
-// 获取分类名称
+  // 获取分类名称
   Future<Category?> getCategoryByName(String name) async {
     return (select(categories)..where((tbl) => tbl.name.equals(name))).getSingleOrNull();
   }
 
-// 根据分类ID获取分类名
+  // 根据分类ID获取分类名
   Future<String> getCategoryNameById(int id) async {
     final query = select(categories)..where((tbl) => tbl.id.equals(id));
     final result = await query.getSingleOrNull();
     return result?.name ?? 'Unknown Category';
   }
 
-// 获取所有分类
+  // 获取所有分类
   Future<List<Category>> getAllCategories() async {
     return await select(categories).get();
   }
 
-// 添加一个post
+  // 添加一个post
   Future<int> addPost(PostsCompanion post) async {
     return await into(posts).insert(post);
   }
 
-// 删除一个post
+  // 删除一个post
   Future<int> deletePost(int id) async {
     return await (delete(posts)..where((tbl) => tbl.id.equals(id))).go();
   }
 
-// 更新一个post
+  // 更新一个post
   Future<bool> updatePost(Post post) async {
     return await update(posts).replace(post);
   }
 
-// 根据分类ID获取post列表
+  // 根据分类ID获取post列表
   Future<List<Post>> fetchPostsByCategoryId(int categoryId) async {
     return (select(posts)..where((tbl) => tbl.categoryId.equals(categoryId))).get();
   }
 
-// 获取帖子标题
+  // 获取帖子标题
   Future<Post?> getPostByTitle(String title) async {
     return (select(posts)..where((tbl) => tbl.title.equals(title))).getSingleOrNull();
   }
-// 获取特定post的详细信息
+  // 获取特定post的详细信息
   Future<Post?> getPostDetails(int id) async {
     return (select(posts)..where((tbl) => tbl.id.equals(id))).getSingleOrNull();
   }
 
-// 获取所有post
+  // 搜寻post功能
+  Future<List<Post>> searchPostsByTitle(String query) async {
+    // 使用Drift的查询构建器来构建LIKE查询
+    final expression = posts.title.like('%$query%');
+    final queryBuilder = select(posts)..where((_) => expression);
+    return await queryBuilder.get();
+  }
+
+
+  // 获取所有post
   Future<List<Post>> getAllPosts() async {
     return await select(posts).get();
   }

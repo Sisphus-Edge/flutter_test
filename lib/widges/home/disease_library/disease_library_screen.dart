@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
-// import 'package:untitled/db/db_manager.dart';
 import 'package:untitled/db/DiseaseDB/db_manager.dart';
-
 import 'disease_detail_screen.dart';
+import 'search_disease_screen.dart';
 class DiseaseLibraryScreen extends StatefulWidget {
   @override
   _DiseaseLibraryScreenState createState() => _DiseaseLibraryScreenState();
@@ -22,10 +21,17 @@ class _DiseaseLibraryScreenState extends State<DiseaseLibraryScreen> {
     _searchController.clear();
   }
 
-  void _performSearch() {
-    // 在这里实现搜索逻辑
-    print("执行搜索: ${_searchController.text}");
+  void _performSearch() async {
+    final db = DBManager();
+    final searchResults = await db.searchDiseasesByName(_searchController.text);
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+      builder: (context) => SearchResultsScreen(results: searchResults),
+      ),
+    );
   }
+
 
   Future<void> _loadData() async {
     final db = DBManager();

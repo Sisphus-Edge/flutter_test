@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'daily.dart';
 import 'daily_record.dart';
-
+import 'image_upload_page.dart';
 class TopSection extends StatelessWidget{
   final double section_width;
   final double section_height;
@@ -50,35 +50,36 @@ class TopSection extends StatelessWidget{
     );
   }
   /// 卡通形象button
-  Container _Right_Up_Button() {
+  // 在_TopSection类中修改_Right_Up_Button方法
+  Container _Right_Up_Button(BuildContext context) {
     return Container(
       decoration: BoxDecoration(
         boxShadow: [
           BoxShadow(
-            color: Colors.grey.withOpacity(0.5), // 阴影颜色及透明度
-            offset: const Offset(2, 2), // 阴影偏移量，X轴为0，Y轴为10
-            blurRadius: 2, // 阴影模糊半径
-            // spreadRadius: 0, // 阴影扩散半径
+            color: Colors.grey.withOpacity(0.5),
+            offset: const Offset(2, 2),
+            blurRadius: 2,
           ),
         ],
         borderRadius: BorderRadius.circular(15),
       ),
       child: ElevatedButton(
-        onPressed: (){},
+        onPressed: () {
+          Navigator.push(
+            context,
+            MaterialPageRoute(builder: (context) => const ImageUploadPage()),
+          );
+        },
         style: ElevatedButton.styleFrom(
-          // size（width，height）
-            minimumSize: Size(section_width*0.36, section_height*0.9),
-            shape:
-            RoundedRectangleBorder(borderRadius: BorderRadius.circular(15))
-        ),
-        child: const Text(
+            minimumSize: Size(section_width * 0.36, section_height * 0.9),
+            shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15))),
+        child: Text(
           '卡通形象',
           style: TextStyle(
             fontFamily: 'ZCOOL',
             fontSize: 22,
           ),
         ),
-
       ),
     );
   }
@@ -109,7 +110,7 @@ class TopSection extends StatelessWidget{
           Column(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              _Right_Up_Button(),
+              _Right_Up_Button(context),
             ],
           ),
         ],

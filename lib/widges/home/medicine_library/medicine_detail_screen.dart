@@ -1,13 +1,10 @@
 import 'package:flutter/material.dart';
-// import 'package:untitled/db/medicine_db_manager.dart';
 import 'package:untitled/db/MedicineDB/medicine_db_manager.dart';
-
 class MedicineCategoryScreen extends StatelessWidget {
   final int categoryId;
   final String categoryName;
 
   MedicineCategoryScreen({Key? key, required this.categoryId, required this.categoryName}) : super(key: key);
-
 
   @override
   Widget build(BuildContext context) {

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'medicine_detail_screen.dart';
-import 'Medicine.dart';
 import 'package:untitled/db/MedicineDB/medicine_db_manager.dart';
+import 'medicine_detail_screen.dart';
+import 'search_medicine_screen.dart';
 class MedicineLibraryScreen extends StatefulWidget {
   @override
   _MedicineLibraryScreenState createState() => _MedicineLibraryScreenState();
@@ -33,9 +33,15 @@ class _MedicineLibraryScreenState extends State<MedicineLibraryScreen> {
     _searchController.clear();
   }
 
-  void _performSearch() {
-    // 在这里实现搜索逻辑
-    print("执行搜索: ${_searchController.text}");
+  void _performSearch() async {
+    final db = MedicineDBManager();
+    final searchResults = await db.searchMedicinesByName(_searchController.text);
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (context) => SearchResultsScreen(results: searchResults),
+      ),
+    );
   }
 
   @override
@@ -56,7 +62,6 @@ class _MedicineLibraryScreenState extends State<MedicineLibraryScreen> {
                   width: 1, // 边框宽度
                 ),
               ),
-              // 以下为搜索框
               child: Row(
                 children: [
                   IconButton(
@@ -66,7 +71,7 @@ class _MedicineLibraryScreenState extends State<MedicineLibraryScreen> {
                   Expanded(
                     child: TextField(
                       controller: _searchController,
-                      decoration: const InputDecoration(
+                      decoration: InputDecoration(
                         hintText: "请输入要搜索的药品",
                         border: InputBorder.none, // 去除底部边框
                       ),
@@ -94,8 +99,8 @@ class _MedicineLibraryScreenState extends State<MedicineLibraryScreen> {
           ),
           Expanded(
             child: GridView.builder(
-              padding: const EdgeInsets.all(10),
-              gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+              padding: EdgeInsets.all(10),
+              gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                 crossAxisCount: 4, // 保持每行四个类别
                 crossAxisSpacing: 10,
                 mainAxisSpacing: 10,

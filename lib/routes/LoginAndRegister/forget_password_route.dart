@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:untitled/db/UserDB/user_db_manager.dart';
 import 'package:drift/drift.dart' as drift;
 import 'package:untitled/routes/loginRoute.dart';
+import 'package:http/http.dart' as http;
+import 'dart:convert';
 class ForgetPasswordRoute extends StatefulWidget {
   @override
   _ForgetPasswordRouteState createState() => _ForgetPasswordRouteState();
@@ -9,11 +11,12 @@ class ForgetPasswordRoute extends StatefulWidget {
 
 class _ForgetPasswordRouteState extends State<ForgetPasswordRoute> {
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
-  String _email = '';
   String _newPassword = '';
   String _confirmPassword = '';
   String _verificationCode = '';
   bool isCodeSent = false;
+  // 定义TextEditingController
+  final TextEditingController _emailController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -41,6 +44,7 @@ class _ForgetPasswordRouteState extends State<ForgetPasswordRoute> {
 
   Widget buildEmailTextField() {
     return TextFormField(
+      controller: _emailController, // 使用控制器
       decoration: InputDecoration(labelText: '请输入邮箱'),
       validator: (value) {
         if (value == null || value.isEmpty) {
@@ -51,7 +55,6 @@ class _ForgetPasswordRouteState extends State<ForgetPasswordRoute> {
         }
         return null;
       },
-      onSaved: (value) => _email = value!,
     );
   }
 
@@ -114,8 +117,18 @@ class _ForgetPasswordRouteState extends State<ForgetPasswordRoute> {
         ),
         ElevatedButton(
           onPressed: () {
-            // 实现发送验证码到邮箱的逻辑
-            print("发送验证码");
+            // 直接从控制器中获取手机号
+            String email = _emailController.text;
+            print("邮箱如下: $email");
+            if (email.isNotEmpty) {
+              sendVerificationCode(email);
+              setState(() {
+                isCodeSent = true;
+              });
+            } else {
+              // 提示用户输入邮箱
+              ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text("请输入邮箱")));
+            }
           },
           child: Text('发送验证码'),
         ),
@@ -128,15 +141,15 @@ class _ForgetPasswordRouteState extends State<ForgetPasswordRoute> {
       onPressed: () async {
         if (_formKey.currentState!.validate()) {
           _formKey.currentState!.save();
-          // 假设验证码已经验证通过
-          var verificationPassed = true; // 实际应用中需要替换为验证码验证逻辑
+          // 调用验证码验证函数
+          bool verificationPassed = await checkVerificationCode(_emailController.text, _verificationCode);
 
           if (verificationPassed && _newPassword == _confirmPassword) {
             // 实例化UserDBManager
             final dbManager = UserDBManager();
 
             // 调用updateUserPassword方法更新密码
-            bool updateSuccess = await dbManager.updateUserPassword(_email, _newPassword);
+            bool updateSuccess = await dbManager.updateUserPassword(_emailController.text, _newPassword);
 
             if (updateSuccess) {
               // 更新成功，显示成功消息并可能跳转到登录页面或其他操作
@@ -178,4 +191,48 @@ class _ForgetPasswordRouteState extends State<ForgetPasswordRoute> {
     final passwordRegex = RegExp(r'^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,16}$');
     return passwordRegex.hasMatch(password);
   }
+
+  Future<void> sendVerificationCode(String email) async {
+    print("执行sendVerificationCode！");
+    final uri = Uri.parse('http://10.230.8.14:8081/api/user/code');
+    final response = await http.post(uri, body: {
+      'email': email,
+      // 可能还需要其他参数，根据API的要求
+    });
+    if (response.statusCode == 200) {
+      // 请求成功，处理响应
+      final data = jsonDecode(response.body);
+      print('验证码发送成功: $data');
+      // 根据返回的数据进行处理，比如更新UI提示用户验证码已发送
+    } else {
+      // 请求失败，处理错误
+      print('验证码发送失败: ${response.body}');
+      // 根据错误进行处理，比如提示用户重试
+    }
+  }
+
+  // 假设添加一个新函数checkVerificationCode，用于验证验证码
+  Future<bool> checkVerificationCode(String email, String verificationCode) async {
+    print("执行checkVerificationCode");
+    final uri = Uri.parse('http://10.230.8.14:8081/api/user/login');
+    final response = await http.post(
+      uri,
+      headers: {
+        'Content-Type': 'application/json', // 设置请求头
+      },
+      body: jsonEncode({
+        'email': email,
+        'code': verificationCode, // 用户输入的验证码
+      }),
+    );
+    if (response.statusCode == 200) {
+      final data = jsonDecode(response.body);
+      return data['success']; // 假设API返回的格式中有个success字段表示验证是否成功
+    } else {
+      // 如果请求失败，可以根据需要处理，比如打印日志或者返回false
+      print('验证码验证失败: ${response.body}');
+      return false;
+    }
+  }
+
 }

@@ -8,7 +8,6 @@ part 'medicine_db_manager.g.dart'; // Drift 会生成这个文件
 @DriftDatabase(
   include: {'MedicineTable.drift'}, // 引入表文件
 )
-
 class MedicineDBManager extends _$MedicineDBManager {
   MedicineDBManager._privateConstructor(): super(_openConnection());
   static final MedicineDBManager _instance = MedicineDBManager._privateConstructor();
@@ -69,6 +68,15 @@ class MedicineDBManager extends _$MedicineDBManager {
   Future<Medicine?> getMedicineDetails(int medicineId) async {
     return await (select(medicines)..where((t) => t.medicineID.equals(medicineId))).getSingleOrNull();
   }
+
+  // 搜索药品
+  Future<List<Medicine>> searchMedicinesByName(String query) async {
+    // 使用 Drift 的查询构建器来构建 LIKE 查询
+    final expression = medicines.name.like('%$query%');
+    final queryBuilder = select(medicines)..where((_) => expression);
+    return await queryBuilder.get();
+  }
+
 
   Future<List<Medicine>> getAllMedicines() async {
     return await select(medicines).get();
