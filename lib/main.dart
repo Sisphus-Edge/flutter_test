@@ -9,6 +9,8 @@ import 'db/DiseaseDB/init_db.dart';
 import 'db/MedicineDB/init_medicine_db.dart';
 import 'db/PostDB/init_post_db.dart';
 import 'routes/test.dart';
+import 'db/DailyRecordDB/dailyrecord_db_manager.dart';
+import 'db/DailyRecordDB/init_dailyrecord.dart';
 import 'common/global.dart';
 import 'routes/loginRoute.dart';
 import 'routes/intro_page/intro_page_view.dart';
@@ -18,6 +20,7 @@ void main() async{
   // await initializeDatabase();
   // await initializeMedicineDatabase();
   // await initializePostDatabase();
+  // await initializeDailyRecordDatabase();
   runApp(const MyApp());
 }
 

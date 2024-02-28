@@ -8,6 +8,7 @@ part 'medicine_db_manager.g.dart'; // Drift 会生成这个文件
 @DriftDatabase(
   include: {'MedicineTable.drift'}, // 引入表文件
 )
+
 class MedicineDBManager extends _$MedicineDBManager {
   MedicineDBManager._privateConstructor(): super(_openConnection());
   static final MedicineDBManager _instance = MedicineDBManager._privateConstructor();

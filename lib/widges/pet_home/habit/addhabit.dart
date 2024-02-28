@@ -1,5 +1,7 @@
 
 import 'package:flutter/material.dart';
+import 'package:untitled/db/DailyRecordDB/dailyrecord_db_manager.dart';
+import 'package:drift/drift.dart' as drift;
 
 
 // Define a custom Form widget.
@@ -14,6 +16,9 @@ class AddHabit extends StatefulWidget {
 class _AddHabitState extends State<AddHabit> {
 
   final nameController = TextEditingController();
+  String _habitName = '';
+  List<bool> _radioValues = List.generate(7, (index) => false);
+  final List<String> _weekdays = ['周一', '周二', '周三', '周四', '周五', '周六', '周日'];
 
 
   @override
@@ -22,6 +27,30 @@ class _AddHabitState extends State<AddHabit> {
     // widget tree.
     nameController.dispose();
     super.dispose();
+  }
+
+  void _saveHabitName(String name) {
+    setState(() {
+      _habitName = name;
+    });
+  }
+
+  void _saveSelectedDays(List<bool> values) {
+    setState(() {
+      _radioValues.clear();
+      _radioValues.addAll(values);
+    });
+  }
+
+  void _onSavePressed() {
+    // Save habit name and selected radio buttons
+    _saveHabitName(nameController.text);
+    _saveSelectedDays(_radioValues);
+    // Perform any other necessary actions, such as navigating back
+
+
+
+    Navigator.of(context).pop();
   }
 
   @override
@@ -49,7 +78,31 @@ class _AddHabitState extends State<AddHabit> {
             inputFrequency(screenWidth*0.9, screenHeight*0.2),
             SizedBox(height: screenHeight*0.02,),
             FloatingActionButton(
-              onPressed: (){},
+              onPressed: () async{
+                // _saveHabitName(nameController.text);
+                // _saveSelectedDays(_radioValues);
+                String habitName = nameController.text;
+
+                DateTime now = DateTime.now();
+                DateTime combinedDateTime = DateTime(now.year, now.month, now.day);
+
+                final dbManager = DailyRecordDBManager();
+                final habit = HabitsCompanion(
+                  habitName: drift.Value(habitName),
+                  startDate: drift.Value(combinedDateTime),
+                  monday: drift.Value(_radioValues[0]),
+                  tuesday: drift.Value(_radioValues[1]),
+                  wednesday: drift.Value(_radioValues[2]),
+                  thursday: drift.Value(_radioValues[3]),
+                  friday: drift.Value(_radioValues[4]),
+                  saturday: drift.Value(_radioValues[5]),
+                  sunday: drift.Value(_radioValues[6])
+                );
+                
+                await dbManager.addHabit(habit).then((value) => Navigator.of(context).pop());
+                // Navigator.of(context).pop();
+                
+              },
               backgroundColor: Colors.orange, // 按钮的背景颜色
               child: const Icon(Icons.check, size: 40.0), // 在按钮中心放置一个勾号图标
               shape: const CircleBorder(),
@@ -99,7 +152,8 @@ class _AddHabitState extends State<AddHabit> {
           buildTitle('选择频率'),
           const SizedBox(height: 20),
           // TitleInputField(controller: nameController,),
-          SevenRadioButtons(width: width,height:height),
+          // SevenRadioButtons(width: width,height:height),
+          buildSevenButton(width),
         ],
       ),
     );
@@ -159,6 +213,65 @@ class _AddHabitState extends State<AddHabit> {
         ),
       ),
 
+    );
+  }
+
+  @override
+  Widget buildSevenButton(double width) {
+    double circleRadius = width *0.09;
+    double circleSpan = width *0.01;
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+      children: List.generate(
+        7,
+            (index) => GestureDetector(
+          onTap: () {
+            setState(() {
+              _radioValues[index] = !_radioValues[index];
+            });
+          },
+          child: Column(
+            children: [
+              Text(
+                _weekdays[index], // 使用星期几名称作为标题
+                style: const TextStyle(
+                    fontSize: 14.0,
+                    fontFamily: "ZHUOKAI"
+                  // fontWeight: FontWeight.bold,
+                ),
+              ),
+              SizedBox(width: 8,),
+              Container(
+                padding: EdgeInsets.all(circleSpan),
+                decoration: BoxDecoration(
+                  shape: BoxShape.circle,
+                  border: Border.all(
+                    color: _radioValues[index] ? Colors.orange : Colors.grey,
+                    width: 2.0,
+                  ),
+                ),
+                child: _radioValues[index]
+                    ? Container(
+                  width: circleRadius,
+                  height: circleRadius,
+                  decoration: const BoxDecoration(
+                    shape: BoxShape.circle,
+                    color: Colors.orange,
+                  ),
+                )
+                    : Container(
+                  width: circleRadius,
+                  height: circleRadius,
+                  decoration: const BoxDecoration(
+                    shape: BoxShape.circle,
+                    color: Colors.transparent,
+                  ),
+                ),
+              ),
+            ],
+          ),
+        ),
+      ),
     );
   }
 }

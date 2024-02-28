@@ -9,9 +9,25 @@ class MyGridView extends StatefulWidget {
   final double width;
   final double height;
   final bool state;
+  final int exerciseGoal;
+  final int exerciseCompleted;
+  final int nutritionGoal;
+  final int nutritionCompleted;
+  final int waterGoal;
+  final int waterCompleted;
   /// state为true表示一级界面  state为false表示为每日记录
-  const MyGridView({Key? key, required this.width, required this.height,required this.state})
-      : super(key: key);
+  const MyGridView({
+    Key? key,
+    required this.width,
+    required this.height,
+    required this.state,
+    required this.exerciseGoal,
+    required this.exerciseCompleted,
+    required this.nutritionGoal,
+    required this.nutritionCompleted,
+    required this.waterGoal,
+    required this.waterCompleted,
+  }) : super(key: key);
 
   @override
   _MyGridViewState createState() => _MyGridViewState();
@@ -23,6 +39,41 @@ class _MyGridViewState extends State<MyGridView> {
 
   // 用于记录第一排哪个元素被点击了
   int _selectedItemIndex = 0;
+  late int exerciseGoal;
+  late int exerciseCompleted;
+  late int nutritionGoal;
+  late int nutritionCompleted;
+  late int waterGoal;
+  late int waterCompleted;
+
+  @override
+  void initState() {
+    super.initState();
+    exerciseGoal = widget.exerciseGoal;
+    exerciseCompleted = widget.exerciseCompleted;
+    nutritionGoal = widget.nutritionGoal;
+    nutritionCompleted = widget.nutritionCompleted;
+    waterGoal = widget.waterGoal;
+    waterCompleted = widget.waterCompleted;
+  }
+
+  void updateState({
+    required int newExerciseGoal,
+    required int newExerciseCompleted,
+    required int newNutritionGoal,
+    required int newNutritionCompleted,
+    required int newWaterGoal,
+    required int newWaterCompleted,
+  }) {
+    setState(() {
+      exerciseGoal = newExerciseGoal;
+      exerciseCompleted = newExerciseCompleted;
+      nutritionGoal = newNutritionGoal;
+      nutritionCompleted = newNutritionCompleted;
+      waterGoal = newWaterGoal;
+      waterCompleted = newWaterCompleted;
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -174,8 +225,8 @@ class _MyGridViewState extends State<MyGridView> {
           // 第二排
           // Column(
           // CustomRow(identifier: 1, height: globalItemHeight),
-          CustomRow(
-            identifier: _selectedItemIndex,
+          SecondRow(
+             _selectedItemIndex,
           ),
             // Divider(color: Colors.white), // 第二排之间的分割线
 
@@ -183,36 +234,24 @@ class _MyGridViewState extends State<MyGridView> {
       ),
     );
   }
-}
 
-class CustomRow extends StatelessWidget {
-  final int identifier;
-
-
-  const CustomRow({
-    Key? key,
-    required this.identifier,
-  }) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
+  Widget SecondRow(int identifier){
     Widget row;
     switch (identifier) {
       case 0:
-        row = _buildRow(0, 60, 40);
+        row = _buildRow(0,exerciseGoal, exerciseCompleted);
         break;
       case 1:
-        row = _buildRow(1, 2000, 1500);
+        row = _buildRow(1,nutritionGoal, nutritionCompleted);
         break;
       case 2:
-        row = _buildRow(2, 400, 200);
+        row = _buildRow(2,waterGoal, waterCompleted);
         break;
       default:
         row = Container(); // 或者返回一个空容器，或者抛出异常，取决于具体需求
     }
     return row;
   }
-
   Widget _buildRow(int id_Row1, int goal, int bingo) {
     return Row(
       children: [
@@ -226,6 +265,7 @@ class CustomRow extends StatelessWidget {
   }
 }
 
+/// 第二排显示数值的格式
 class DoubleLayerExpanded extends StatelessWidget {
   final int id;
   final int data;
@@ -248,7 +288,7 @@ class DoubleLayerExpanded extends StatelessWidget {
         lowerText = 'min';
         break;
       case 1:
-        lowerText = 'kcal';
+        lowerText = 'k';
         break;
       case 2:
         lowerText = 'ml';
@@ -286,11 +326,11 @@ class DoubleLayerExpanded extends StatelessWidget {
                 child: Container(
                   height: globalItemHeight *0.6,
                   // color: Colors.pink,
-                  padding: const EdgeInsets.symmetric(vertical: 6), // 调整垂直方向上的内边距
+                  padding: const EdgeInsets.only(top: 6), // 调整垂直方向上的内边距
                   child: Text(
                     '$data $lowerText',
                     style: const TextStyle(fontSize: 18,fontFamily: 'ZCOOL',
-                      letterSpacing: 2,wordSpacing: 2,),
+                      letterSpacing: 1,wordSpacing: 1,),
                   ),
                 ),
               ),

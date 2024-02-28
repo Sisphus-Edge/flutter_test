@@ -1,0 +1,24 @@
+CREATE TABLE daily_records (
+  RecordDate DATE NOT NULL PRIMARY KEY,
+  exercise_goal INTEGER,
+  exercise_completed INTEGER,
+  nutrition_goal INTEGER,
+  nutrition_completed INTEGER,
+  water_goal INTEGER,
+  water_completed INTEGER,
+  score INTEGER
+);
+
+CREATE TABLE habits (
+  HabitId INTEGER PRIMARY KEY AUTOINCREMENT,
+  HabitName TEXT,
+  monday BOOLEAN,
+  tuesday BOOLEAN,
+  wednesday BOOLEAN,
+  thursday BOOLEAN,
+  friday BOOLEAN,
+  saturday BOOLEAN,
+  sunday BOOLEAN,
+  start_date DATE,
+  end_date DATE
+);

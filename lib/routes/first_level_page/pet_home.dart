@@ -4,7 +4,9 @@ import 'package:untitled/widges/pet_home/top_section_pethome.dart';
 import 'package:untitled/widges/pet_home/canlendar_pet_home.dart';
 import 'package:untitled/widges/pet_home/numeric/numeric_container.dart';
 import 'package:untitled/widges/pet_home/habit/habit.dart';
+import 'package:untitled/widges/pet_home/habit/habit_container.dart';
 import 'package:untitled/routes/test.dart';
+import 'package:untitled/widges/pet_home/daily_record.dart';
 
 class PetHomeRoute extends StatefulWidget {
   const PetHomeRoute({super.key,required this.MediaWidth, required this.MediaHeight});
@@ -60,12 +62,16 @@ class _PetHomeRouteState extends State<PetHomeRoute> {
               ),
               // MyGridView(width: sharedMediaWidth * 0.97, height: sharedMediaHeight*0.25),
               // 到此 width剩下0.0445
+              /// 爱宠今日活力值
               MyGridViewContainer(width: sharedMediaWidth * 0.97, height: sharedMediaHeight*0.3),
               Divider(
                 color: Colors.transparent,
                 height: sharedMediaHeight * 0.015,
               ),
-              ContainerWithWeekGridView(width: sharedMediaWidth*0.97, height: sharedMediaHeight*0.144)
+              /// 每周习惯完成情况
+              ContainerWithWeekGridView(width: sharedMediaWidth*0.97, height: sharedMediaHeight*0.144,
+              identifier: [false,false,true,true,true,false,true],
+              )
               // MyHomePage(),
               // 仅供测试
             ]

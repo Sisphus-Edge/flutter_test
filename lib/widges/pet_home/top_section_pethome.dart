@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'daily.dart';
+import 'daily_record.dart';
 
 class TopSection extends StatelessWidget{
   final double section_width;
@@ -28,6 +29,7 @@ class TopSection extends StatelessWidget{
           Navigator.push(
             context,
             MaterialPageRoute(builder: (context) => DailyPage(date: DateTime.now(),)), // 导航到 DailyPage 页面
+            // MaterialPageRoute(builder: (context) => DailyRecordPage()), // 导航到 DailyPage 页面
           );
         },
         style: ElevatedButton.styleFrom(

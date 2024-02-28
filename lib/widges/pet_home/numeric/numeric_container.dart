@@ -1,11 +1,14 @@
+
 import 'package:flutter/material.dart';
 import 'numeric_activity.dart';
 import 'package:ff_stars/ff_stars.dart';
 import 'package:percent_indicator/percent_indicator.dart';
+import 'package:untitled/db/DailyRecordDB/dailyrecord_db_manager.dart';
+import 'package:intl/intl.dart';
 
 
 /// 一级界面活力值板块
-class MyGridViewContainer extends StatelessWidget {
+class MyGridViewContainer extends StatefulWidget {
   final double width;
   final double height;
 
@@ -16,29 +19,78 @@ class MyGridViewContainer extends StatelessWidget {
   }) : super(key: key);
 
   @override
+  _MyGridViewContainerState createState() => _MyGridViewContainerState();
+}
+
+class _MyGridViewContainerState extends State<MyGridViewContainer> {
+  final dbManager = DailyRecordDBManager();
+  List<DailyRecord> dailyRecords = [];
+  List<Habit> habits = [];
+  // late DailyRecord dailyRecordToday;
+  List<DailyRecord> dailyRecordsToday = [];
+  // DailyRecord dailyRecordToday =
+
+  @override
+  void initState() {
+    super.initState();
+    initializeData();
+  }
+
+  Future<void> initializeData() async {
+    final allDailyRecords = await dbManager.getAllDailyRecords();
+    final allHabits = await dbManager.getAllHabits();
+    final today = await dbManager.getDailyRecord(DateTime.now());
+
+    setState(() {
+      dailyRecords = allDailyRecords;
+      habits = allHabits;
+      dailyRecordsToday.add(today!);
+    });
+  }
+
+
+  @override
   Widget build(BuildContext context) {
+    // if (dailyRecords.isEmpty) {
+    //   return CircularProgressIndicator(); // 举例，你可以使用加载指示器
+    // }
+    // final record;
+
+    int _exerciseGoal = 60;
+    int _exerciseCompleted=20;
+    int _nutritionGoal= 1000;
+    int _nutritionCompleted=600;
+    int _waterGoal=400;
+    int _waterCompleted=20;
+    //
+    if (dailyRecordsToday.length>0) {
+      final record = dailyRecordsToday[0];
+      int? _exerciseGoal = record.exerciseGoal;
+      int? _exerciseCompleted=record.exerciseCompleted;
+      int? _nutritionGoal= record.nutritionGoal;
+      int? _nutritionCompleted=record.nutritionCompleted;
+      int? _waterGoal=record.waterGoal;
+      int? _waterCompleted=record.waterCompleted;
+    }
     return Container(
-      width: width,
-      height: height,
-      // padding: EdgeInsets.fromLTRB(width*0.1, top, width, width*0.1),
+      width: widget.width,
+      height: widget.height,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
           const Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              // 左侧标题
               Text(
                 '爱宠今日活力值',
                 style: TextStyle(
                   fontSize: 18,
                   fontWeight: FontWeight.bold,
                   fontFamily: 'ZHUOKAI',
-                  color: Colors.black87
+                  color: Colors.black87,
                 ),
               ),
-              // 右侧箭头
-             /* GestureDetector(
+              /*GestureDetector(
                 onTap: () {
                   // 在这里添加跳转逻辑
                 },
@@ -64,7 +116,18 @@ class MyGridViewContainer extends StatelessWidget {
           SizedBox(height: 16), // 添加间距
           // 第二排
           Expanded(
-            child: MyGridView(width: width,height: height*0.7, state: true,), // 调用显示 MyGridView 的部分
+
+            child: MyGridView(
+              width: widget.width,
+              height: widget.height * 0.7,
+              state: true,
+              exerciseGoal: _exerciseGoal,
+              exerciseCompleted: _exerciseCompleted,
+              nutritionGoal: _nutritionGoal,
+              nutritionCompleted: _nutritionCompleted,
+                waterGoal: _waterGoal,
+              waterCompleted: _waterCompleted
+            ),
           ),
         ],
       ),
@@ -77,11 +140,15 @@ class MyGridViewContainer extends StatelessWidget {
 class NumericContainer extends StatelessWidget {
   final double width;
   final double height;
+  // final int _exerciseGoal = 60;
+  final List<int> myIntArray;
+
 
   const NumericContainer({
     Key? key,
     required this.width,
     required this.height,
+    required this.myIntArray,
   }) : super(key: key);
 
   @override
@@ -99,6 +166,7 @@ class NumericContainer extends StatelessWidget {
             child: ScoreWidget(),
           ),
           SizedBox(height: height *0.05), // 添加间距
+          /// 圆形进度显示框
           CircularPercentIndicator(
             radius: height * 0.18,
             lineWidth: 15.0,
@@ -113,7 +181,14 @@ class NumericContainer extends StatelessWidget {
           // 第二排
           SizedBox(height: height *0.05), // 添加间距
           Expanded(
-            child: MyGridView(width: width,height: height*0.40,state: false,), // 调用显示 MyGridView 的部分
+            child: MyGridView(width: width,height: height*0.40,state: true,
+              exerciseGoal: myIntArray[0],
+              exerciseCompleted: myIntArray[1],
+              nutritionGoal: myIntArray[2],
+              nutritionCompleted: myIntArray[3],
+              waterGoal: myIntArray[4],
+              waterCompleted: myIntArray[5],
+            ), // 调用显示 MyGridView 的部分
           ),
           // if(MyGridVi)
         ],
