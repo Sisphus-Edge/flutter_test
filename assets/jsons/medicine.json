@@ -1,0 +1,530 @@
+[
+  {
+    "name": "伊维菌素",
+    "mainFunction": "用于治疗犬猫的寄生虫感染",
+    "usage": "按照体重和厂家说明的用法和用量给犬猫口服。",
+    "description": "含有伊维菌素，有效杀灭犬猫体内的各类寄生虫，包括蛔虫、钩虫、绦虫等。",
+    "precautions": "在使用过程中可能导致食欲不振、呕吐等副作用，如出现严重反应，应立即就医。",
+    "sideEffects": "个别犬猫可能出现消化不良、呕吐等轻微不适，若出现严重反应，应立即停药并就医。",
+    "storage": "存放在干燥、阴凉处，避免阳光直射。",
+    "imageUrl": "assets/medicineDetail/伊维菌素.jpeg",
+    "categoryId": 1
+  },
+  {
+    "name": "吡喹酮",
+    "mainFunction": "用于治疗犬猫的囊虫感染",
+    "usage": "按照体重和厂家说明的用法和用量给犬猫口服。",
+    "description": "含有吡喹酮，有效杀灭犬猫体内的囊虫，预防囊虫病。",
+    "precautions": "在使用过程中可能导致食欲不振、呕吐等副作用，如出现严重反应，应立即就医。",
+    "sideEffects": "个别犬猫可能出现消化不良、呕吐等轻微不适，若出现严重反应，应立即停药并就医。",
+    "storage": "存放在干燥、阴凉处，避免阳光直射。",
+    "imageUrl": "assets/medicineDetail/吡喹酮.jpg",
+    "categoryId": 1
+  },
+  {
+    "name": "驱虫丸",
+    "mainFunction": "用于预防和治疗犬猫的寄生虫感染",
+    "usage": "按照厂家说明的用法和用量给犬猫口服。",
+    "description": "含有多种驱虫成分，可预防和治疗犬猫的蛔虫、钩虫、绦虫等寄生虫感染。",
+    "precautions": "在使用过程中可能导致食欲不振、呕吐等副作用，如出现严重反应，应立即就医。",
+    "sideEffects": "个别犬猫可能出现消化不良、呕吐等轻微不适，若出现严重反应，应立即停药并就医。",
+    "storage": "存放在干燥、阴凉处，避免阳光直射。",
+    "imageUrl": "assets/medicineDetail/驱虫丸.jpg",
+    "categoryId": 1
+  },
+  {
+    "name": "驱虫滴剂",
+    "mainFunction": "用于预防和治疗犬猫的外部寄生虫感染",
+    "usage": "按照厂家说明的用法和用量滴于犬猫的颈部皮肤上。",
+    "description": "含有驱虫成分，可预防和治疗犬猫的体外寄生虫感染，如跳蚤、蜱虫等。",
+    "precautions": "在使用过程中可能导致皮肤过敏等副作用，如出现严重反应，应立即停药并就医。",
+    "sideEffects": "个别犬猫可能出现皮肤过敏等轻微不适，若出现严重反应，应立即停药并就医。",
+    "storage": "存放在干燥、阴凉处，避免阳光直射。",
+    "imageUrl": "assets/medicineDetail/驱虫滴剂.jpeg",
+    "categoryId": 1
+  },
+
+  {
+    "name": "皮肤炎净",
+    "mainFunction": "用于治疗犬猫的皮肤炎症",
+    "usage": "按照厂家说明的用法和用量局部涂抹于患处。",
+    "description": "含有抗菌成分，能够有效消炎止痒，适用于治疗犬猫的湿疹、皮肤炎症等。",
+    "precautions": "禁止口服，避免接触眼睛和黏膜，如不慎接触，应立即用清水冲洗。",
+    "sideEffects": "个别动物可能出现皮肤过敏、瘙痒等不良反应，如出现严重反应，应立即就医。",
+    "storage": "存放在阴凉、干燥处，避免阳光直射。",
+    "imageUrl": "assets/medicineDetail/皮肤炎净.jpg",
+    "categoryId": 2
+  },
+  {
+    "name": "痒止净",
+    "mainFunction": "用于缓解犬猫的瘙痒症状",
+    "usage": "按照厂家说明的用法和用量局部涂抹于患处。",
+    "description": "含有止痒成分，能够迅速缓解犬猫的皮肤瘙痒症状，适用于各种皮肤瘙痒性疾病。",
+    "precautions": "禁止口服，避免接触眼睛和黏膜，如不慎接触，应立即用清水冲洗。",
+    "sideEffects": "个别动物可能出现皮肤过敏、瘙痒等不良反应，如出现严重反应，应立即就医。",
+    "storage": "存放在阴凉、干燥处，避免阳光直射。",
+    "imageUrl": "assets/medicineDetail/痒止净.jpg",
+    "categoryId": 2
+  },
+  {
+    "name": "皮肤软膏",
+    "mainFunction": "用于治疗犬猫的皮肤湿疹",
+    "usage": "按照厂家说明的用法和用量局部涂抹于患处。",
+    "description": "含有舒缓成分，能够有效缓解犬猫的皮肤湿疹，促进皮肤修复。",
+    "precautions": "禁止口服，避免接触眼睛和黏膜，如不慎接触，应立即用清水冲洗。",
+    "sideEffects": "个别动物可能出现皮肤过敏、瘙痒等不良反应，如出现严重反应，应立即就医。",
+    "storage": "存放在阴凉、干燥处，避免阳光直射。",
+    "imageUrl": "assets/medicineDetail/皮肤软膏.jpg",
+    "categoryId": 2
+  },
+  {
+    "name": "角质层修复霜",
+    "mainFunction": "用于修复犬猫的皮肤角质层",
+    "usage": "按照厂家说明的用法和用量局部涂抹于患处。",
+    "description": "含有修复因子，能够迅速渗透皮肤表层，修复受损的角质层，适用于治疗皮肤干燥、脱屑等问题。",
+    "precautions": "禁止口服，避免接触眼睛和黏膜，如不慎接触，应立即用清水冲洗。",
+    "sideEffects": "个别动物可能出现皮肤过敏、瘙痒等不良反应，如出现严重反应，应立即就医。",
+    "storage": "存放在阴凉、干燥处，避免阳光直射。",
+    "imageUrl": "assets/medicineDetail/角质层修复霜.jpg",
+    "categoryId": 2
+  },
+  {
+    "name": "抗菌喷雾",
+    "mainFunction": "用于抑制犬猫皮肤感染",
+    "usage": "按照厂家说明的用法和用量喷洒于患处。",
+    "description": "含有抗菌成分，能够有效杀灭细菌和真菌，适用于治疗皮肤感染、疹痒等症状。",
+    "precautions": "禁止口服，避免接触眼睛和黏膜，如不慎接触，应立即用清水冲洗。",
+    "sideEffects": "个别动物可能出现皮肤过敏、瘙痒等不良反应，如出现严重反应，应立即就医。",
+    "storage": "存放在阴凉、干燥处，避免阳光直射。",
+    "imageUrl": "assets/medicineDetail/抗菌喷雾.jpg",
+    "categoryId": 2
+  },
+
+
+  {
+    "name": "胃炎宁",
+    "mainFunction": "用于治疗犬猫的胃炎",
+    "usage": "按照厂家说明的用法和用量口服给药。",
+    "description": "含有抗酸成分，能够有效缓解犬猫的胃炎症状，如恶心、呕吐等。",
+    "precautions": "禁止与其它药物混合使用，如有特殊情况请咨询兽医。",
+    "sideEffects": "个别动物可能出现食欲不振、腹泻等副作用，如出现严重反应，应立即就医。",
+    "storage": "存放在阴凉、干燥处，避免阳光直射。",
+    "imageUrl": "assets/medicineDetail/胃炎宁.jpg",
+    "categoryId": 3
+  },
+  {
+    "name": "消食片",
+    "mainFunction": "用于促进犬猫消化",
+    "usage": "按照厂家说明的用法和用量口服给药。",
+    "description": "含有促进消化的成分，能够有效缓解犬猫的消化不良症状，如腹胀、食欲不振等。",
+    "precautions": "禁止与其它药物混合使用，如有特殊情况请咨询兽医。",
+    "sideEffects": "个别动物可能出现口干、口臭等副作用，如出现严重反应，应立即就医。",
+    "storage": "存放在阴凉、干燥处，避免阳光直射。",
+    "imageUrl": "assets/medicineDetail/消食片.jpeg",
+    "categoryId": 3
+  },
+  {
+    "name": "胃粘膜保护剂",
+    "mainFunction": "用于保护犬猫的胃粘膜",
+    "usage": "按照厂家说明的用法和用量口服给药。",
+    "description": "含有保护胃粘膜的成分，能够有效缓解犬猫的胃部不适，如胃痛、呕吐等。",
+    "precautions": "禁止与其它药物混合使用，如有特殊情况请咨询兽医。",
+    "sideEffects": "个别动物可能出现口干、口臭等副作用，如出现严重反应，应立即就医。",
+    "storage": "存放在阴凉、干燥处，避免阳光直射。",
+    "imageUrl": "assets/medicineDetail/胃粘膜保护剂.jpeg",
+    "categoryId": 3
+  },
+  {
+    "name": "胃液调节剂",
+    "mainFunction": "用于调节犬猫胃酸分泌",
+    "usage": "按照厂家说明的用法和用量口服给药。",
+    "description": "含有调节胃酸的成分，能够有效平衡犬猫的胃酸分泌，预防胃部不适。",
+    "precautions": "禁止与其它药物混合使用，如有特殊情况请咨询兽医。",
+    "sideEffects": "个别动物可能出现口干、口臭等副作用，如出现严重反应，应立即就医。",
+    "storage": "存放在阴凉、干燥处，避免阳光直射。",
+    "imageUrl": "assets/medicineDetail/胃液调节剂.jpeg",
+    "categoryId": 3
+  },
+  {
+    "name": "胃肠道舒缓剂",
+    "mainFunction": "用于缓解犬猫的胃肠道不适",
+    "usage": "按照厂家说明的用法和用量口服给药。",
+    "description": "含有舒缓胃肠道的成分，能够有效缓解犬猫的胃肠道不适症状，如腹痛、腹泻等。",
+    "precautions": "禁止与其它药物混合使用，如有特殊情况请咨询兽医。",
+    "sideEffects": "个别动物可能出现口干、口臭等副作用，如出现严重反应，应立即就医。",
+    "storage": "存放在阴凉、干燥处，避免阳光直射。",
+    "imageUrl": "assets/medicineDetail/胃肠道舒缓剂.jpg",
+    "categoryId": 3
+  },
+
+
+  {
+    "name": "氨茶碱片",
+    "mainFunction": "用于治疗犬猫的支气管炎",
+    "usage": "按照厂家说明的用法和用量口服给药。",
+    "description": "含有氨茶碱成分，能够有效扩张支气管，缓解犬猫的呼吸困难。",
+    "precautions": "禁止与其它药物混合使用，如有特殊情况请咨询兽医。",
+    "sideEffects": "个别动物可能出现心跳加快、呕吐等副作用，如出现严重反应，应立即就医。",
+    "storage": "存放在阴凉、干燥处，避免阳光直射。",
+    "imageUrl": "assets/medicineDetail/氨茶碱片.jpg",
+    "categoryId": 4
+  },
+  {
+    "name": "止咳糖浆",
+    "mainFunction": "用于缓解犬猫的咳嗽症状",
+    "usage": "按照厂家说明的用法和用量口服给药。",
+    "description": "含有镇咳成分，能够有效缓解犬猫的咳嗽症状，促进呼吸道舒畅。",
+    "precautions": "禁止与其它镇咳药物混合使用，如有特殊情况请咨询兽医。",
+    "sideEffects": "个别动物可能出现嗜睡、食欲不振等副作用，如出现严重反应，应立即就医。",
+    "storage": "存放在阴凉、干燥处，避免阳光直射。",
+    "imageUrl": "assets/medicineDetail/止咳糖浆.png",
+    "categoryId": 4
+  },
+  {
+    "name": "抗菌喷雾",
+    "mainFunction": "用于预防和治疗犬猫的呼吸道感染",
+    "usage": "按照厂家说明的用法和用量喷洒于犬猫的鼻腔。",
+    "description": "含有抗菌成分，能够有效预防和治疗犬猫的呼吸道感染，如鼻炎、咽炎等。",
+    "precautions": "避免喷洒于眼睛和黏膜，如不慎接触，应立即用清水冲洗。",
+    "sideEffects": "个别动物可能出现过敏反应、流涕等不良反应，如出现严重反应，应立即就医。",
+    "storage": "存放在阴凉、干燥处，避免阳光直射。",
+    "imageUrl": "assets/medicineDetail/抗菌喷雾.jpg",
+    "categoryId": 4
+  },
+  {
+    "name": "支气管扩张剂",
+    "mainFunction": "用于扩张犬猫的支气管",
+    "usage": "按照厂家说明的用法和用量雾化给药。",
+    "description": "含有扩张支气管的成分，能够有效扩张犬猫的支气管，改善呼吸困难。",
+    "precautions": "禁止与其它药物混合使用，如有特殊情况请咨询兽医。",
+    "sideEffects": "个别动物可能出现心跳加快、呕吐等副作用，如出现严重反应，应立即就医。",
+    "storage": "存放在阴凉、干燥处，避免阳光直射。",
+    "imageUrl": "assets/medicineDetail/支气管扩张剂.jpg",
+    "categoryId": 4
+  },
+  {
+    "name": "呼吸舒缓喷雾",
+    "mainFunction": "用于缓解犬猫的呼吸困难",
+    "usage": "按照厂家说明的用法和用量喷洒于犬猫的鼻腔。",
+    "description": "含有舒缓呼吸道的成分，能够有效缓解犬猫的呼吸困难，促进呼吸道畅通。",
+    "precautions": "避免喷洒于眼睛和黏膜，如不慎接触，应立即用清水冲洗。",
+    "sideEffects": "个别动物可能出现过敏反应、流涕等不良反应，如出现严重反应，应立即就医。",
+    "storage": "存放在阴凉、干燥处，避免阳光直射。",
+    "imageUrl": "assets/medicineDetail/呼吸舒缓喷雾.jpeg",
+    "categoryId": 4
+  },
+
+  {
+    "name": "心脏宁",
+    "mainFunction": "用于治疗犬猫的心脏病",
+    "usage": "按照厂家说明的用法和用量口服给药。",
+    "description": "含有保护心脏功能的成分，能够有效缓解犬猫的心脏病症状，如心悸、气短等。",
+    "precautions": "禁止与其它药物混合使用，如有特殊情况请咨询兽医。",
+    "sideEffects": "个别动物可能出现头晕、食欲不振等副作用，如出现严重反应，应立即就医。",
+    "storage": "存放在阴凉、干燥处，避免阳光直射。",
+    "imageUrl": "assets/medicineDetail/心脏宁.png",
+    "categoryId": 5
+  },
+  {
+    "name": "降压片",
+    "mainFunction": "用于调节犬猫的血压",
+    "usage": "按照厂家说明的用法和用量口服给药。",
+    "description": "含有调节血压的成分，能够有效降低犬猫的血压，预防心血管疾病。",
+    "precautions": "禁止与其它降压药物混合使用，如有特殊情况请咨询兽医。",
+    "sideEffects": "个别动物可能出现头晕、乏力等副作用，如出现严重反应，应立即就医。",
+    "storage": "存放在阴凉、干燥处，避免阳光直射。",
+    "imageUrl": "assets/medicineDetail/降压片.jpg",
+    "categoryId": 5
+  },
+  {
+    "name": "血管清理剂",
+    "mainFunction": "用于清理犬猫的血管",
+    "usage": "按照厂家说明的用法和用量口服给药。",
+    "description": "含有清理血管的成分，能够有效清理犬猫的血管，促进血液循环。",
+    "precautions": "禁止与其它药物混合使用，如有特殊情况请咨询兽医。",
+    "sideEffects": "个别动物可能出现腹泻、食欲不振等副作用，如出现严重反应，应立即就医。",
+    "storage": "存放在阴凉、干燥处，避免阳光直射。",
+    "imageUrl": "assets/medicineDetail/血管清理剂.jpg",
+    "categoryId": 5
+  },
+  {
+    "name": "心血管调节剂",
+    "mainFunction": "用于调节犬猫心血管功能",
+    "usage": "按照厂家说明的用法和用量口服给药。",
+    "description": "含有调节心血管功能的成分，能够有效调节犬猫的心血管功能，预防心脏病。",
+    "precautions": "禁止与其它心血管药物混合使用，如有特殊情况请咨询兽医。",
+    "sideEffects": "个别动物可能出现乏力、心悸等副作用，如出现严重反应，应立即就医。",
+    "storage": "存放在阴凉、干燥处，避免阳光直射。",
+    "imageUrl": "assets/medicineDetail/心血管调节剂.jpg",
+    "categoryId": 5
+  },
+  {
+    "name": "心脏保健片",
+    "mainFunction": "用于保护犬猫的心脏健康",
+    "usage": "按照厂家说明的用法和用量口服给药。",
+    "description": "含有保护心脏健康的成分，能够有效保护犬猫的心脏，预防心血管疾病。",
+    "precautions": "禁止与其它药物混合使用，如有特殊情况请咨询兽医。",
+    "sideEffects": "个别动物可能出现头晕、乏力等副作用，如出现严重反应，应立即就医。",
+    "storage": "存放在阴凉、干燥处，避免阳光直射。",
+    "imageUrl": "assets/medicineDetail/心脏保健片.jpg",
+    "categoryId": 5
+  },
+
+  {
+    "name": "镇静片",
+    "mainFunction": "用于缓解犬猫的焦虑和紧张情绪",
+    "usage": "按照厂家说明的用法和用量口服给药。",
+    "description": "含有镇静成分，能够有效缓解犬猫的焦虑和紧张情绪，提高其情绪稳定性。",
+    "precautions": "禁止与其它镇静药物混合使用，如有特殊情况请咨询兽医。",
+    "sideEffects": "个别动物可能出现嗜睡、乏力等副作用，如出现严重反应，应立即就医。",
+    "storage": "存放在阴凉、干燥处，避免阳光直射。",
+    "imageUrl": "assets/medicineDetail/镇静片.jpg",
+    "categoryId": 6
+  },
+  {
+    "name": "行为调节剂",
+    "mainFunction": "用于调节犬猫的行为问题",
+    "usage": "按照厂家说明的用法和用量口服给药。",
+    "description": "含有行为调节成分，能够有效调节犬猫的不良行为，提高其行为稳定性。",
+    "precautions": "禁止与其它药物混合使用，如有特殊情况请咨询兽医。",
+    "sideEffects": "个别动物可能出现食欲不振、精神萎靡等副作用，如出现严重反应，应立即就医。",
+    "storage": "存放在阴凉、干燥处，避免阳光直射。",
+    "imageUrl": "assets/medicineDetail/行为调节剂.jpg",
+    "categoryId": 6
+  },
+  {
+    "name": "抗焦虑药",
+    "mainFunction": "用于治疗犬猫的焦虑症",
+    "usage": "按照厂家说明的用法和用量口服给药。",
+    "description": "含有抗焦虑成分，能够有效缓解犬猫的焦虑症状，提高其情绪稳定性。",
+    "precautions": "禁止与其它抗焦虑药物混合使用，如有特殊情况请咨询兽医。",
+    "sideEffects": "个别动物可能出现嗜睡、食欲不振等副作用，如出现严重反应，应立即就医。",
+    "storage": "存放在阴凉、干燥处，避免阳光直射。",
+    "imageUrl": "assets/medicineDetail/抗焦虑药.jpeg",
+    "categoryId": 6
+  },
+  {
+    "name": "抗抑郁剂",
+    "mainFunction": "用于治疗犬猫的抑郁症",
+    "usage": "按照厂家说明的用法和用量口服给药。",
+    "description": "含有抗抑郁成分，能够有效缓解犬猫的抑郁症状，提高其情绪稳定性。",
+    "precautions": "禁止与其它抗抑郁药物混合使用，如有特殊情况请咨询兽医。",
+    "sideEffects": "个别动物可能出现嗜睡、食欲不振等副作用，如出现严重反应，应立即就医。",
+    "storage": "存放在阴凉、干燥处，避免阳光直射。",
+    "imageUrl": "assets/medicineDetail/抗抑郁剂.jpg",
+    "categoryId": 6
+  },
+  {
+    "name": "安神片",
+    "mainFunction": "用于安抚犬猫的神经系统",
+    "usage": "按照厂家说明的用法和用量口服给药。",
+    "description": "含有安神成分，能够有效缓解犬猫的紧张情绪，提高其情绪稳定性。",
+    "precautions": "禁止与其它药物混合使用，如有特殊情况请咨询兽医。",
+    "sideEffects": "个别动物可能出现嗜睡、精神萎靡等副作用，如出现严重反应，应立即就医。",
+    "storage": "存放在阴凉、干燥处，避免阳光直射。",
+    "imageUrl": "assets/medicineDetail/安神片.png",
+    "categoryId": 6
+  },
+
+  {
+    "name": "关节保健片",
+    "mainFunction": "用于保护犬猫的关节健康",
+    "usage": "按照厂家说明的用法和用量口服给药。",
+    "description": "含有保护关节健康的成分，能够有效保护犬猫的关节，预防关节炎和关节退化。",
+    "precautions": "禁止与其它关节保健药物混合使用，如有特殊情况请咨询兽医。",
+    "sideEffects": "个别动物可能出现消化不良、食欲不振等副作用，如出现严重反应，应立即就医。",
+    "storage": "存放在阴凉、干燥处，避免阳光直射。",
+    "imageUrl": "assets/medicineDetail/关节保健片.png",
+    "categoryId": 7
+  },
+  {
+    "name": "关节润滑剂",
+    "mainFunction": "用于润滑犬猫的关节",
+    "usage": "按照厂家说明的用法和用量口服给药。",
+    "description": "含有润滑关节的成分，能够有效润滑犬猫的关节，减少关节摩擦和磨损。",
+    "precautions": "禁止与其它关节润滑药物混合使用，如有特殊情况请咨询兽医。",
+    "sideEffects": "个别动物可能出现消化不良、食欲不振等副作用，如出现严重反应，应立即就医。",
+    "storage": "存放在阴凉、干燥处，避免阳光直射。",
+    "imageUrl": "assets/medicineDetail/关节润滑剂.png",
+    "categoryId": 7
+  },
+  {
+    "name": "关节抗炎药",
+    "mainFunction": "用于缓解犬猫的关节炎症状",
+    "usage": "按照厂家说明的用法和用量口服给药。",
+    "description": "含有抗炎成分，能够有效缓解犬猫的关节炎症状，如关节肿胀、疼痛等。",
+    "precautions": "禁止与其它抗炎药物混合使用，如有特殊情况请咨询兽医。",
+    "sideEffects": "个别动物可能出现消化不良、食欲不振等副作用，如出现严重反应，应立即就医。",
+    "storage": "存放在阴凉、干燥处，避免阳光直射。",
+    "imageUrl": "assets/medicineDetail/关节抗炎药.png",
+    "categoryId": 7
+  },
+  {
+    "name": "关节营养素",
+    "mainFunction": "用于补充犬猫的关节营养",
+    "usage": "按照厂家说明的用法和用量口服给药。",
+    "description": "含有关节营养素，能够有效补充犬猫的关节所需营养，提高关节健康。",
+    "precautions": "禁止与其它关节营养药物混合使用，如有特殊情况请咨询兽医。",
+    "sideEffects": "个别动物可能出现消化不良、食欲不振等副作用，如出现严重反应，应立即就医。",
+    "storage": "存放在阴凉、干燥处，避免阳光直射。",
+    "imageUrl": "assets/medicineDetail/关节营养素.png",
+    "categoryId": 7
+  },
+  {
+    "name": "关节修复剂",
+    "mainFunction": "用于修复犬猫的受损关节",
+    "usage": "按照厂家说明的用法和用量口服给药。",
+    "description": "含有促进关节修复的成分，能够有效修复犬猫的受损关节，恢复关节功能。",
+    "precautions": "禁止与其它关节修复药物混合使用，如有特殊情况请咨询兽医。",
+    "sideEffects": "个别动物可能出现消化不良、食欲不振等副作用，如出现严重反应，应立即就医。",
+    "storage": "存放在阴凉、干燥处，避免阳光直射。",
+    "imageUrl": "assets/medicineDetail/关节修复剂.png",
+    "categoryId": 7
+  },
+
+  {
+    "name": "眼部清洁液",
+    "mainFunction": "用于清洁犬猫的眼部",
+    "usage": "将适量眼部清洁液滴入犬猫眼睛，用棉球轻轻擦拭眼睛周围。",
+    "description": "含有温和清洁成分，能够有效清洁犬猫的眼部，去除泪痕和异物。",
+    "precautions": "禁止将眼部清洁液滴入眼睛内部，如有特殊情况请咨询兽医。",
+    "sideEffects": "个别动物可能出现眼睛刺痛、红肿等不良反应，如出现严重反应，应立即就医。",
+    "storage": "存放在阴凉、干燥处，避免阳光直射。",
+    "imageUrl": "assets/medicineDetail/眼部清洁液.png",
+    "categoryId": 8
+  },
+  {
+    "name": "耳部清洁液",
+    "mainFunction": "用于清洁犬猫的耳部",
+    "usage": "将适量耳部清洁液滴入犬猫耳朵，用棉球轻轻擦拭耳朵表面。",
+    "description": "含有温和清洁成分，能够有效清洁犬猫的耳部，去除耳垢和异物。",
+    "precautions": "禁止将耳部清洁液滴入耳朵深处，如有特殊情况请咨询兽医。",
+    "sideEffects": "个别动物可能出现耳朵刺痛、红肿等不良反应，如出现严重反应，应立即就医。",
+    "storage": "存放在阴凉、干燥处，避免阳光直射。",
+    "imageUrl": "assets/medicineDetail/耳部清洁液.png",
+    "categoryId": 8
+  },
+  {
+    "name": "耳螨滴剂",
+    "mainFunction": "用于治疗犬猫的耳螨感染",
+    "usage": "按照厂家说明将适量耳螨滴剂滴入犬猫耳朵，按摩耳根使药液均匀分布。",
+    "description": "含有杀灭耳螨的成分，能够有效治疗犬猫的耳螨感染，缓解耳痒和发炎。",
+    "precautions": "禁止将耳螨滴剂滴入耳朵深处，如有特殊情况请咨询兽医。",
+    "sideEffects": "个别动物可能出现耳朵刺痛、红肿等不良反应，如出现严重反应，应立即就医。",
+    "storage": "存放在阴凉、干燥处，避免阳光直射。",
+    "imageUrl": "assets/medicineDetail/耳螨滴剂.png",
+    "categoryId": 8
+  },
+  {
+    "name": "耳部护理液",
+    "mainFunction": "用于保护犬猫的耳部健康",
+    "usage": "将适量耳部护理液滴入犬猫耳朵，润湿耳道并预防干燥。",
+    "description": "含有滋润成分，能够有效保护犬猫的耳部健康，预防耳朵干燥和炎症。",
+    "precautions": "禁止将耳部护理液滴入耳朵深处，如有特殊情况请咨询兽医。",
+    "sideEffects": "个别动物可能出现耳朵刺痛、红肿等不良反应，如出现严重反应，应立即就医。",
+    "storage": "存放在阴凉、干燥处，避免阳光直射。",
+    "imageUrl": "assets/medicineDetail/耳部护理液.png",
+    "categoryId": 8
+  },
+
+
+  {
+    "name": "狂犬病疫苗",
+    "mainFunction": "预防犬只患上狂犬病",
+    "usage": "按照厂家说明的用法和用量注射给犬只。",
+    "description": "用于预防犬只患上狂犬病，属于常规免疫措施。",
+    "precautions": "疫苗接种后，狗狗可能出现注射部位肿胀、发热等不适，但通常会在几天内自行消失。注射前请咨询兽医。",
+    "sideEffects": "个别犬只可能出现过敏反应，如呕吐、腹泻等，若出现严重反应，应立即就医。",
+    "storage": "存放在2-8℃条件下避光。",
+    "imageUrl": "assets/medicineDetail/狂犬病疫苗.png",
+    "categoryId": 9
+  },
+  {
+    "name": "犬四联疫苗",
+    "mainFunction": "预防犬只患上犬瘟、细小病毒、副流感病毒和钩端螺旋体感染",
+    "usage": "按照厂家说明的用法和用量注射给犬只。",
+    "description": "用于预防犬只患上犬瘟、细小病毒、副流感病毒和钩端螺旋体感染，属于常规免疫措施。",
+    "precautions": "疫苗接种后，狗狗可能出现注射部位肿胀、发热等不适，但通常会在几天内自行消失。注射前请咨询兽医。",
+    "sideEffects": "个别犬只可能出现过敏反应，如呕吐、腹泻等，若出现严重反应，应立即就医。",
+    "storage": "存放在2-8℃条件下避光。",
+    "imageUrl": "assets/medicineDetail/犬四联疫苗.png",
+    "categoryId": 9
+  },
+  {
+    "name": "犬三联疫苗",
+    "mainFunction": "预防犬只患上犬瘟、细小病毒和副流感病毒感染",
+    "usage": "按照厂家说明的用法和用量注射给犬只。",
+    "description": "用于预防犬只患上犬瘟、细小病毒和副流感病毒感染，属于常规免疫措施。",
+    "precautions": "疫苗接种后，狗狗可能出现注射部位肿胀、发热等不适，但通常会在几天内自行消失。注射前请咨询兽医。",
+    "sideEffects": "个别犬只可能出现过敏反应，如呕吐、腹泻等，若出现严重反应，应立即就医。",
+    "storage": "存放在2-8℃条件下避光。",
+    "imageUrl": "assets/medicineDetail/犬三联疫苗.png",
+    "categoryId": 9
+  },
+  {
+    "name": "流感疫苗",
+    "mainFunction": "预防犬只患上流感病毒感染",
+    "usage": "按照厂家说明的用法和用量注射给犬只。",
+    "description": "用于预防犬只患上流感病毒感染，属于常规免疫措施。",
+    "precautions": "疫苗接种后，狗狗可能出现注射部位肿胀、发热等不适，但通常会在几天内自行消失。注射前请咨询兽医。",
+    "sideEffects": "个别犬只可能出现过敏反应，如呕吐、腹泻等，若出现严重反应，应立即就医。",
+    "storage": "存放在2-8℃条件下避光。",
+    "imageUrl": "assets/medicineDetail/流感疫苗.png",
+    "categoryId": 9
+  },
+  {
+    "name": "维生素C片",
+    "mainFunction": "补充犬只的维生素C需求",
+    "usage": "按照体重和厂家说明的用法和用量给犬只服用。",
+    "description": "用于补充犬只的维生素C需求，有助于维持健康的免疫系统和结缔组织。",
+    "precautions": "长期高剂量使用可能导致腹泻、肾结石等副作用，建议在兽医指导下使用。",
+    "sideEffects": "个别犬只可能出现消化不良、腹泻等轻微不适，若出现严重反应，应立即停药并就医。",
+    "storage": "存放在干燥、阴凉处，避免阳光直射。",
+    "imageUrl": "assets/medicineDetail/维生素C片.png",
+    "categoryId": 10
+  },
+  {
+    "name": "鱼油软胶囊",
+    "mainFunction": "提供犬只所需的 Omega-3 脂肪酸",
+    "usage": "按照体重和厂家说明的用法和用量给犬只服用。",
+    "description": "含有丰富的 Omega-3 脂肪酸，有助于维持犬只的心血管健康、皮肤健康和关节灵活度。",
+    "precautions": "过量使用可能导致腹泻、脱毛等副作用，建议在兽医指导下使用。",
+    "sideEffects": "个别犬只可能出现消化不良、嗜睡等轻微不适，若出现严重反应，应立即停药并就医。",
+    "storage": "存放在干燥、阴凉处，避免阳光直射。",
+    "imageUrl": "assets/medicineDetail/鱼油软胶囊.png",
+    "categoryId": 10
+  },
+  {
+    "name": "钙片",
+    "mainFunction": "补充犬只的钙质需求",
+    "usage": "按照体重和厂家说明的用法和用量给犬只服用。",
+    "description": "含有丰富的钙质，有助于维持犬只的骨骼健康、牙齿健康和神经肌肉功能。",
+    "precautions": "过量使用可能导致钙化血管、尿结石等副作用，建议在兽医指导下使用。",
+    "sideEffects": "个别犬只可能出现消化不良、便秘等轻微不适，若出现严重反应，应立即停药并就医。",
+    "storage": "存放在干燥、阴凉处，避免阳光直射。",
+    "imageUrl": "assets/medicineDetail/钙片.png",
+    "categoryId": 10
+  },
+  {
+    "name": "益生菌粉",
+    "mainFunction": "维护犬只肠道健康",
+    "usage": "按照厂家说明的用法和用量给犬只服用。",
+    "description": "含有益生菌和益生元，有助于维持犬只的肠道菌群平衡，促进消化吸收。",
+    "precautions": "在使用过程中可能出现腹泻或反胃等不适症状，若情况严重，应停止使用并就医。",
+    "sideEffects": "个别犬只可能出现消化不良、腹泻等轻微不适，若出现严重反应，应立即停药并就医。",
+    "storage": "存放在干燥、阴凉处，避免阳光直射。",
+    "imageUrl": "assets/medicineDetail/益生菌粉.png",
+    "categoryId": 10
+  },
+  {
+    "name": "关节保健片",
+    "mainFunction": "帮助维持犬只的关节健康",
+    "usage": "按照体重和厂家说明的用法和用量给犬只服用。",
+    "description": "含有关节保健成分，如葡萄糖胺和软骨素，有助于减缓关节退化，缓解关节疼痛。",
+    "precautions": "长期使用可能导致消化不良或过敏反应，建议在兽医指导下使用。",
+    "sideEffects": "个别犬只可能出现消化不良、过敏等轻微不适，若出现严重反应，应立即停药并就医。",
+    "storage": "存放在干燥、阴凉处，避免阳光直射。",
+    "imageUrl": "assets/medicineDetail/关节保健片.png",
+    "categoryId": 10
+  }
+]
