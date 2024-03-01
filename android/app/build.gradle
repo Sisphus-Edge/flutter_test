@@ -22,16 +22,19 @@ if (flutterVersionName == null) {
     flutterVersionName = '1.0'
 }
 
+def releaseTime() {
+    return new Date().format("yyyy_MM_dd", TimeZone.getTimeZone("UTC"))
+}
 // replace part buildTypes to take release app
 
 //def keystorePropertiesFile = rootProject.file("key.properties")
 //def keystoreProperties = new Properties()
 //keystoreProperties.load(new FileInputStream(keystorePropertiesFile))
-//
-//android {
-
 
 android {
+
+
+//android {
     namespace "com.example.untitled"
     compileSdkVersion flutter.compileSdkVersion
     ndkVersion flutter.ndkVersion
@@ -59,6 +62,12 @@ android {
         versionCode flutterVersionCode.toInteger()
         versionName flutterVersionName
     }
+//    android.applicationVariants.all { variant ->
+//        variant.outputs.all {
+//            // 名称_android_版本号.apk
+//            outputFileName = "宠爱${defaultConfig.versionName}_${releaseTime()}.apk"
+//        }
+//    }
 
     buildTypes {
         release {
