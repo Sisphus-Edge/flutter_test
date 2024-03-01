@@ -21,11 +21,11 @@ class _ProfileRouteState extends State<ProfileRoute> {
         // padding: const EdgeInsets.only(left: 5.0),
         children: <Widget>[
           ProfileHeader(initialUserInfo: widget.userInfo),//顶部栏
-          _buildListItem("我的资料", Icons.person_outlined, () {}),
+          // _buildListItem("我的资料", Icons.person_outlined, () {}),
           _buildListItem("询医记录", Icons.camera, () {}),
           _buildListItem("自查记录", Icons.search_rounded, () {}),
-          _buildListItem("我的收藏", Icons.favorite_border_outlined, () {}),
-          _buildListItem("购物", Icons.card_giftcard, () {}),
+          // _buildListItem("我的收藏", Icons.favorite_border_outlined, () {}),
+          // _buildListItem("购物", Icons.card_giftcard, () {}),
           _buildListItem("推荐给朋友", Icons.workspace_premium, () {}),
         ],
       ),

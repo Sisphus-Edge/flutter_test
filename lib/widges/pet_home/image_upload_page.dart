@@ -3,7 +3,7 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:http/http.dart' as http;
-
+import 'package:flutter/services.dart' show ByteData, rootBundle;
 class ImageUploadPage extends StatefulWidget {
   const ImageUploadPage({Key? key}) : super(key: key);
 
@@ -57,6 +57,24 @@ class _ImageUploadPageState extends State<ImageUploadPage> {
       ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text("上传异常")));
     }
   }
+  /*void uploadImage() async {
+    if (_image == null) {
+      ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text("请先选择一张图片")));
+      return;
+    }
+    //加载图片资源
+    final ByteData data = await rootBundle.load('assets/test/22.jpg');
+    final List<int> bytes = data.buffer.asUint8List();
+    String imgBase64 = base64Encode(bytes);
+
+
+    // 模拟从服务器接收到的Base64图片字符串
+    // 在这里我们直接使用本地图片的Base64编码作为模拟的服务器响应
+    setState(() {
+      _base64ImageFromServer = imgBase64; // 模拟接收到的图片
+    });
+  }*/
+
 
   @override
   Widget build(BuildContext context) {

@@ -6,7 +6,6 @@ import 'package:untitled/widges/pet_home/numeric/numeric_container.dart';
 import 'package:untitled/widges/pet_home/habit/habit.dart';
 import 'package:untitled/widges/pet_home/habit/habit_container.dart';
 import 'package:untitled/routes/test.dart';
-import 'package:untitled/widges/pet_home/daily_record.dart';
 
 class PetHomeRoute extends StatefulWidget {
   const PetHomeRoute({super.key,required this.MediaWidth, required this.MediaHeight});

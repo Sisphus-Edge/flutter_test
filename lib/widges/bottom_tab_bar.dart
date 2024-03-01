@@ -35,7 +35,7 @@ class BottomTabBar extends StatelessWidget {
     /// 第二个 我的小狗
     TabItem(
       Icons.pets,
-      "我的小狗",
+      "我的爱宠",
       const Color(0xFFE6B653),
       labelStyle: const TextStyle(
           fontWeight: FontWeight.w600,

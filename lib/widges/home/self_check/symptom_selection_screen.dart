@@ -204,6 +204,20 @@ class _SymptomSelectionScreenState extends State<SymptomSelectionScreen> {
     }
 
   }
+/*  Future<void> _checkDiseases() async {
+    // 默认结果
+    var defaultResult = {
+      "code": 200,
+      "msg": "",
+      "data": {
+        "disease": "急性胃炎",
+        "recommended_medicines": ["胃炎宁",  "支气管扩张剂", "呼吸舒缓喷雾"]
+      }
+    };
+
+    // 直接使用默认结果展示疑似疾病分析结果及药物推荐
+    _showResultDialog(defaultResult);
+  }*/
 
   void _showResultDialog(dynamic result) {
     // 解析结果中的疾病和推荐药物

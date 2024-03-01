@@ -8,7 +8,7 @@ class PetHomeAppBar extends StatelessWidget implements PreferredSizeWidget {
   Widget build(BuildContext context) {
     return AppBar(
       title: const Text(
-        '我的小狗',
+        '我的爱宠',
         textAlign: TextAlign.left,
         style: TextStyle(
           fontFamily: 'ZHUOKAI',
