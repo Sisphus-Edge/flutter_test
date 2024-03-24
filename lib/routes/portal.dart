@@ -17,6 +17,9 @@ import 'package:untitled/widges/appbars/community_appbar.dart';
 import 'package:untitled/widges/appbars/profile_appbar.dart';
 //引入UserInfo进行数据传递
 import 'package:untitled/db/UserDB/UserInfo.dart';
+import 'package:untitled/db/DailyRecordDB/dailyrecord_db_manager.dart';
+
+
 
 class PortalRoute extends StatefulWidget {
   final UserInfo userInfo; // 假设UserInfo是存储用户信息的类
@@ -46,12 +49,36 @@ class _PortalRouteState extends State<PortalRoute> {
     ProfileAppBar(),
   ];
 
+  late List<Widget> _routes;
+
   @override
   void initState() {
+    // final topPadding = MediaQuery.of(context).padding.top;
     super.initState();
     _navigationController = CircularBottomNavigationController(selectedPos);
 
+    _loadDailyRecord();
   }
+  Future<void> _loadDailyRecord() async {
+    DateTime today = DateTime.now();
+    // 查询今日的daily record
+    DailyRecord? record = await DailyRecordDBManager().getDailyRecord(today);
+    if (record == null) {
+      // 如果记录不存在，则创建一个新的记录
+      DailyRecord newRecord = DailyRecord(
+        recordDate: today,
+        exerciseGoal: 40,
+        exerciseCompleted: 0,
+        waterCompleted: 0,
+        waterGoal: 400,
+        nutritionCompleted: 0,
+        nutritionGoal: 1000
+        // 添加其他属性的初始值
+      );
+      await DailyRecordDBManager().addDailyRecord(newRecord as DailyRecordsCompanion);
+    }
+  }
+
 
   @override
   Widget build(BuildContext context) {
@@ -75,7 +102,7 @@ class _PortalRouteState extends State<PortalRoute> {
       ProfileRoute(userInfo: UserInfo),
     ];
 
-    if(selectedPos != 3){
+    if(selectedPos != 3 && selectedPos!=1){
       return Scaffold(
         key: _scaffoldKey,
         appBar:_appbar[selectedPos],
@@ -94,6 +121,28 @@ class _PortalRouteState extends State<PortalRoute> {
       );
     }
 
+    if(selectedPos == 1){
+      DateTime today = DateTime.now();
+      // 查询今日的daily record
+      // DailyRecord? record = await DailyRecordDBManager().getDailyRecord(today);
+
+      return Scaffold(
+        key: _scaffoldKey,
+        appBar:_appbar[selectedPos],
+        /// stack添加之前的代码，由于是cicularbutton，很大一部分用不了
+        body: _routes[selectedPos],
+        bottomNavigationBar: BottomTabBar(
+          navigationController: _navigationController,
+          selectedPos: selectedPos,
+          bottomNavBarHeight: bottomNavBarHeight,
+          selectedCallback: (int? selectedPos) {
+            setState(() {
+              this.selectedPos = selectedPos ?? 0;
+            });
+          },
+        ),
+      );
+    }
     /// 如果是profile页面，则没有appbar
     else{
       return Scaffold(

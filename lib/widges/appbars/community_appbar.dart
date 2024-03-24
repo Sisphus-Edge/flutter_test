@@ -18,7 +18,8 @@ class CommunityAppBar extends StatelessWidget implements PreferredSizeWidget {
         letterSpacing: 5.0,
       ),
     ),
-
+      // leading: null,
+        automaticallyImplyLeading: false
     );
   }
 

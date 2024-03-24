@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:untitled/db/DailyRecordDB/dailyrecord_db_manager.dart';
 import 'package:drift/drift.dart' as drift;
 
-
 // Define a custom Form widget.
 class AddHabit extends StatefulWidget {
   const AddHabit({super.key});
@@ -101,12 +100,14 @@ class _AddHabitState extends State<AddHabit> {
                 
                 await dbManager.addHabit(habit).then((value) => Navigator.of(context).pop());
                 // Navigator.of(context).pop();
-                
+
               },
               backgroundColor: Colors.orange, // 按钮的背景颜色
               child: const Icon(Icons.check, size: 40.0), // 在按钮中心放置一个勾号图标
               shape: const CircleBorder(),
             ),
+
+
           ],
         ),
       ),

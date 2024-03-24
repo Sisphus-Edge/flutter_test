@@ -2,7 +2,7 @@ import 'habit.dart';
 import 'addhabit.dart';
 import 'package:flutter/material.dart';
 import 'package:untitled/db/DailyRecordDB/dailyrecord_db_manager.dart';
-
+import 'habit_delete.dart';
 
 /// 习惯打卡板块
 class MultiRowBlock extends StatefulWidget {
@@ -50,7 +50,7 @@ class _MultiRowBlockState extends State<MultiRowBlock> {
           /// 几排
           _buildContentContainer(),
           /// 底部添加新习惯button
-          Center(
+        /*  Center(
             child: Container(
                 width:widget.section_width*0.8,
                 child:ElevatedButton(onPressed: (){
@@ -64,7 +64,7 @@ class _MultiRowBlockState extends State<MultiRowBlock> {
                     primary: Colors.orange, // 设置按钮的背景颜色
                     shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)), // 设置按钮的形状为圆角矩形
                   ),
-                  child:const Text('添加新习惯',
+                  child:const Text('习惯管理',
                     style: TextStyle(
                       color: Colors.white, // 设置文本颜色为白色
                       fontSize: 18,
@@ -72,6 +72,69 @@ class _MultiRowBlockState extends State<MultiRowBlock> {
                       fontFamily: 'ZHUOKAI',
                     ),),
                 )
+            ),
+          ),
+*/
+          Center(
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Container(
+                  width: widget.section_width * 0.37,
+                  margin: EdgeInsets.only(right: 8.0),
+                  child: ElevatedButton(
+                    onPressed: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(builder: (context) => AddHabit()),
+                      );
+                    },
+                    style: ElevatedButton.styleFrom(
+                      primary: Colors.orange,
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(8),
+                      ),
+                    ),
+                    child: const Text(
+                      '添加习惯',
+                      style: TextStyle(
+                        color: Colors.white,
+                        fontSize: 18,
+                        letterSpacing: 3,
+                        fontFamily: 'ZHUOKAI',
+                      ),
+                    ),
+                  ),
+                ),
+                Container(
+                  width: widget.section_width * 0.37,
+                  margin: EdgeInsets.only(left: 8.0),
+                  child: ElevatedButton(
+                    onPressed: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => DeleteHabitPage(),
+                        ),
+                      );                    },
+                    style: ElevatedButton.styleFrom(
+                      primary: Color(0XFF726EF0), // 修改第二个按钮的背景颜色
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(8),
+                      ),
+                    ),
+                    child: const Text(
+                      '删除习惯',
+                      style: TextStyle(
+                        color: Colors.white,
+                        fontSize: 18,
+                        letterSpacing: 3,
+                        fontFamily: 'ZHUOKAI',
+                      ),
+                    ),
+                  ),
+                ),
+              ],
             ),
           ),
 
@@ -111,41 +174,11 @@ class _MultiRowBlockState extends State<MultiRowBlock> {
     for(int i=0; i<habits.length;i++){
       final habit = habits[i];
       rows.add(
-        ContentRow(subtitle: habit.habitName ?? '吃鱼油', identifier: false)
+        ContentRow(subtitle: habit.habitName ?? '吃鱼油', identifier: false, onIdentifierChanged: (bool ) {  },)
       );
       rows.add(const SizedBox(height: 10,));
     }
-/*
-    for (int i = 0; i < 2; i++) {
-      if(i%2==0){
-        rows.add(
-          ContentRow(
-            subtitle: '散步',
-            identifier: false,
-          ),
-        );
-      }else {
-        rows.add(
-          ContentRow(
-            subtitle: '吃鱼油',
-            identifier: false,
-          ),
-        );
-      }
-      rows.add(const SizedBox(height: 10,));
-    }*/
 
-    // return Expanded(
-    //   child: ListView.builder(
-    //     itemCount: habits.length,
-    //     itemBuilder: (context, index) {
-    //       final habit = habits[index];
-    //       return ListTile(
-    //         ContentRow
-    //       );
-    //     },
-    //   ),
-    // );
 
     return Container(
       margin: EdgeInsets.symmetric(horizontal: widget.section_width * 0.05), // 设置左边距为10

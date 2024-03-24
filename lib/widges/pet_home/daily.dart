@@ -104,6 +104,7 @@ class _DailyPageState extends State<DailyPage> {
             /// 此板块调用习惯打卡板块
             MultiRowBlock(quantity: 2, section_width: screenWidth,),
             const SizedBox(height: 20),
+
           ],
         ),
       ),

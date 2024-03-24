@@ -4,6 +4,7 @@ import 'numeric_activity.dart';
 import 'package:ff_stars/ff_stars.dart';
 import 'package:percent_indicator/percent_indicator.dart';
 import 'package:untitled/db/DailyRecordDB/dailyrecord_db_manager.dart';
+import 'numeric_input.dart';
 import 'package:intl/intl.dart';
 
 
@@ -28,6 +29,7 @@ class _MyGridViewContainerState extends State<MyGridViewContainer> {
   List<Habit> habits = [];
   // late DailyRecord dailyRecordToday;
   List<DailyRecord> dailyRecordsToday = [];
+  // DailyRecord todayRecord = DailyRecord(recordDate: recordDate)
   // DailyRecord dailyRecordToday =
 
   @override
@@ -44,7 +46,10 @@ class _MyGridViewContainerState extends State<MyGridViewContainer> {
     setState(() {
       dailyRecords = allDailyRecords;
       habits = allHabits;
-      dailyRecordsToday.add(today!);
+      // dailyRecordsToday.add(today!);
+      if (dailyRecords.isNotEmpty) {
+        dailyRecordsToday.add(dailyRecords.first);
+      }
     });
   }
 
@@ -56,22 +61,36 @@ class _MyGridViewContainerState extends State<MyGridViewContainer> {
     // }
     // final record;
 
-    int _exerciseGoal = 60;
-    int _exerciseCompleted=20;
-    int _nutritionGoal= 1000;
-    int _nutritionCompleted=600;
-    int _waterGoal=400;
-    int _waterCompleted=20;
-    //
+    int _exerciseGoal_default = 60;
+    int _exerciseCompleted_default=20;
+    int _nutritionGoal_default= 1000;
+    int _nutritionCompleted_default=600;
+    int _waterGoal_default=400;
+    int _waterCompleted_default=20;
+    int? _exerciseGoal;
+    int? _exerciseCompleted;
+    int? _nutritionGoal;
+    int? _nutritionCompleted;
+    int? _waterGoal;
+    int? _waterCompleted;
     if (dailyRecordsToday.length>0) {
-      final record = dailyRecordsToday[0];
-      int? _exerciseGoal = record.exerciseGoal;
-      int? _exerciseCompleted=record.exerciseCompleted;
-      int? _nutritionGoal= record.nutritionGoal;
-      int? _nutritionCompleted=record.nutritionCompleted;
-      int? _waterGoal=record.waterGoal;
-      int? _waterCompleted=record.waterCompleted;
+      final record = dailyRecordsToday[dailyRecordsToday.length-1];
+      _exerciseGoal = record.exerciseGoal;
+      _exerciseCompleted=record.exerciseCompleted;
+      _nutritionGoal= record.nutritionGoal;
+      _nutritionCompleted=record.nutritionCompleted;
+      _waterGoal=record.waterGoal;
+      _waterCompleted=record.waterCompleted;
+      print('今日的活力值记录：');
+      print('运动目标：${record.exerciseGoal ?? 0}'); // 如果为空，将其视为 0
+      print('完成运动：${record.exerciseCompleted ?? 0}'); // 如果为空，将其视为 0
+      print('营养目标：${record.nutritionGoal ?? 0}'); // 如果为空，将其视为 0
+      print('完成营养：${record.nutritionCompleted ?? 0}'); // 如果为空，将其视为 0
+      print('饮水目标：${record.waterGoal ?? 0}'); // 如果为空，将其视为 0
+      print('完成饮水：${record.waterCompleted ?? 0}'); // 如果为空，将其视为 0
+
     }
+
     return Container(
       width: widget.width,
       height: widget.height,
@@ -90,44 +109,25 @@ class _MyGridViewContainerState extends State<MyGridViewContainer> {
                   color: Colors.black87,
                 ),
               ),
-              /*GestureDetector(
-                onTap: () {
-                  // 在这里添加跳转逻辑
-                },
-                child: const Row(
-                  children: [
-                    Text(
-                      '去记录',
-                      style: TextStyle(
-                        fontSize: 16,
-                        color: Colors.blue,
-                      ),
-                    ),
-                    Icon(
-                      Icons.arrow_forward_ios,
-                      size: 12,
-                      color: Colors.blue,
-                    ),
-                  ],
-                ),
-              ),*/
             ],
           ),
           SizedBox(height: 16), // 添加间距
           // 第二排
           Expanded(
-
             child: MyGridView(
               width: widget.width,
               height: widget.height * 0.7,
               state: true,
-              exerciseGoal: _exerciseGoal,
-              exerciseCompleted: _exerciseCompleted,
-              nutritionGoal: _nutritionGoal,
-              nutritionCompleted: _nutritionCompleted,
-                waterGoal: _waterGoal,
-              waterCompleted: _waterCompleted
+              exerciseGoal: _exerciseGoal ?? _exerciseGoal_default,
+              exerciseCompleted: _exerciseCompleted ?? 0,
+              nutritionGoal: _nutritionGoal ?? _nutritionGoal_default,
+              nutritionCompleted: _nutritionCompleted ?? 0,
+              waterGoal: _waterGoal ?? _waterGoal_default,
+              waterCompleted: _waterCompleted ?? 0,
+              isFirstPage: true,
+
             ),
+
           ),
         ],
       ),
@@ -188,6 +188,7 @@ class NumericContainer extends StatelessWidget {
               nutritionCompleted: myIntArray[3],
               waterGoal: myIntArray[4],
               waterCompleted: myIntArray[5],
+              isFirstPage: false,
             ), // 调用显示 MyGridView 的部分
           ),
           // if(MyGridVi)

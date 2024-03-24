@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import '../../../db/DailyRecordDB/dailyrecord_db_manager.dart';
+import 'numeric_input.dart';
 double globalItemHeight = 100; // 全局变量用于itemheight
 // 第二排的height直接在DoubleLayerExpanded中实现
 int _gobalItemIndex = 0;
@@ -15,6 +17,7 @@ class MyGridView extends StatefulWidget {
   final int nutritionCompleted;
   final int waterGoal;
   final int waterCompleted;
+  final bool isFirstPage;
   /// state为true表示一级界面  state为false表示为每日记录
   const MyGridView({
     Key? key,
@@ -27,6 +30,7 @@ class MyGridView extends StatefulWidget {
     required this.nutritionCompleted,
     required this.waterGoal,
     required this.waterCompleted,
+    required this.isFirstPage,
   }) : super(key: key);
 
   @override
@@ -55,7 +59,28 @@ class _MyGridViewState extends State<MyGridView> {
     nutritionCompleted = widget.nutritionCompleted;
     waterGoal = widget.waterGoal;
     waterCompleted = widget.waterCompleted;
+    _fetchTodayDataFromDatabase();
   }
+
+  Future<void> _fetchTodayDataFromDatabase() async {
+    // 调用数据库管理器从数据库中获取今日数据
+    // 例如：DailyRecord? todayRecord = await DailyRecordDBManager().getDailyRecord(DateTime.now());
+    // 这里假设 DailyRecordDBManager 中有一个获取今日记录的方法 getDailyRecord(DateTime date)
+    DailyRecord? todayRecord = await DailyRecordDBManager().getDailyRecord(DateTime.now());
+
+    // 更新状态
+    if (todayRecord != null) {
+      setState(() {
+        exerciseGoal = todayRecord.exerciseGoal ?? 0;
+        exerciseCompleted = todayRecord.exerciseCompleted ?? 0;
+        nutritionGoal = todayRecord.nutritionGoal ?? 0;
+        nutritionCompleted = todayRecord.nutritionCompleted ?? 0;
+        waterGoal = todayRecord.waterGoal ?? 0;
+        waterCompleted = todayRecord.waterCompleted ?? 0;
+      });
+    }
+  }
+
 
   void updateState({
     required int newExerciseGoal,
@@ -227,6 +252,7 @@ class _MyGridViewState extends State<MyGridView> {
           // CustomRow(identifier: 1, height: globalItemHeight),
           SecondRow(
              _selectedItemIndex,
+            widget.isFirstPage
           ),
             // Divider(color: Colors.white), // 第二排之间的分割线
 
@@ -235,23 +261,41 @@ class _MyGridViewState extends State<MyGridView> {
     );
   }
 
-  Widget SecondRow(int identifier){
+  Widget SecondRow(int identifier,bool isfirstpage){
     Widget row;
-    switch (identifier) {
-      case 0:
-        row = _buildRow(0,exerciseGoal, exerciseCompleted);
-        break;
-      case 1:
-        row = _buildRow(1,nutritionGoal, nutritionCompleted);
-        break;
-      case 2:
-        row = _buildRow(2,waterGoal, waterCompleted);
-        break;
-      default:
-        row = Container(); // 或者返回一个空容器，或者抛出异常，取决于具体需求
+    if(isfirstpage == true){
+      switch (identifier) {
+        case 0:
+          row = _buildRow2(0,exerciseGoal, exerciseCompleted);
+          break;
+        case 1:
+          row = _buildRow2(1,nutritionGoal, nutritionCompleted);
+          break;
+        case 2:
+          row = _buildRow2(2,waterGoal, waterCompleted);
+          break;
+        default:
+          row = Container(); // 或者返回一个空容器，或者抛出异常，取决于具体需求
+      }
+    }
+    else {
+      switch (identifier) {
+        case 0:
+          row = _buildRow(0,exerciseGoal, exerciseCompleted);
+          break;
+        case 1:
+          row = _buildRow(1,nutritionGoal, nutritionCompleted);
+          break;
+        case 2:
+          row = _buildRow(2,waterGoal, waterCompleted);
+          break;
+        default:
+          row = Container(); // 或者返回一个空容器，或者抛出异常，取决于具体需求
+      }
     }
     return row;
   }
+
   Widget _buildRow(int id_Row1, int goal, int bingo) {
     return Row(
       children: [
@@ -259,19 +303,146 @@ class _MyGridViewState extends State<MyGridView> {
         Divider(height: globalItemHeight, color: Colors.black), // 添加分割线
         DoubleLayerExpanded(id:id_Row1, data:bingo, identifier: '已完成'),
         Divider(height: globalItemHeight, color: Colors.black), // 添加分割线
-        DoubleLayerExpanded(id:id_Row1, data:goal - bingo, identifier: '还需完成'),
+        DoubleLayerExpandedTrue(id:id_Row1, data:goal - bingo, identifier: '还需完成'),
+      ],
+    );
+  }
+  Widget _buildRow2(int id_Row1, int goal, int bingo){
+    return Row(
+      children: [
+        DoubleLayerExpandedTrue(id:id_Row1, data:goal, identifier: '目标'),
+        Divider(height: globalItemHeight, color: Colors.black), // 添加分割线
+        DoubleLayerExpandedTrue(id:id_Row1, data:bingo, identifier: '已完成'),
+        Divider(height: globalItemHeight, color: Colors.black), // 添加分割线
+        DoubleLayerExpandedTrue(id:id_Row1, data:goal - bingo, identifier: '还需完成'),
       ],
     );
   }
 }
 
-/// 第二排显示数值的格式
-class DoubleLayerExpanded extends StatelessWidget {
+/// 以下已经收录在numeric_input里面
+/*
+class DoubleLayerExpanded extends StatefulWidget {
   final int id;
   final int data;
   final String identifier;
 
   const DoubleLayerExpanded({
+    Key? key,
+    required this.id,
+    required this.data,
+    required this.identifier,
+  }) : super(key: key);
+
+  @override
+  _DoubleLayerExpandedState createState() => _DoubleLayerExpandedState();
+}
+
+class _DoubleLayerExpandedState extends State<DoubleLayerExpanded> {
+  late TextEditingController _controller;
+
+  @override
+  void initState() {
+    super.initState();
+    _controller = TextEditingController(text: widget.data.toString());
+    _controller.addListener(_updateData);
+  }
+
+  @override
+  void dispose() {
+    _controller.dispose();
+    super.dispose();
+  }
+
+  void _updateData() {
+    setState(() {
+      // 更新数据
+      // widget.data = int.tryParse(_controller.text) ?? 0;
+    });
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    String lowerText = '';
+
+    // 根据不同的 id 设置不同的字
+    switch (widget.id) {
+      case 0:
+        lowerText = 'min';
+        break;
+      case 1:
+        lowerText = 'k';
+        break;
+      case 2:
+        lowerText = 'ml';
+        break;
+      default:
+        lowerText = 'min';
+    }
+
+    return Expanded(
+      flex: 1,
+      child: Container(
+        height: globalItemHeight,
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Expanded(
+              child: Center(
+                child: Container(
+                  height: globalItemHeight * 0.4,
+                  padding: const EdgeInsets.symmetric(vertical: 6),
+                  child: Text(
+                    '${widget.identifier}',
+                    style: const TextStyle(
+                      fontSize: 18,
+                      fontWeight: FontWeight.w500,
+                      letterSpacing: 2,
+                    ),
+                  ),
+                ),
+              ),
+            ),
+            Expanded(
+              child: Center(
+                child: Container(
+                  height: globalItemHeight * 0.6,
+                  padding: const EdgeInsets.only(top: 6),
+                  child: TextFormField(
+                    controller: _controller,
+                    keyboardType: TextInputType.number,
+                    decoration: InputDecoration(
+                      suffixText: ' $lowerText',
+                      suffixStyle: const TextStyle(fontSize: 18),
+                    ),
+                    style: const TextStyle(
+                      fontSize: 18,
+                      fontFamily: 'ZCOOL',
+                      letterSpacing: 1,
+                      wordSpacing: 1,
+                    ),
+                    textAlign: TextAlign.center,
+                    onChanged: (value) {
+                      // 更新数据
+                      _updateData();
+                    },
+                  ),
+                ),
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}
+/// 第二排显示数值的格式
+class DoubleLayerExpandedTrue extends StatelessWidget {
+  final int id;
+  final int data;
+  final String identifier;
+
+  const DoubleLayerExpandedTrue({
     Key? key,
     required this.id,
     required this.data,
@@ -342,3 +513,4 @@ class DoubleLayerExpanded extends StatelessWidget {
   }
 
 }
+*/

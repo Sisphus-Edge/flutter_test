@@ -7,9 +7,10 @@ class HomeAppBar extends StatelessWidget implements PreferredSizeWidget {
   @override
   Widget build(BuildContext context) {
     return AppBar(
+      automaticallyImplyLeading: false,
       title: Row(
         children: [
-          Expanded(
+          const Expanded(
             child: Text(
               '你好，火锅配油碟！',
               textAlign: TextAlign.left,

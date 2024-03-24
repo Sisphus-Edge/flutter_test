@@ -7,6 +7,7 @@ class PetHomeAppBar extends StatelessWidget implements PreferredSizeWidget {
   @override
   Widget build(BuildContext context) {
     return AppBar(
+      automaticallyImplyLeading: false,
       title: const Text(
         '我的爱宠',
         textAlign: TextAlign.left,
@@ -18,14 +19,7 @@ class PetHomeAppBar extends StatelessWidget implements PreferredSizeWidget {
           letterSpacing: 5.0,
         ),
       ),
-      // actions: [
-      // IconButton(
-      //   icon: Icon(Icons.menu),
-      //   onPressed: () {
-      //     Scaffold.of(context).openDrawer();
-      //   },
-      // ),
-      // ],
+
     );
   }
 }

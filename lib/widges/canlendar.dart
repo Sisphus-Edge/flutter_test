@@ -17,7 +17,7 @@ class _CalendarScreenState extends State<CalendarScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Calendar'),
+        title: Text('请选择日期'),
       ),
       body: Center(
         child: Column(
@@ -30,13 +30,13 @@ class _CalendarScreenState extends State<CalendarScreen> {
               selectedDayPredicate: (day) {
                 return isSameDay(_selectedDay, day);
               },
-              headerStyle: HeaderStyle(
+              headerStyle: const HeaderStyle(
                 formatButtonVisible: false,
               ),
-              calendarStyle: CalendarStyle(
+              calendarStyle: const CalendarStyle(
                 outsideDaysVisible: false,
               ),
-              daysOfWeekStyle: DaysOfWeekStyle(
+              daysOfWeekStyle: const DaysOfWeekStyle(
                 weekdayStyle: TextStyle(fontWeight: FontWeight.bold),
                 weekendStyle: TextStyle(fontWeight: FontWeight.bold),
               ),
@@ -52,9 +52,9 @@ class _CalendarScreenState extends State<CalendarScreen> {
                 selectedBuilder: (context, date, _) {
                   return Center(
                     child: Container(
-                      decoration: BoxDecoration(
+                      decoration: const BoxDecoration(
                         shape: BoxShape.circle,
-                        color: Colors.green,
+                        color: Colors.orange,
                       ),
                       child: Center(
                         child: Text(
@@ -68,7 +68,7 @@ class _CalendarScreenState extends State<CalendarScreen> {
                 todayBuilder: (context, date, _) {
                   return Center(
                     child: Container(
-                      decoration: BoxDecoration(
+                      decoration: const BoxDecoration(
                         shape: BoxShape.circle,
                         color: Colors.blue,
                       ),

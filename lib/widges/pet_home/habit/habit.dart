@@ -52,7 +52,7 @@ class DaySquare extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     double edgeLength1;
-    if(height-12<width) {edgeLength1 = (height-12)*0.8;}else{edgeLength1=width*0.8;}
+    if(height-12<width) {edgeLength1 = (height-12)*0.9;}else{edgeLength1=width*0.9;}
     double edgeLength2 = edgeLength1 *0.9;
     return Column(
       children: [
@@ -69,13 +69,18 @@ class DaySquare extends StatelessWidget {
           ),
         ),
         // 正方形
-        SquareBlock(
-          width: edgeLength1,
-          height: edgeLength1,
-          // height: height - 12, // 减去上方星期几文字和间距的高度
-          identifier: identifier,
-          squareSize: edgeLength2,
-        ),
+        // identifier == true??
+        if(identifier==true)
+          Image.asset('assets/image/Y.png',
+            width: edgeLength1, // 图片宽度
+            height: edgeLength1,
+          )
+        else
+          Image.asset('assets/image/N.png',
+            width: edgeLength1, // 图片宽度
+            height: edgeLength1,
+          ),
+
       ],
     );
   }
@@ -190,45 +195,68 @@ class TrianglePainter extends CustomPainter {
     return false;
   }
 }
-
-class ContentRow extends StatelessWidget {
+class ContentRow extends StatefulWidget {
   final String subtitle;
   final bool identifier;
-  // final VoidCallback onPressed; // 新添加的回调函数参数
+  final Function(bool) onIdentifierChanged; // 新添加的回调函数参数
 
   const ContentRow({
     Key? key,
     required this.subtitle,
     required this.identifier,
-    // required this.onPressed, // 更新构造函数
+    required this.onIdentifierChanged, // 更新构造函数
   }) : super(key: key);
+
+  @override
+  _ContentRowState createState() => _ContentRowState();
+}
+
+class _ContentRowState extends State<ContentRow> {
+  bool _identifier = false;
+  bool _buttonClicked = false;
+
+  @override
+  void initState() {
+    super.initState();
+    _identifier = widget.identifier;
+  }
 
   @override
   Widget build(BuildContext context) {
     return Row(
       children: [
         Container(
-          width: mediaWidth * 0.2,
+          width: MediaQuery.of(context).size.width * 0.2,
           child: Text(
-            subtitle,
+            widget.subtitle,
             style: const TextStyle(
               fontSize: 18,
               fontFamily: 'ZHUOKAI',
             ),
           ),
         ),
-        SizedBox(width: mediaWidth * 0.02),
+        SizedBox(width: MediaQuery.of(context).size.width * 0.02),
         SquareBlock(
-          width: mediaWidth * 0.15,
-          height: mediaWidth * 0.15,
-          identifier: identifier,
-          squareSize: mediaWidth * 0.14,
+          width: MediaQuery.of(context).size.width * 0.15,
+          height: MediaQuery.of(context).size.width * 0.15,
+          identifier: _identifier,
+          squareSize: MediaQuery.of(context).size.width * 0.14,
         ),
-        SizedBox(width: mediaWidth * 0.1),
+        SizedBox(width: MediaQuery.of(context).size.width * 0.1),
         Container(
-          width: mediaWidth * 0.4,
+          width: MediaQuery.of(context).size.width * 0.4,
           child: ElevatedButton(
-            onPressed: (){}, // 将传入的回调函数作为按钮点击事件
+            onPressed: () {
+              if (!_buttonClicked) {
+                // 修改 identifier 的值
+                setState(() {
+                  _identifier = true;
+                  _buttonClicked = true;
+                });
+                // 调用回调函数通知父组件
+                widget.onIdentifierChanged(_identifier);
+              }
+            },
             style: ElevatedButton.styleFrom(
               primary: Colors.orange,
               shape: RoundedRectangleBorder(
@@ -249,68 +277,4 @@ class ContentRow extends StatelessWidget {
     );
   }
 }
-
-
-/*
-/// 每一行习惯
-class ContentRow extends StatelessWidget {
-  final String subtitle;
-  final bool identifier;
-
-
-  const ContentRow({
-    Key? key,
-    required this.subtitle,
-    required this.identifier,
-  }) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return Row(
-      children: [
-        Container(
-          width: mediaWidth*0.2,
-          child: Text(subtitle,
-            style: const TextStyle(
-              fontSize: 18,
-              fontFamily: 'ZHUOKAI',
-            ),
-          ),
-        ),
-        // Text(subtitle),
-        SizedBox(width: mediaWidth*0.02),
-
-        SquareBlock(
-          width: mediaWidth*0.15, // 宽度
-          height: mediaWidth*0.15, // 高度
-          identifier: identifier == true, // 根据索引设置标识符
-          squareSize: mediaWidth*0.14, // 正方形大小
-        ),
-        SizedBox(width: mediaWidth*0.1),
-        Container(
-          width: mediaWidth*0.4,
-          child: ElevatedButton(
-            onPressed: () {
-              // 按钮点击事件
-            },
-            style: ElevatedButton.styleFrom(
-              // 设置按钮的外观样式
-              // padding: EdgeInsets.symmetric(horizontal: 16, vertical: 8), // 设置按钮内边距
-              primary: Colors.orange, // 设置按钮的背景颜色
-              shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)), // 设置按钮的形状为圆角矩形
-            ),
-            child: const Text('今日已完成',
-              style: TextStyle(
-                color: Colors.white, // 设置文本颜色为白色
-                fontSize: 18,
-                fontFamily: 'ZHUOKAI',
-              ),
-            ), // 按钮文本
-          ),
-        ),
-      ],
-    );
-  }
-}
-*/
 
