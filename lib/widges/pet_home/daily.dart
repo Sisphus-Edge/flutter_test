@@ -2,6 +2,7 @@ import 'dart:ffi';
 
 import 'package:flutter/material.dart';
 import 'package:untitled/db/DailyRecordDB/dailyrecord_db_manager.dart';
+import 'package:drift/drift.dart' as drift;
 
 import 'numeric/numeric_container.dart';
 import 'habit/habit_container.dart';
@@ -28,26 +29,81 @@ class _DailyPageState extends State<DailyPage> {
   @override
   void initState() {
     super.initState();
-    initializeData();
+    // initializeData();
   }
 
-  Future<void> initializeData() async {
-    final allDailyRecords = await dbManager.getAllDailyRecords();
-    final allHabits = await dbManager.getAllHabits();
-    DateTime now = DateTime.now();
-    DateTime todaytime = DateTime(now.year, now.month, now.day);
-    final today = await dbManager.getDailyRecord(todaytime);
 
-    setState(() {
-      dailyRecords = allDailyRecords;
-      habits = allHabits;
-      dailyRecordsToday.add(today!);
+  // void initializeData() async {
+  //   final allDailyRecords = await dbManager.getAllDailyRecords();
+  //   final allHabits = await dbManager.getAllHabits();
+  //   final today = await dbManager.getDailyRecord(DateTime.now());
+  //
+  //   // 在调用 setState 之前，检查当前 State 是否仍然有效
+  //   if (mounted) {
+  //     setState(() {
+  //       dailyRecords = allDailyRecords;
+  //       habits = allHabits;
+  //       dailyRecordsToday.add(today!);
+  //     });
+  //   }
+  // }
 
+  Future<void> checkAndCreateDailyRecord() async {
+    // 获取今天的日期
+    DateTime today = DateTime.now();
+    // 查询今天的每日记录
+    DailyRecord? existingRecord = await DailyRecordDBManager().getDailyRecord(today);
+    if (existingRecord == null) {
+      // 如果不存在今天的记录，则创建一个新的记录
+      final newRecord = DailyRecordsCompanion(
+        recordDate: drift.Value.ofNullable(today),
+        exerciseGoal: drift.Value(40),
+        exerciseCompleted: drift.Value(0),
+        nutritionGoal: drift.Value(800),
+        nutritionCompleted: drift.Value(0),
+        waterGoal: const drift.Value(400),
+        waterCompleted: const drift.Value(0),
+      );
+      // 将新记录插入到数据库中
+      await DailyRecordDBManager().addDailyRecord(newRecord as DailyRecordsCompanion);
+      print('Created a new daily record for today.');
+    } else {
+      print('Daily record for today already exists.');
+    }
+  }
+
+  Future<void> printDatabaseInfo() async {
+    // 获取所有习惯
+    List<Habit> habits = await DailyRecordDBManager().getAllHabits();
+
+    // 打印习惯信息
+    print('Habits:');
+    habits.forEach((habit) {
+      print('Habit ID: ${habit.habitId}, Habit Name: ${habit.habitName}');
+    });
+
+    // 获取所有每日记录
+    List<DailyRecord> dailyRecords = await DailyRecordDBManager().getAllDailyRecords();
+
+    // 打印每日记录信息
+    print('\nDaily Records:');
+    dailyRecords.forEach((record) {
+      print('Date: ${record.recordDate}');
+      print('Exercise Goal: ${record.exerciseGoal}');
+      print('Exercise Completed: ${record.exerciseCompleted}');
+      print('Nutrition Goal: ${record.nutritionGoal}');
+      print('Nutrition Completed: ${record.nutritionCompleted}');
+      print('Water Goal: ${record.waterGoal}');
+      print('Water Completed: ${record.waterCompleted}');
+      print('-----------------------------');
     });
   }
 
   @override
   Widget build(BuildContext context) {
+    // checkAndCreateDailyRecord();
+    // printDatabaseInfo();
+
     double screenWidth = MediaQuery.of(context).size.width;
     double screenHeight = MediaQuery.of(context).size.height;
     late List<int> numericArray; // 初始化一个六位的int数组
