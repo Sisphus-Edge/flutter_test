@@ -2,8 +2,9 @@
 import 'package:flutter/material.dart';
 import 'package:untitled/db/DailyRecordDB/dailyrecord_db_manager.dart';
 import 'package:drift/drift.dart' as drift;
+import 'package:percent_indicator/percent_indicator.dart';
 
-import 'daily_ui.dart';
+
 import 'numeric/numeric_dailypage.dart';
 import 'habit/habit_container.dart';
 import 'numeric/numeric_input.dart';
@@ -71,7 +72,7 @@ class _DailyPageState extends State<DailyPage> {
       if (record.recordDate.year == year &&
           record.recordDate.month == month &&
           record.recordDate.day == day) {
-        print('每日记录界面取得信息');
+        print('一级界面取得信息');
         DailyRecord todayRecord = record;
         _exerciseGoal = todayRecord.exerciseGoal ?? _exerciseGoal_default;
         _exerciseCompleted = todayRecord.exerciseCompleted ??_exerciseGoal_default;
@@ -80,13 +81,13 @@ class _DailyPageState extends State<DailyPage> {
         _waterGoal = todayRecord.waterGoal ?? _nutritionCompleted_default;
         _waterCompleted = todayRecord.waterCompleted ?? _waterGoal_default;
         score = todayRecord.score ?? _waterCompleted_default;
-        // print('2_exerciseGoal: $_exerciseGoal');
-        // print('2_exerciseCompleted: $_exerciseCompleted');
-        // print('2_nutritionGoal: $_nutritionGoal');
-        // print('2_nutritionCompleted: $_nutritionCompleted');
-        // print('2_waterGoal: $_waterGoal');
-        // print('2_waterCompleted: $_waterCompleted');
-        // print('2score: $score');
+        print('2_exerciseGoal: $_exerciseGoal');
+        print('2_exerciseCompleted: $_exerciseCompleted');
+        print('2_nutritionGoal: $_nutritionGoal');
+        print('2_nutritionCompleted: $_nutritionCompleted');
+        print('2_waterGoal: $_waterGoal');
+        print('2_waterCompleted: $_waterCompleted');
+        print('2score: $score');
 
         break;
       }
@@ -127,8 +128,6 @@ class _DailyPageState extends State<DailyPage> {
     updateDatabase();
   }
 
-
-
   Future<void> updateDatabase() async {
     // 获取今天的日期
     DateTime now = DateTime.now();
@@ -149,25 +148,22 @@ class _DailyPageState extends State<DailyPage> {
 
     List<DailyRecord> allRecords = await dbManager.getAllDailyRecords();
 
-
-    await dbManager.updateDailyRecord(updatedRecord);
     // 遍历查询结果，删除与今天日期相同的记录
-    // for (DailyRecord record in allRecords) {
-    //   if (record.recordDate.year == year &&
-    //       record.recordDate.month == month &&
-    //       record.recordDate.day == day) {
-    //     // 删除记录
-    //     bool isSuccess = await dbManager.updateDailyRecord(updatedRecord);
-    //     if (isSuccess) {
-    //       // 更新成功
-    //       print('Record updated successfully.');
-    //     } else {
-    //       // 更新失败
-    //       print('Failed to update record.');
-    //     }
-    //   }
-    // }
-    printDatabaseInfo();
+    for (DailyRecord record in allRecords) {
+      if (record.recordDate.year == year &&
+          record.recordDate.month == month &&
+          record.recordDate.day == day) {
+        // 删除记录
+        // bool isSuccess = await dbManager.updateDailyRecord(record.recordDate, updatedRecord);
+        // if (isSuccess) {
+          // 更新成功
+          print('Record updated successfully.');
+        } else {
+          // 更新失败
+          print('Failed to update record.');
+        // }
+      }
+    }
   }
 
   late double screenWidth;
@@ -210,7 +206,7 @@ class _DailyPageState extends State<DailyPage> {
             child: Column(
               children: [
                 /// 顶部时间
-                buildDateWidget(widget.date),
+                buildDateWidget(),
                 buildDivider(),
 
                 const Padding(
@@ -219,7 +215,7 @@ class _DailyPageState extends State<DailyPage> {
                 ),
                 buildDivider(),
 
-                buildCircularPercentIndicator(screenHeight * 0.09),
+                buildCircularPercentIndicator(),
 
                 buildDivider(),
 
@@ -369,6 +365,18 @@ class _DailyPageState extends State<DailyPage> {
                   ),
                 ),
 
+                /*MyGridView(width: screenWidth * 0.95, height: screenHeight*0.23, state: true,
+                    exerciseGoal: _exerciseGoal,
+                    exerciseCompleted: _exerciseCompleted,
+                    nutritionGoal: _nutritionGoal,
+                    nutritionCompleted: _nutritionCompleted,
+                    waterGoal: _waterGoal,
+                    waterCompleted: _waterCompleted,
+                    isFirstPage: false),*/
+
+
+                /// 调用今日活力值板块
+                // NumericContainer(width: screenWidth * 0.95, height: screenHeight * 0.5, myIntArray: values),
 
                 buildDivider(),
 
@@ -385,6 +393,64 @@ class _DailyPageState extends State<DailyPage> {
 
     );
 
+    /* return Scaffold(
+      backgroundColor: Colors.white,
+      appBar:  AppBar(
+        title: const Text(
+          '每日记录',
+          style: TextStyle(
+            fontFamily: "ZHUOKAI",
+          ),
+        ),
+      ),
+      body:  FutureBuilder(future: _future, builder: (context,snapshot){
+        if(snapshot.connectionState == ConnectionState.waiting){
+          return CircularProgressIndicator();
+        }else if(snapshot.hasError){
+          return Text('Error: ${snapshot.error}');
+        }else{
+          return SingleChildScrollView(
+            child: Column(
+              children: [
+                /// 顶部时间
+                buildDateWidget(),
+                buildDivider(),
+
+                const Padding(
+                  padding: EdgeInsets.symmetric(horizontal: 8.0),
+                  child:ScoreWidget(),
+                ),
+                buildDivider(),
+
+                buildCircularPercentIndicator(),
+
+                buildDivider(),
+
+                MyGridView(width: screenWidth * 0.95, height: screenHeight*0.23, state: true,
+                    exerciseGoal: _exerciseGoal,
+                    exerciseCompleted: _exerciseCompleted,
+                    nutritionGoal: _nutritionGoal,
+                    nutritionCompleted: _nutritionCompleted,
+                    waterGoal: _waterGoal,
+                    waterCompleted: _waterCompleted,
+                    isFirstPage: false),
+                /// 调用今日活力值板块
+                // NumericContainer(width: screenWidth * 0.95, height: screenHeight * 0.5, myIntArray: values),
+
+                buildDivider(),
+
+                /// 此板块调用习惯打卡板块
+                MultiRowBlock(quantity: 2, section_width: screenWidth,),
+                const SizedBox(height: 20),
+
+              ],
+            ),
+          );
+        }
+
+      }),
+
+    );*/
 
   }
   Widget SecondRow(int identifier,bool isfirstpage){
@@ -416,21 +482,92 @@ class _DailyPageState extends State<DailyPage> {
       ],
     );
   }
+
+  /*Widget buildSecondRow(int id,int data,String identifier) {
+    String lowerText = '';
+
+    // 根据不同的 id 设置不同的字
+    switch (id) {
+      case 0:
+        lowerText = 'min';
+        break;
+      case 1:
+        lowerText = 'k';
+        break;
+      case 2:
+        lowerText = 'ml';
+        break;
+      default:
+        lowerText = 'min';
+    }
+
+    return Expanded(
+      flex: 1,
+      child: Container(
+        height: globalItemHeight,
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Expanded(
+              child: Center(
+                child: Container(
+                  height: globalItemHeight * 0.4,
+                  padding: const EdgeInsets.symmetric(vertical: 6),
+                  child: Text(
+                    '${identifier}',
+                    style: const TextStyle(
+                      fontSize: 18,
+                      fontWeight: FontWeight.w500,
+                      letterSpacing: 2,
+                    ),
+                  ),
+                ),
+              ),
+            ),
+            Expanded(
+              child: Center(
+                child: Container(
+                  height: globalItemHeight * 0.6,
+                  padding: const EdgeInsets.only(top: 6),
+                  child: TextFormField(
+                    controller: _controller,
+                    keyboardType: TextInputType.number,
+                    decoration: InputDecoration(
+                      suffixText: ' $lowerText',
+                      suffixStyle: const TextStyle(fontSize: 18),
+                    ),
+                    style: const TextStyle(
+                      fontSize: 18,
+                      fontFamily: 'ZCOOL',
+                      letterSpacing: 1,
+                      wordSpacing: 1,
+                    ),
+                    textAlign: TextAlign.center,
+                    onChanged: (value) {
+                      // 更新数据
+                      _updateData();
+                    },
+                  ),
+                ),
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }*/
   Widget buildSecondRow(int id, int data, String identifier) {
     String lowerText = '';
 
     // 根据不同的 id 设置不同的字
     switch (id) {
       case 0:
-      case 1:
         lowerText = 'min';
         break;
-      case 2:
-      case 3:
+      case 1:
         lowerText = 'k';
         break;
-      case 4:
-      case 5:
+      case 2:
         lowerText = 'ml';
         break;
       default:
@@ -486,29 +623,14 @@ class _DailyPageState extends State<DailyPage> {
                           _exerciseGoal = int.tryParse(value) ?? _exerciseGoal_default;
                           break;
                         case 1:
-                          _exerciseCompleted = int.tryParse(value) ?? _exerciseCompleted_default;
-                        case 2:
                           _nutritionGoal = int.tryParse(value) ?? _nutritionGoal_default;
                           break;
-                        case 3:
-                          _nutritionCompleted = int.tryParse(value) ?? _nutritionCompleted_default;
-                          break;
-                        case 4:
+                        case 2:
                           _waterGoal = int.tryParse(value) ?? _waterGoal_default;
                           break;
-                        case 5:
-                          _waterCompleted = int.tryParse(value) ?? _waterCompleted_default;
-                          break;
                       }
-                      // printDatabaseInfo();
-
                       // 更新数据
-                      setState(() {
-                        print('00000000000000000: $_exerciseGoal');
-                        updateDatabase();
-                        printDatabaseInfo();
-
-                      });
+                      setState(() {});
                     },
                   ),
                 ),
@@ -517,6 +639,110 @@ class _DailyPageState extends State<DailyPage> {
           ],
         ),
       ),
+    );
+  }
+  Widget buildSecondRowNeeded(int id,int data,) {
+    String lowerText = '';
+
+    // 根据不同的 id 设置不同的字
+    switch (id) {
+      case 0:
+        lowerText = 'min';
+        break;
+      case 1:
+        lowerText = 'k';
+        break;
+      case 2:
+        lowerText = 'ml';
+        break;
+      default:
+        lowerText = 'min';
+    }
+
+    return Expanded(
+      flex: 1,
+      child: Container(
+        height: globalItemHeight,
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Expanded(
+              child: Center(
+                child: Container(
+                  height: globalItemHeight *0.4,
+                  // color: Colors.white,
+                  padding: const EdgeInsets.symmetric(vertical: 6), // 调整垂直方向上的内边距
+                  child: const Text(
+                    '还需完成',
+                    style: TextStyle(
+                      fontSize: 18,
+                      fontWeight: FontWeight.w500,
+                      letterSpacing: 2,
+                    ),
+                  ),
+                ),
+              ),
+            ),
+            Expanded(
+              child: Center(
+                child: Container(
+                  height: globalItemHeight *0.6,
+                  // color: Colors.pink,
+                  padding: const EdgeInsets.only(top: 6), // 调整垂直方向上的内边距
+                  child: Text(
+                    '$data $lowerText',
+                    style: const TextStyle(fontSize: 18,fontFamily: 'ZCOOL',
+                      letterSpacing: 1,wordSpacing: 1,),
+                  ),
+                ),
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+
+  Widget buildDateWidget(){
+    return  Container(
+      color: Colors.white,
+      padding: EdgeInsets.symmetric(vertical: 8, horizontal: 10),
+      alignment: Alignment.centerLeft,
+      child: Text(
+        '${widget.date.year}-${widget.date.month}-${widget.date.day}',
+        style: const TextStyle(
+          fontSize: 20,
+          fontFamily: 'ZHUOKAI',
+        ),
+        textAlign: TextAlign.left,
+      ),
+    );
+  }
+
+  Widget buildCircularPercentIndicator(){
+    return CircularPercentIndicator(
+      radius: screenHeight * 0.09,
+      lineWidth: 15.0,
+      percent: 0.45,
+      center: const Text("45%",
+        style: TextStyle(fontSize: 18,fontFamily: 'ZHUOKAI'),),
+      progressColor: const Color(0XFF726EF0),
+      backgroundColor: Colors.grey,
+      animation: true,
+      animationDuration: 700,
+    );
+  }
+
+  Widget buildDivider(){
+    return  Container(
+      color: Colors.grey[100], // 你可以将这里的颜色改为你想要的颜色
+      child: const SizedBox(height: 20),
+    );
+  }
+  Widget buildDivider2(){
+    return  Container(
+      color: Colors.grey[100], // 你可以将这里的颜色改为你想要的颜色
+      child: const SizedBox(height: 10),
     );
   }
 

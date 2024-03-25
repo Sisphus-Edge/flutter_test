@@ -1,3 +1,6 @@
+/*
+/// 本文件已弃用 文件内容合并到numeric_firstpage & numeric_dailypage
+///
 import 'package:flutter/material.dart';
 
 import '../../../db/DailyRecordDB/dailyrecord_db_manager.dart';
@@ -319,5 +322,6 @@ class _MyGridViewState extends State<MyGridView> {
     );
   }
 }
+*/
 
 /// 以下已经收录在numeric_input里面

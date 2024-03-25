@@ -37,6 +37,11 @@ class DailyRecordDBManager extends _$DailyRecordDBManager {
     return await update(dailyRecords).replace(record);
   }
 
+  // // 更新特定日期的每日记录
+  // Future<bool> updateDailyRecord(DateTime recordDate, DailyRecordsCompanion updatedRecord) async {
+  //   return await (update(dailyRecords)..where((r) => r.recordDate.equals(recordDate))).replace(updatedRecord);
+  // }
+
 // 获取特定日期的每日记录
   Future<DailyRecord?> getDailyRecord(DateTime recordDate) async {
     final query = select(dailyRecords)..where((r) => r.recordDate.equals(recordDate));

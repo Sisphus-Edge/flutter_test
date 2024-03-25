@@ -1,6 +1,4 @@
-import 'package:untitled/db/DailyRecordDB/dailyrecord_db_manager.dart';
 import 'package:flutter/material.dart';
-import 'package:intl/intl.dart';
 
 double globalItemHeight = 100; // 全局变量用于itemheight
 // 第二排的height直接在DoubleLayerExpanded中实现
@@ -16,6 +14,7 @@ class DoubleLayerExpanded extends StatefulWidget {
     required this.id,
     required this.data,
     required this.identifier,
+
   }) : super(key: key);
 
   @override
@@ -28,7 +27,7 @@ class _DoubleLayerExpandedState extends State<DoubleLayerExpanded> {
   @override
   void initState() {
     super.initState();
-    _controller = TextEditingController(text: widget.data.toString());
+    // _controller = TextEditingController(text: widget.data.toString());
     _controller.addListener(_updateData);
   }
 
@@ -40,8 +39,8 @@ class _DoubleLayerExpandedState extends State<DoubleLayerExpanded> {
 
   void _updateData() {
     setState(() {
-      // 更新数据
-      // widget.data = int.tryParse(_controller.text) ?? 0;
+      // final newData = int.tryParse(_controller.text) ?? 0;
+      // widget.onDataChanged(newData); // 调用回调函数，将新数据传递给父组件
     });
   }
 
@@ -120,6 +119,7 @@ class _DoubleLayerExpandedState extends State<DoubleLayerExpanded> {
     );
   }
 }
+
 /// 第二排显示数值的格式
 class DoubleLayerExpandedTrue extends StatelessWidget {
   final int id;

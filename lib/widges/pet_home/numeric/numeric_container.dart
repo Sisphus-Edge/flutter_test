@@ -1,11 +1,11 @@
+/*
+/// 本文件已弃用 文件内容合并到numeric_firstpage & numeric_dailypage
 
 import 'package:flutter/material.dart';
 import 'numeric_activity.dart';
 import 'package:ff_stars/ff_stars.dart';
 import 'package:percent_indicator/percent_indicator.dart';
 import 'package:untitled/db/DailyRecordDB/dailyrecord_db_manager.dart';
-import 'numeric_input.dart';
-import 'package:intl/intl.dart';
 
 
 /// 一级界面活力值板块
@@ -284,4 +284,4 @@ class _ScoreWidgetState extends State<ScoreWidget> {
       ],
     );
   }
-}
+}*/

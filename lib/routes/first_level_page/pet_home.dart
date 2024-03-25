@@ -2,7 +2,9 @@ import 'package:flutter/material.dart';
 
 import 'package:untitled/widges/pet_home/top_section_pethome.dart';
 import 'package:untitled/widges/pet_home/canlendar_pet_home.dart';
-import 'package:untitled/widges/pet_home/numeric/numeric_container.dart';
+// import 'package:untitled/widges/pet_home/numeric/numeric_container.dart';
+import 'package:untitled/widges/pet_home/numeric/numeric_firstpage.dart';
+
 import 'package:untitled/widges/pet_home/habit/habit_container.dart';
 import 'package:untitled/db/DailyRecordDB/dailyrecord_db_manager.dart';
 import 'package:drift/drift.dart' as drift;
@@ -55,7 +57,7 @@ class _PetHomeRouteState extends State<PetHomeRoute> {
       if (record.recordDate.year == year &&
           record.recordDate.month == month &&
           record.recordDate.day == day) {
-        print('Daily record for today already exists.');
+        // print('Daily record for today already exists.');
         isestablished = true;
         break;
       }
@@ -78,7 +80,7 @@ class _PetHomeRouteState extends State<PetHomeRoute> {
       );
       // 将新记录插入到数据库中
       await DailyRecordDBManager().addDailyRecord(newRecord as DailyRecordsCompanion);
-      print('Created a new daily record for today.');
+      // print('Created a new daily record for today.');
     }
   }
 
