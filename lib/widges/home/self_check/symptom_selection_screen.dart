@@ -243,7 +243,8 @@ class _SymptomSelectionScreenState extends State<SymptomSelectionScreen> {
           ),
           actions: <Widget>[
             TextButton(
-              child: Text('关闭'),
+
+            child: Text('关闭'),
               onPressed: () => Navigator.of(context).pop(),
             ),
           ],
